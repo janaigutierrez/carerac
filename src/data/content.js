@@ -114,7 +114,7 @@ export const content = {
         // Footer
         footer: {
             description: "Experiències autèntiques a la Catalunya rural",
-            copyright: "Dissenyat amb amor per a la Catalunya rural"
+            copyright: "Dissenyat amb ♥"
         }
     },
 
@@ -233,7 +233,7 @@ export const content = {
         // Footer
         footer: {
             description: "Experiencias auténticas en la Cataluña rural",
-            copyright: "Diseñado con amor para la Cataluña rural"
+            copyright: "Diseñado con ♥"
         }
     },
 
@@ -352,7 +352,7 @@ export const content = {
         // Footer
         footer: {
             description: "Authentic experiences in rural Catalonia",
-            copyright: "Designed with love for rural Catalonia"
+            copyright: "Designed with ♥"
         }
     }
 };
