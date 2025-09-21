@@ -16,6 +16,11 @@ export const content = {
             scroll: "Descobreix més ↓"
         },
 
+        arcades: {
+            title: 'Pròleg',
+            subtitle: 'Descobreix una masia històrica on la herència del temps i la pau de l\'entorn són els protagonistes d\'una experiència única.'
+        },
+
         // L'Espai
         espai: {
             title: "L'Espai",
@@ -130,6 +135,11 @@ export const content = {
             scroll: "Descubre más ↓"
         },
 
+        arcades: {
+            title: 'Prólogo',
+            subtitle: 'Descubre una masia histórica donde la herencia del tiempo y la paz del entorno son los protagonistas de una experiencia única.'
+        },
+
         // L'Espai
         espai: {
             title: "El Espacio",
@@ -242,6 +252,11 @@ export const content = {
             subtitle: "Authentic experiences in rural Catalonia",
             cta: "Discover the experiences",
             scroll: "Discover more ↓"
+        },
+
+        arcades: {
+            title: 'Prologue',
+            subtitle: 'Discover an historic farmhouse where the heritage of time and the peace of the surroundings take center stage in a unique experience.'
         },
 
         // L'Espai
