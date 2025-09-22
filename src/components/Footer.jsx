@@ -59,14 +59,16 @@ const Footer = () => {
 
                     {/* Experiències */}
                     <div>
-                        <h4 className="font-display text-lg font-semibold mb-4">Experiències</h4>
+                        <h4 className="font-display text-lg font-semibold mb-4">
+                            {t('footer.sections.experiences.title')}
+                        </h4>
                         <ul className="space-y-2">
                             <li>
                                 <button
                                     onClick={() => scrollToSection('experiencies')}
                                     className="text-primary-white/80 hover:text-primary-straw transition-colors font-body"
                                 >
-                                    Experiència Gastronòmica
+                                    {t('footer.sections.experiences.links.gastronomic')}
                                 </button>
                             </li>
                             <li>
@@ -74,7 +76,7 @@ const Footer = () => {
                                     onClick={() => scrollToSection('experiencies')}
                                     className="text-primary-white/80 hover:text-primary-straw transition-colors font-body"
                                 >
-                                    Experiència Cultural
+                                    {t('footer.sections.experiences.links.cultural')}
                                 </button>
                             </li>
                             <li>
@@ -82,7 +84,7 @@ const Footer = () => {
                                     onClick={() => scrollToSection('espai')}
                                     className="text-primary-white/80 hover:text-primary-straw transition-colors font-body"
                                 >
-                                    L'Espai
+                                    {t('footer.sections.experiences.links.space')}
                                 </button>
                             </li>
                             <li>
@@ -90,7 +92,7 @@ const Footer = () => {
                                     onClick={() => scrollToSection('ubicacio')}
                                     className="text-primary-white/80 hover:text-primary-straw transition-colors font-body"
                                 >
-                                    Com Arribar
+                                    {t('footer.sections.experiences.links.location')}
                                 </button>
                             </li>
                         </ul>
@@ -98,26 +100,28 @@ const Footer = () => {
 
                     {/* Informació */}
                     <div>
-                        <h4 className="font-display text-lg font-semibold mb-4">Informació</h4>
+                        <h4 className="font-display text-lg font-semibold mb-4">
+                            {t('footer.sections.information.title')}
+                        </h4>
                         <ul className="space-y-2">
                             <li>
                                 <a href="#" className="text-primary-white/80 hover:text-primary-straw transition-colors font-body">
-                                    Sobre Nosaltres
+                                    {t('footer.sections.information.links.about')}
                                 </a>
                             </li>
                             <li>
                                 <a href="#" className="text-primary-white/80 hover:text-primary-straw transition-colors font-body">
-                                    Preguntes Freqüents
+                                    {t('footer.sections.information.links.faq')}
                                 </a>
                             </li>
                             <li>
                                 <a href="#" className="text-primary-white/80 hover:text-primary-straw transition-colors font-body">
-                                    Blog
+                                    {t('footer.sections.information.links.blog')}
                                 </a>
                             </li>
                             <li>
                                 <a href="#" className="text-primary-white/80 hover:text-primary-straw transition-colors font-body">
-                                    Contacte
+                                    {t('footer.sections.information.links.contact')}
                                 </a>
                             </li>
                         </ul>
@@ -125,40 +129,43 @@ const Footer = () => {
 
                     {/* Contacte */}
                     <div>
-                        <h4 className="font-display text-lg font-semibold mb-4">Contacte</h4>
+                        <h4 className="font-display text-lg font-semibold mb-4">
+                            {t('footer.sections.contact.title')}
+                        </h4>
                         <div className="space-y-3">
                             <div className="flex items-start space-x-3">
                                 <MapPin size={16} className="text-primary-straw mt-1 flex-shrink-0" />
-                                <span className="text-primary-white/80 font-body text-sm">
-                                    Can Carerac<br />
-                                    Catalunya Rural
+                                <span className="text-primary-white/80 font-body text-sm whitespace-pre-line">
+                                    {t('footer.sections.contact.address')}
                                 </span>
                             </div>
                             <div className="flex items-center space-x-3">
                                 <Phone size={16} className="text-primary-straw flex-shrink-0" />
                                 <a href="tel:+34XXXXXXXXX" className="text-primary-white/80 hover:text-primary-straw transition-colors font-body text-sm">
-                                    +34 XXX XXX XXX
+                                    {t('footer.sections.contact.phone')}
                                 </a>
                             </div>
                             <div className="flex items-center space-x-3">
                                 <Mail size={16} className="text-primary-straw flex-shrink-0" />
                                 <a href="mailto:info@cancarerac.cat" className="text-primary-white/80 hover:text-primary-straw transition-colors font-body text-sm">
-                                    info@cancarerac.cat
+                                    {t('footer.sections.contact.email')}
                                 </a>
                             </div>
                         </div>
 
                         {/* Language Selector */}
                         <div className="mt-6">
-                            <h5 className="font-medium mb-2 text-sm">Idioma</h5>
+                            <h5 className="font-medium mb-2 text-sm">
+                                {t('footer.sections.contact.language')}
+                            </h5>
                             <div className="flex space-x-2">
                                 {languages.map((lang) => (
                                     <button
                                         key={lang.code}
                                         onClick={() => changeLanguage(lang.code)}
                                         className={`px-3 py-1 text-xs rounded-full transition-colors ${currentLanguage === lang.code
-                                                ? 'bg-primary-brown text-primary-white'
-                                                : 'bg-primary-white/10 text-primary-white/80 hover:bg-primary-white/20'
+                                            ? 'bg-primary-brown text-primary-white'
+                                            : 'bg-primary-white/10 text-primary-white/80 hover:bg-primary-white/20'
                                             }`}
                                     >
                                         {lang.label}
@@ -186,16 +193,16 @@ const Footer = () => {
                         {/* Legal Links */}
                         <div className="flex space-x-6">
                             <a href="#" className="text-primary-white/60 hover:text-primary-straw transition-colors font-body text-sm">
-                                Avís Legal
+                                {t('footer.sections.legal.legal')}
                             </a>
                             <a href="#" className="text-primary-white/60 hover:text-primary-straw transition-colors font-body text-sm">
-                                Privacitat
+                                {t('footer.sections.legal.privacy')}
                             </a>
                             <a href="#" className="text-primary-white/60 hover:text-primary-straw transition-colors font-body text-sm">
-                                Cookies
+                                {t('footer.sections.legal.cookies')}
                             </a>
                             <a href="#" className="text-primary-white/60 hover:text-primary-straw transition-colors font-body text-sm">
-                                Termes
+                                {t('footer.sections.legal.terms')}
                             </a>
                         </div>
                     </div>

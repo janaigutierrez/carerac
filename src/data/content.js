@@ -1,3 +1,4 @@
+// src/data/content.js - ACTUALITZAT amb Timeline i Footer
 export const content = {
     ca: {
         // Header
@@ -16,30 +17,76 @@ export const content = {
             scroll: "Descobreix més ↓"
         },
 
+        // Arcades
         arcades: {
             title: 'Pròleg',
             subtitle: 'Descobreix una masia històrica on la herència del temps i la pau de l\'entorn són els protagonistes d\'una experiència única.'
         },
 
+        // Timeline
+        timeline: {
+            title: "La Nostra Història",
+            subtitle: "Un viatge a través del temps, des dels orígens fins a l'actualitat, on cada pedra conta una història.",
+            cta: "Descobreix les nostres experiències",
+            finalText: "Avui, aquesta història continua amb cada visitant que descobreix Can Carerac",
+            events: [
+                {
+                    year: "1890",
+                    title: "Construcció Original",
+                    description: "La masia Can Carerac es construeix seguint l'arquitectura tradicional catalana de finals del segle XIX."
+                },
+                {
+                    year: "1920",
+                    title: "Generacions Familiars",
+                    description: "La família Carerac s'estableix a la masia, iniciant una tradició agrícola que duraria dècades."
+                },
+                {
+                    year: "1960",
+                    title: "Època Daurada",
+                    description: "La masia viu els seus millors anys com a explotació agrícola, amb cultius de cereals i ramaderia."
+                },
+                {
+                    year: "1995",
+                    title: "Pausa i Reflexió",
+                    description: "La masia queda deshabitada, però la seva estructura resistent aguanta el pas del temps."
+                },
+                {
+                    year: "2020",
+                    title: "Renaixement",
+                    description: "Inicia el projecte de restauració respectuosa, conservant l'essència històrica amb comoditats modernes."
+                },
+                {
+                    year: "2025",
+                    title: "Avui - Experiències Úniques",
+                    description: "Can Carerac obre les seves portes per compartir la seva història i tradicions amb els visitants."
+                }
+            ]
+        },
+
         // L'Espai
         espai: {
             title: "L'Espai",
+            subtitle: "Cada racó de Can Carerac ha estat restaurat amb amor i respecte per la tradició catalana, creant espais únics per a experiències inoblidables.",
             spaces: {
                 piscina: {
                     title: "Piscina",
-                    description: "Aigües cristal·lines envoltades de vegetació mediterrània autòctona"
+                    description: "Aigües cristal·lines envoltades de vegetació mediterrània autòctona",
+                    cta: "Descobreix més"
                 },
                 hort: {
                     title: "Hort Ecològic",
-                    description: "Ingredients frescos cultivats amb amor per a les nostres experiències"
+                    description: "Ingredients frescos cultivats amb amor per a les nostres experiències",
+                    cta: "Descobreix més"
                 },
                 cuina: {
                     title: "Cuina Tradicional",
-                    description: "Forn de llenya centenari i estris tradicionals per a l'elaboració artesanal"
+                    description: "Forn de llenya centenari i estris tradicionals per a l'elaboració artesanal",
+                    cta: "Descobreix més"
                 },
                 terrasses: {
                     title: "Terrasses",
-                    description: "Vistes panoràmiques als camps i muntanyes de la Catalunya interior"
+                    description: "Vistes panoràmiques als camps i muntanyes de la Catalunya interior",
+                    cta: "Descobreix més"
                 }
             }
         },
@@ -114,7 +161,40 @@ export const content = {
         // Footer
         footer: {
             description: "Experiències autèntiques a la Catalunya rural",
-            copyright: "Dissenyat amb ♥"
+            copyright: "Dissenyat amb ♥ per a la Catalunya rural",
+            sections: {
+                experiences: {
+                    title: "Experiències",
+                    links: {
+                        gastronomic: "Experiència Gastronòmica",
+                        cultural: "Experiència Cultural",
+                        space: "L'Espai",
+                        location: "Com Arribar"
+                    }
+                },
+                information: {
+                    title: "Informació",
+                    links: {
+                        about: "Sobre Nosaltres",
+                        faq: "Preguntes Freqüents",
+                        blog: "Blog",
+                        contact: "Contacte"
+                    }
+                },
+                contact: {
+                    title: "Contacte",
+                    address: "Can Carerac\nCatalunya Rural",
+                    phone: "+34 XXX XXX XXX",
+                    email: "info@cancarerac.cat",
+                    language: "Idioma"
+                },
+                legal: {
+                    privacy: "Privacitat",
+                    terms: "Termes",
+                    cookies: "Cookies",
+                    legal: "Avís Legal"
+                }
+            }
         }
     },
 
@@ -135,30 +215,76 @@ export const content = {
             scroll: "Descubre más ↓"
         },
 
+        // Arcades
         arcades: {
             title: 'Prólogo',
-            subtitle: 'Descubre una masia histórica donde la herencia del tiempo y la paz del entorno son los protagonistas de una experiencia única.'
+            subtitle: 'Descubre una masía histórica donde la herencia del tiempo y la paz del entorno son los protagonistas de una experiencia única.'
+        },
+
+        // Timeline
+        timeline: {
+            title: "Nuestra Historia",
+            subtitle: "Un viaje a través del tiempo, desde los orígenes hasta la actualidad, donde cada piedra cuenta una historia.",
+            cta: "Descubre nuestras experiencias",
+            finalText: "Hoy, esta historia continúa con cada visitante que descubre Can Carerac",
+            events: [
+                {
+                    year: "1890",
+                    title: "Construcción Original",
+                    description: "La masía Can Carerac se construye siguiendo la arquitectura tradicional catalana de finales del siglo XIX."
+                },
+                {
+                    year: "1920",
+                    title: "Generaciones Familiares",
+                    description: "La familia Carerac se establece en la masía, iniciando una tradición agrícola que duraría décadas."
+                },
+                {
+                    year: "1960",
+                    title: "Época Dorada",
+                    description: "La masía vive sus mejores años como explotación agrícola, con cultivos de cereales y ganadería."
+                },
+                {
+                    year: "1995",
+                    title: "Pausa y Reflexión",
+                    description: "La masía queda deshabitada, pero su estructura resistente aguanta el paso del tiempo."
+                },
+                {
+                    year: "2020",
+                    title: "Renacimiento",
+                    description: "Inicia el proyecto de restauración respetuosa, conservando la esencia histórica con comodidades modernas."
+                },
+                {
+                    year: "2025",
+                    title: "Hoy - Experiencias Únicas",
+                    description: "Can Carerac abre sus puertas para compartir su historia y tradiciones con los visitantes."
+                }
+            ]
         },
 
         // L'Espai
         espai: {
             title: "El Espacio",
+            subtitle: "Cada rincón de Can Carerac ha sido restaurado con amor y respeto por la tradición catalana, creando espacios únicos para experiencias inolvidables.",
             spaces: {
                 piscina: {
                     title: "Piscina",
-                    description: "Aguas cristalinas rodeadas de vegetación mediterránea autóctona"
+                    description: "Aguas cristalinas rodeadas de vegetación mediterránea autóctona",
+                    cta: "Descubre más"
                 },
                 hort: {
                     title: "Huerto Ecológico",
-                    description: "Ingredientes frescos cultivados con amor para nuestras experiencias"
+                    description: "Ingredientes frescos cultivados con amor para nuestras experiencias",
+                    cta: "Descubre más"
                 },
                 cuina: {
                     title: "Cocina Tradicional",
-                    description: "Horno de leña centenario y utensilios tradicionales para elaboración artesanal"
+                    description: "Horno de leña centenario y utensilios tradicionales para elaboración artesanal",
+                    cta: "Descubre más"
                 },
                 terrasses: {
                     title: "Terrazas",
-                    description: "Vistas panorámicas a los campos y montañas de la Cataluña interior"
+                    description: "Vistas panorámicas a los campos y montañas de la Cataluña interior",
+                    cta: "Descubre más"
                 }
             }
         },
@@ -233,7 +359,40 @@ export const content = {
         // Footer
         footer: {
             description: "Experiencias auténticas en la Cataluña rural",
-            copyright: "Diseñado con ♥"
+            copyright: "Diseñado con ♥ para la Cataluña rural",
+            sections: {
+                experiences: {
+                    title: "Experiencias",
+                    links: {
+                        gastronomic: "Experiencia Gastronómica",
+                        cultural: "Experiencia Cultural",
+                        space: "El Espacio",
+                        location: "Cómo Llegar"
+                    }
+                },
+                information: {
+                    title: "Información",
+                    links: {
+                        about: "Sobre Nosotros",
+                        faq: "Preguntas Frecuentes",
+                        blog: "Blog",
+                        contact: "Contacto"
+                    }
+                },
+                contact: {
+                    title: "Contacto",
+                    address: "Can Carerac\nCataluña Rural",
+                    phone: "+34 XXX XXX XXX",
+                    email: "info@cancarerac.cat",
+                    language: "Idioma"
+                },
+                legal: {
+                    privacy: "Privacidad",
+                    terms: "Términos",
+                    cookies: "Cookies",
+                    legal: "Aviso Legal"
+                }
+            }
         }
     },
 
@@ -254,30 +413,76 @@ export const content = {
             scroll: "Discover more ↓"
         },
 
+        // Arcades
         arcades: {
             title: 'Prologue',
-            subtitle: 'Discover an historic farmhouse where the heritage of time and the peace of the surroundings take center stage in a unique experience.'
+            subtitle: 'Discover a historic farmhouse where the heritage of time and the peace of the surroundings take center stage in a unique experience.'
+        },
+
+        // Timeline
+        timeline: {
+            title: "Our Story",
+            subtitle: "A journey through time, from the origins to the present day, where every stone tells a story.",
+            cta: "Discover our experiences",
+            finalText: "Today, this story continues with every visitor who discovers Can Carerac",
+            events: [
+                {
+                    year: "1890",
+                    title: "Original Construction",
+                    description: "The Can Carerac farmhouse is built following traditional Catalan architecture from the late 19th century."
+                },
+                {
+                    year: "1920",
+                    title: "Family Generations",
+                    description: "The Carerac family settles in the farmhouse, starting an agricultural tradition that would last for decades."
+                },
+                {
+                    year: "1960",
+                    title: "Golden Era",
+                    description: "The farmhouse lives its best years as an agricultural operation, with cereal crops and livestock."
+                },
+                {
+                    year: "1995",
+                    title: "Pause and Reflection",
+                    description: "The farmhouse becomes uninhabited, but its resistant structure withstands the passage of time."
+                },
+                {
+                    year: "2020",
+                    title: "Renaissance",
+                    description: "The respectful restoration project begins, preserving the historical essence with modern comforts."
+                },
+                {
+                    year: "2025",
+                    title: "Today - Unique Experiences",
+                    description: "Can Carerac opens its doors to share its history and traditions with visitors."
+                }
+            ]
         },
 
         // L'Espai
         espai: {
             title: "The Space",
+            subtitle: "Every corner of Can Carerac has been restored with love and respect for Catalan tradition, creating unique spaces for unforgettable experiences.",
             spaces: {
                 piscina: {
                     title: "Swimming Pool",
-                    description: "Crystal clear waters surrounded by native Mediterranean vegetation"
+                    description: "Crystal clear waters surrounded by native Mediterranean vegetation",
+                    cta: "Discover more"
                 },
                 hort: {
                     title: "Organic Garden",
-                    description: "Fresh ingredients grown with love for our experiences"
+                    description: "Fresh ingredients grown with love for our experiences",
+                    cta: "Discover more"
                 },
                 cuina: {
                     title: "Traditional Kitchen",
-                    description: "Centenary wood-fired oven and traditional tools for artisanal preparation"
+                    description: "Centenary wood-fired oven and traditional tools for artisanal preparation",
+                    cta: "Discover more"
                 },
                 terrasses: {
                     title: "Terraces",
-                    description: "Panoramic views of the fields and mountains of interior Catalonia"
+                    description: "Panoramic views of the fields and mountains of interior Catalonia",
+                    cta: "Discover more"
                 }
             }
         },
@@ -352,7 +557,40 @@ export const content = {
         // Footer
         footer: {
             description: "Authentic experiences in rural Catalonia",
-            copyright: "Designed with ♥"
+            copyright: "Designed with ♥ for rural Catalonia",
+            sections: {
+                experiences: {
+                    title: "Experiences",
+                    links: {
+                        gastronomic: "Gastronomic Experience",
+                        cultural: "Cultural Experience",
+                        space: "The Space",
+                        location: "How to Get Here"
+                    }
+                },
+                information: {
+                    title: "Information",
+                    links: {
+                        about: "About Us",
+                        faq: "FAQ",
+                        blog: "Blog",
+                        contact: "Contact"
+                    }
+                },
+                contact: {
+                    title: "Contact",
+                    address: "Can Carerac\nRural Catalonia",
+                    phone: "+34 XXX XXX XXX",
+                    email: "info@cancarerac.cat",
+                    language: "Language"
+                },
+                legal: {
+                    privacy: "Privacy",
+                    terms: "Terms",
+                    cookies: "Cookies",
+                    legal: "Legal Notice"
+                }
+            }
         }
     }
 };

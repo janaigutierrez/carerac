@@ -1,16 +1,88 @@
 <!doctype html>
-<html lang="en">
+<html lang="ca">
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Can Carerac</title>
+
+  <!-- SEO Básic -->
+  <title>Can Carerac - Experiències Autèntiques a Catalunya Rural</title>
+  <meta name="description"
+    content="Descobreix Can Carerac, una masia històrica catalana on viure experiències gastronòmiques i culturals úniques. Forn de llenya, hort ecològic i tradicions autèntiques." />
+  <meta name="keywords"
+    content="masia catalunya, experiències gastronòmiques, turisme rural catalunya, forn llenya, hort ecològic" />
+  <meta name="author" content="Can Carerac" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Can Carerac - Experiències Autèntiques a Catalunya Rural" />
+  <meta property="og:description"
+    content="Descobreix Can Carerac, una masia històrica catalana on viure experiències gastronòmiques i culturals úniques." />
+  <meta property="og:image"
+    content="https://images.unsplash.com/photo-1566479179817-5c3a8e494f2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" />
+  <meta property="og:url" content="https://cancarerac.cat" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Can Carerac" />
+  <meta property="og:locale" content="ca_ES" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Can Carerac - Experiències Autèntiques a Catalunya Rural" />
+  <meta name="twitter:description"
+    content="Descobreix Can Carerac, una masia històrica catalana on viure experiències gastronòmiques i culturals úniques." />
+  <meta name="twitter:image"
+    content="https://images.unsplash.com/photo-1566479179817-5c3a8e494f2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" />
+
+  <!-- Additional -->
+  <meta name="theme-color" content="#8B6F47" />
+  <link rel="canonical" href="https://cancarerac.cat" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+
+  <!-- Preconnect per performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+
+  <!-- Structured Data inicial -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TouristAttraction",
+      "name": "Can Carerac",
+      "description": "Masia històrica catalana que ofereix experiències gastronòmiques i culturals autèntiques",
+      "url": "https://cancarerac.cat",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "ES",
+        "addressRegion": "Catalonia"
+      },
+      "offers": {
+        "@type": "Offer",
+        "description": "Experiències gastronòmiques i culturals"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "Can Carerac",
+        "url": "https://cancarerac.cat"
+      }
+    }
+  </script>
 </head>
 
 <body>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
+
+  <!-- No-script fallback per SEO -->
+  <noscript>
+    <div style="text-align: center; padding: 50px; font-family: Arial;">
+      <h1>Can Carerac - Experiències Autèntiques a Catalunya Rural</h1>
+      <p>Per accedir al contingut complet, activeu JavaScript al vostre navegador.</p>
+      <p>Contacteu-nos a info@cancarerac.cat o +34 XXX XXX XXX</p>
+    </div>
+  </noscript>
 </body>
 
 </html>

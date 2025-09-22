@@ -147,24 +147,23 @@ const ReservarSection = () => {
                 <div className="text-center mb-16">
                     <h2
                         className={`font-display text-4xl lg:text-5xl font-bold text-primary-dark mb-4 transition-all duration-1000 transform ${inView
-                                ? 'opacity-100 translate-y-0'
-                                : 'opacity-0 translate-y-8'
+                            ? 'opacity-100 translate-y-0'
+                            : 'opacity-0 translate-y-8'
                             }`}
                     >
                         {t('reservar.title')}
                     </h2>
                     <p className="text-primary-gray font-body max-w-2xl mx-auto">
-                        Tras recibir su solicitud, nos pondremos en contacto tan pronto como sea posible para confirmar la reserva y coordinar eficazmente los detalles necesarios.
-                    </p>
+                        {t('reservar.subtitle')}                    </p>
                 </div>
 
                 <div className="grid lg:grid-cols-2 gap-12">
 
-                    {/* Left Column - Calendar */}
+                    {/* Calendar */}
                     <div
                         className={`transition-all duration-1000 transform ${inView
-                                ? 'opacity-100 translate-x-0'
-                                : 'opacity-0 -translate-x-8'
+                            ? 'opacity-100 translate-x-0'
+                            : 'opacity-0 -translate-x-8'
                             }`}
                     >
                         {/* Calendar Header */}
@@ -256,8 +255,8 @@ const ReservarSection = () => {
                     {/* Right Column - Guest Form */}
                     <div
                         className={`transition-all duration-1000 transform ${inView
-                                ? 'opacity-100 translate-x-0'
-                                : 'opacity-0 translate-x-8'
+                            ? 'opacity-100 translate-x-0'
+                            : 'opacity-0 translate-x-8'
                             }`}
                         style={{ transitionDelay: '300ms' }}
                     >
