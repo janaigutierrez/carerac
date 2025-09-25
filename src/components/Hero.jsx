@@ -31,10 +31,12 @@ const Hero = () => {
                 <div
                     className="w-full h-full bg-gradient-to-br from-primary-stone via-primary-straw to-primary-forest bg-cover bg-center"
                     style={{
-                        backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-                             url('https://images.unsplash.com/photo-1566479179817-5c3a8e494f2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')`
+                        backgroundImage: `linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)), 
+                      url('/images/gallery/hero.png')`,
+                        filter: "brightness(1.2) blur(1px)"
                     }}
                 >
+
                     {/* Future video element */}
                     {/* <video 
             autoPlay 
@@ -56,8 +58,8 @@ const Hero = () => {
                 {/* Main Title */}
                 <h1
                     className={`font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-primary-white mb-6 transition-all duration-1000 transform ${isVisible
-                            ? 'opacity-100 translate-y-0'
-                            : 'opacity-0 translate-y-8'
+                        ? 'opacity-100 translate-y-0'
+                        : 'opacity-0 translate-y-8'
                         }`}
                 >
                     {t('hero.title')}
@@ -66,8 +68,8 @@ const Hero = () => {
                 {/* Subtitle */}
                 <p
                     className={`font-body text-lg sm:text-xl text-primary-white/90 mb-8 max-w-2xl mx-auto transition-all duration-1000 transform delay-300 ${isVisible
-                            ? 'opacity-100 translate-y-0'
-                            : 'opacity-0 translate-y-8'
+                        ? 'opacity-100 translate-y-0'
+                        : 'opacity-0 translate-y-8'
                         }`}
                 >
                     {t('hero.subtitle')}
@@ -77,8 +79,8 @@ const Hero = () => {
                 <button
                     onClick={() => scrollToNext()}
                     className={`inline-flex items-center px-8 py-4 bg-primary-brown text-primary-white font-medium rounded-full hover:bg-primary-dark transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl transition-all duration-1000 delay-500 ${isVisible
-                            ? 'opacity-100 translate-y-0'
-                            : 'opacity-0 translate-y-8'
+                        ? 'opacity-100 translate-y-0'
+                        : 'opacity-0 translate-y-8'
                         }`}
                 >
                     {t('hero.cta')}
@@ -88,8 +90,8 @@ const Hero = () => {
             {/* Scroll Indicator */}
             <div
                 className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 text-primary-white/80 transition-all duration-1000 delay-700 ${isVisible
-                        ? 'opacity-100 translate-y-0'
-                        : 'opacity-0 translate-y-8'
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 translate-y-8'
                     }`}
             >
                 <button

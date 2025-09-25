@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { useLanguage } from '../hooks/useLanguage.jsx';
+import Logo from './Logo.jsx';
+
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -44,9 +46,13 @@ const Header = () => {
                     <div className="flex-shrink-0">
                         <button
                             onClick={() => scrollToSection('hero')}
-                            className="font-display text-xl lg:text-2xl font-bold text-primary-dark hover:text-primary-brown transition-colors"
+                            className="hover:scale-105 transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-primary-brown focus:ring-opacity-50 rounded-lg p-1"
                         >
-                            Can Carerac
+                            <Logo
+                                variant="full"
+                                size="xl"
+                                className="drop-shadow-lg"
+                            />
                         </button>
                     </div>
 

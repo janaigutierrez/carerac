@@ -1,4 +1,3 @@
-// src/data/content.js - ACTUALITZAT amb Timeline i Footer
 export const content = {
     ca: {
         // Header
@@ -140,6 +139,7 @@ export const content = {
         // Reservar
         reservar: {
             title: "Fes la teva Reserva",
+            subtitle: "Digue’ns quantes persones sereu i quan voldríeu venir, i ens posarem en contacte amb vosaltres.",
             form: {
                 name: "Nom i Cognoms",
                 email: "Correu Electrònic",
@@ -161,7 +161,7 @@ export const content = {
         // Footer
         footer: {
             description: "Experiències autèntiques a la Catalunya rural",
-            copyright: "Dissenyat amb ♥ per a la Catalunya rural",
+            copyright: "Dissenyat amb ♥",
             sections: {
                 experiences: {
                     title: "Experiències",
@@ -183,7 +183,7 @@ export const content = {
                 },
                 contact: {
                     title: "Contacte",
-                    address: "Can Carerac\nCatalunya Rural",
+                    address: "Can Carerac\nCaldes de Montbui",
                     phone: "+34 XXX XXX XXX",
                     email: "info@cancarerac.cat",
                     language: "Idioma"
@@ -338,6 +338,7 @@ export const content = {
         // Reservar
         reservar: {
             title: "Haz tu Reserva",
+            subtitle: "Dinos cuántas personas seréis y cuándo os gustaría venir, y nos pondremos en contacto con vosotros.",
             form: {
                 name: "Nombre y Apellidos",
                 email: "Correo Electrónico",
@@ -359,7 +360,7 @@ export const content = {
         // Footer
         footer: {
             description: "Experiencias auténticas en la Cataluña rural",
-            copyright: "Diseñado con ♥ para la Cataluña rural",
+            copyright: "Diseñado con ♥",
             sections: {
                 experiences: {
                     title: "Experiencias",
@@ -381,7 +382,7 @@ export const content = {
                 },
                 contact: {
                     title: "Contacto",
-                    address: "Can Carerac\nCataluña Rural",
+                    address: "Can Carerac\n Caldes de Montbui",
                     phone: "+34 XXX XXX XXX",
                     email: "info@cancarerac.cat",
                     language: "Idioma"
@@ -536,6 +537,7 @@ export const content = {
         // Reservar
         reservar: {
             title: "Make Your Booking",
+            subtitle: "Let us know how many people will be coming and when, and we’ll get in touch with you.",
             form: {
                 name: "Full Name",
                 email: "Email Address",
@@ -557,7 +559,7 @@ export const content = {
         // Footer
         footer: {
             description: "Authentic experiences in rural Catalonia",
-            copyright: "Designed with ♥ for rural Catalonia",
+            copyright: "Designed with ♥",
             sections: {
                 experiences: {
                     title: "Experiences",
@@ -579,7 +581,7 @@ export const content = {
                 },
                 contact: {
                     title: "Contact",
-                    address: "Can Carerac\nRural Catalonia",
+                    address: "Can Carerac\nCaldes de Montbui",
                     phone: "+34 XXX XXX XXX",
                     email: "info@cancarerac.cat",
                     language: "Language"
