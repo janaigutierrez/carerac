@@ -1,6 +1,6 @@
 // src/App.jsx - ACTUALITZAT amb SEO
 import { useState, useEffect } from 'react';
-import { HelmetProvider } from 'react-helmet-async';
+import { HelmetProvider } from "@dr.pogodin/react-helmet";
 import { LanguageProvider } from './hooks/useLanguage.jsx';
 
 // Components

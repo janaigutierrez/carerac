@@ -1,5 +1,5 @@
 // src/components/SEO.jsx
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from "@dr.pogodin/react-helmet";
 import { useLanguage } from '../hooks/useLanguage';
 
 const SEO = ({
