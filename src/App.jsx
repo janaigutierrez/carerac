@@ -1,4 +1,3 @@
-// src/App.jsx - ACTUALITZAT amb SEO
 import { useState, useEffect } from 'react';
 import { HelmetProvider } from "@dr.pogodin/react-helmet";
 import { LanguageProvider } from './hooks/useLanguage.jsx';
@@ -8,7 +7,6 @@ import SEO from './components/SEO';
 import LoadingScreen from './components/LoadingScreen';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import ArcadesTransition from './components/ArcadesTransition';
 import EspaiSection from './components/EspaiSection';
 import ExperiencesSection from './components/ExperiencesSection';
 import UbicacioSection from './components/UbicacioSection';
@@ -65,15 +63,13 @@ function App() {
     <HelmetProvider>
       <LanguageProvider>
         <div className="min-h-screen bg-primary-white">
-          {/* SEO dinàmic segons secció */}
           <SEO section={currentSection} />
 
           <Header />
           <main>
             <Hero />
-            <ArcadesTransition />
-            <TimelineSection />
             <EspaiSection />
+            <TimelineSection />
             <ExperiencesSection />
             <UbicacioSection />
             <ReservarSection />
