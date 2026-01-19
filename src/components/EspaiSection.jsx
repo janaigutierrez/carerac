@@ -1,3 +1,4 @@
+// src/components/EspaiSection.jsx
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../hooks/useLanguage';
@@ -28,25 +29,25 @@ const EspaiSection = () => {
             id: 'hort',
             title: t('espai.spaces.hort.title'),
             description: t('espai.spaces.hort.description'),
-            image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            image: '/images/gallery/hort.webp',
         },
         {
             id: 'piscina',
             title: t('espai.spaces.piscina.title'),
             description: t('espai.spaces.piscina.description'),
-            image: 'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            image: '/images/gallery/piscina.webp',
         },
         {
             id: 'cuina',
             title: t('espai.spaces.cuina.title'),
             description: t('espai.spaces.cuina.description'),
-            image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            image: '/images/gallery/cuina.webp',
         },
         {
             id: 'figuera',
             title: t('espai.spaces.figuera.title'),
             description: t('espai.spaces.figuera.description'),
-            image: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            image: '/images/gallery/figuera.webp',
         }
     ];
 
@@ -84,17 +85,17 @@ const EspaiSection = () => {
             ref={ref}
             className="relative overflow-hidden"
             style={{
-                background: `linear-gradient(rgba(250, 250, 247, 0.85), rgba(250, 250, 247, 0.95)), url('/images/gallery/espais.png')`,
+                background: `linear-gradient(rgba(250, 250, 250, 0.90), rgba(250, 250, 250, 0.92)), url('/images/gallery/espais.webp')`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
-                backgroundAttachment: 'fixed' // Opcional: efecte parallax subtil
+                backgroundAttachment: 'fixed'
             }}
         >
-            {/* ========================================
-                ARCADES TRANSITION - HEADER DECORATIU
-            ======================================== */}
+            {/* =====================
+                ARCADES TRANSITION 
+            ========================= */}
             <div className="relative h-screen overflow-hidden">
-                {/* Imatge de fons amb parallax */}
+                {/* Imatge parallax */}
                 <div
                     className="absolute inset-0 w-full h-[120%]"
                     style={{
@@ -157,8 +158,8 @@ const EspaiSection = () => {
 
                     {/* Carousel Container */}
                     <div className="relative">
-                        {/* Cards Container */}
-                        <div className="flex items-center justify-center min-h-[500px] relative">
+                        {/* Cards Container - AQUÍ ESTAN ELS CANVIS PRINCIPALS */}
+                        <div className="flex items-center justify-center min-h-[500px] relative px-8">
                             {visibleCards.map((space, index) => {
                                 const { position } = space;
                                 const isCenter = position === 0;
@@ -170,12 +171,16 @@ const EspaiSection = () => {
                                 let zIndex = 10;
 
                                 if (isLeft) {
-                                    transform = 'translateX(-120px) scale(0.8)';
-                                    opacity = 0.4;
+                                    // CANVI: Més separació (-300px en lloc de -120px)
+                                    transform = 'translateX(-300px) scale(0.75)';
+                                    // CANVI: Més transparent per fer menys prominent
+                                    opacity = 0.3;
                                     zIndex = 5;
                                 } else if (isRight) {
-                                    transform = 'translateX(120px) scale(0.8)';
-                                    opacity = 0.4;
+                                    // CANVI: Més separació (300px en lloc de 120px)
+                                    transform = 'translateX(300px) scale(0.75)';
+                                    // CANVI: Més transparent
+                                    opacity = 0.3;
                                     zIndex = 5;
                                 } else {
                                     zIndex = 20;
@@ -184,11 +189,13 @@ const EspaiSection = () => {
                                 return (
                                     <div
                                         key={`${space.id}-${index}`}
-                                        className={`absolute w-80 transition-all duration-500 ease-out cursor-pointer ${!isCenter ? 'pointer-events-none' : ''
+                                        // CANVI: Amplada augmentada de w-80 a w-full max-w-lg (512px)
+                                        className={`absolute w-full max-w-lg transition-all duration-500 ease-out cursor-pointer ${!isCenter ? 'pointer-events-none' : ''
                                             }`}
                                         style={{ transform, opacity, zIndex }}
                                     >
-                                        <div className="bg-white rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+                                        {/* CANVI: Border radius de rounded-xl a rounded-lg */}
+                                        <div className="bg-white rounded-lg shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
                                             {/* Image */}
                                             <div className="relative h-64 overflow-hidden">
                                                 <img

@@ -32,7 +32,7 @@ const Hero = () => {
                     className="w-full h-full bg-gradient-to-br from-primary-stone via-primary-straw to-primary-forest bg-cover bg-center"
                     style={{
                         backgroundImage: `linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)), 
-                      url('/images/gallery/hero.png')`,
+                      url('/images/gallery/hero.webp')`,
                         filter: "brightness(1.2) blur(1px)"
                     }}
                 >

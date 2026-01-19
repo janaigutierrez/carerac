@@ -30,9 +30,9 @@ export const content = {
             finalText: "Avui, aquesta història continua amb cada visitant que descobreix Can Carerac",
             events: [
                 {
-                    year: "1890",
+                    year: "1560",
                     title: "Construcció Original",
-                    description: "La masia Can Carerac es construeix seguint l'arquitectura tradicional catalana de finals del segle XIX."
+                    description: "La masia Can Carerac es construeix seguint l'arquitectura tradicional catalana de finals del segle XVII."
                 },
                 {
                     year: "1920",
@@ -50,7 +50,7 @@ export const content = {
                     description: "La masia queda deshabitada, però la seva estructura resistent aguanta el pas del temps."
                 },
                 {
-                    year: "2020",
+                    year: "2009",
                     title: "Renaixement",
                     description: "Inicia el projecte de restauració respectuosa, conservant l'essència històrica amb comoditats modernes."
                 },
@@ -82,9 +82,9 @@ export const content = {
                     description: "Forn de llenya centenari i estris tradicionals per a l'elaboració artesanal",
                     cta: "Descobreix més"
                 },
-                terrasses: {
-                    title: "Terrasses",
-                    description: "Vistes panoràmiques als camps i muntanyes de la Catalunya interior",
+                figuera: {
+                    title: "Sota la Figuera",
+                    description: "El nostre racó especial sota la figuera, on compartim activitats, moments i calma",
                     cta: "Descobreix més"
                 }
             }
@@ -93,6 +93,7 @@ export const content = {
         // Experiències  
         experiencies: {
             title: "Les Nostres Experiències",
+            subtitle: "Tria la que més s'adeqüi al que estàs buscant",
             gastronomica: {
                 title: "Experiència Gastronòmica",
                 duration: "Mig dia - 4 hores",
@@ -267,23 +268,23 @@ export const content = {
             subtitle: "Cada rincón de Can Carerac ha sido restaurado con amor y respeto por la tradición catalana, creando espacios únicos para experiencias inolvidables.",
             spaces: {
                 piscina: {
-                    title: "Piscina",
+                    title: "La Piscina",
                     description: "Aguas cristalinas rodeadas de vegetación mediterránea autóctona",
                     cta: "Descubre más"
                 },
                 hort: {
-                    title: "Huerto Ecológico",
+                    title: "El Huerto",
                     description: "Ingredientes frescos cultivados con amor para nuestras experiencias",
                     cta: "Descubre más"
                 },
                 cuina: {
-                    title: "Cocina Tradicional",
+                    title: "La Cocina",
                     description: "Horno de leña centenario y utensilios tradicionales para elaboración artesanal",
                     cta: "Descubre más"
                 },
-                terrasses: {
-                    title: "Terrazas",
-                    description: "Vistas panorámicas a los campos y montañas de la Cataluña interior",
+                figuera: {
+                    title: "Bajo la Higuera",
+                    description: "Nuestro rincón especial bajo la higuera, donde compartimos actividades, momentos y calma",
                     cta: "Descubre más"
                 }
             }
@@ -471,7 +472,7 @@ export const content = {
                     cta: "Discover more"
                 },
                 hort: {
-                    title: "Organic Garden",
+                    title: "Garden",
                     description: "Fresh ingredients grown with love for our experiences",
                     cta: "Discover more"
                 },
@@ -480,9 +481,9 @@ export const content = {
                     description: "Centenary wood-fired oven and traditional tools for artisanal preparation",
                     cta: "Discover more"
                 },
-                terrasses: {
-                    title: "Terraces",
-                    description: "Panoramic views of the fields and mountains of interior Catalonia",
+                figuera: {
+                    title: "Beneath de Fig Tree",
+                    description: "Our special corner by the fig tree, where we share activities, moments and peace",
                     cta: "Discover more"
                 }
             }
