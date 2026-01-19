@@ -22,7 +22,7 @@ function App() {
     // Simular càrrega inicial
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2500);
+    }, 6000);
 
     return () => clearTimeout(timer);
   }, []);

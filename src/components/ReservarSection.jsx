@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
 import { useInView } from 'react-intersection-observer';
-import { ChevronLeft, ChevronRight, Phone, Mail, Clock } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Phone, Mail, Clock, UtensilsCrossed, Landmark } from 'lucide-react';
 
 const ReservarSection = () => {
     const { t } = useLanguage();
@@ -12,22 +12,42 @@ const ReservarSection = () => {
 
     const [selectedDate, setSelectedDate] = useState(null);
     const [guests, setGuests] = useState(2);
+    const [selectedExperience, setSelectedExperience] = useState('');
     const [formData, setFormData] = useState({
         name: '',
         lastname: '',
         email: '',
-        phone: ''
+        phone: '',
+        comments: ''
     });
+
+    // Opcions d'experiència
+    const experiences = [
+        {
+            id: 'gastronomica',
+            title: t('experiencies.gastronomica.title'),
+            icon: UtensilsCrossed,
+            color: 'from-primary-brown to-primary-dark'
+        },
+        {
+            id: 'cultural',
+            title: t('experiencies.cultural.title'),
+            icon: Landmark,
+            color: 'from-primary-forest to-primary-brown'
+        }
+    ];
 
     // Calendar logic
     const currentDate = new Date();
     const [currentMonth, setCurrentMonth] = useState(currentDate.getMonth());
     const [currentYear, setCurrentYear] = useState(currentDate.getFullYear());
 
-    const months = [
+    // Fallback per si no existeixen les traduccions encara
+    const months = t('reservar.calendar.months') || [
         'Gener', 'Febrer', 'Març', 'Abril', 'Maig', 'Juny',
         'Juliol', 'Agost', 'Setembre', 'Octubre', 'Novembre', 'Desembre'
     ];
+    const weekDays = t('reservar.calendar.weekDays') || ['Dl', 'Dt', 'Dc', 'Dj', 'Dv', 'Ds', 'Dg'];
 
     const getDaysInMonth = (month, year) => {
         return new Date(year, month + 1, 0).getDate();
@@ -44,7 +64,6 @@ const ReservarSection = () => {
 
         const days = [];
 
-        // Previous month days
         for (let i = startDay - 1; i >= 0; i--) {
             const prevMonth = currentMonth === 0 ? 11 : currentMonth - 1;
             const prevYear = currentMonth === 0 ? currentYear - 1 : currentYear;
@@ -58,7 +77,6 @@ const ReservarSection = () => {
             });
         }
 
-        // Current month days
         for (let day = 1; day <= daysInMonth; day++) {
             const date = new Date(currentYear, currentMonth, day);
             const today = new Date();
@@ -77,7 +95,6 @@ const ReservarSection = () => {
             });
         }
 
-        // Next month days to fill the grid
         const remainingDays = 42 - days.length;
         for (let day = 1; day <= remainingDays; day++) {
             const nextMonth = currentMonth === 11 ? 0 : currentMonth + 1;
@@ -127,17 +144,18 @@ const ReservarSection = () => {
     };
 
     const handleSubmit = () => {
-        console.log('Reservation data:', {
-            date: selectedDate,
+        const reservationData = {
+            date: selectedDate?.toLocaleDateString('ca-ES'),
             guests,
+            experience: selectedExperience,
             ...formData
-        });
-        // TODO: Integrar amb EmailJS o Google Sheets
+        };
+
+        console.log('Reservation data:', reservationData);
         alert('Sol·licitud enviada correctament!');
     };
 
     const calendarDays = generateCalendarDays();
-    const weekDays = ['Dl', 'Dt', 'Dc', 'Dj', 'Dv', 'Ds', 'Dg'];
 
     return (
         <section id="reservar" ref={ref} className="py-20 bg-primary-white">
@@ -146,31 +164,29 @@ const ReservarSection = () => {
                 {/* Title */}
                 <div className="text-center mb-16">
                     <h2
-                        className={`font-display text-4xl lg:text-5xl font-bold text-primary-dark mb-4 transition-all duration-1000 transform ${inView
-                            ? 'opacity-100 translate-y-0'
-                            : 'opacity-0 translate-y-8'
+                        className={`font-display text-4xl lg:text-5xl font-bold text-primary-dark mb-4 transition-all duration-1000 transform ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                             }`}
                     >
                         {t('reservar.title')}
                     </h2>
-                    <p className="text-primary-gray font-body max-w-2xl mx-auto">
-                        {t('reservar.subtitle')}                    </p>
+                    <p className="text-primary-gray font-body text-lg max-w-2xl mx-auto">
+                        {t('reservar.subtitle')}
+                    </p>
                 </div>
 
-                <div className="grid lg:grid-cols-2 gap-12">
+                {/* LAYOUT SIMPLE - 2 COLUMNES */}
+                <div className="grid lg:grid-cols-2 gap-8">
 
-                    {/* Calendar */}
+                    {/* COLUMNA ESQUERRA: Calendari */}
                     <div
-                        className={`transition-all duration-1000 transform ${inView
-                            ? 'opacity-100 translate-x-0'
-                            : 'opacity-0 -translate-x-8'
+                        className={`transition-all duration-1000 transform ${inView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
                             }`}
                     >
                         {/* Calendar Header */}
                         <div className="flex items-center justify-between mb-6">
                             <button
                                 onClick={() => navigateMonth('prev')}
-                                className="p-2 hover:bg-primary-stone/30 rounded-full transition-colors"
+                                className="p-2 hover:bg-primary-stone/30 rounded-lg transition-colors"
                             >
                                 <ChevronLeft size={20} className="text-primary-dark" />
                             </button>
@@ -179,14 +195,14 @@ const ReservarSection = () => {
                             </h3>
                             <button
                                 onClick={() => navigateMonth('next')}
-                                className="p-2 hover:bg-primary-stone/30 rounded-full transition-colors"
+                                className="p-2 hover:bg-primary-stone/30 rounded-lg transition-colors"
                             >
                                 <ChevronRight size={20} className="text-primary-dark" />
                             </button>
                         </div>
 
                         {/* Calendar Grid */}
-                        <div className="bg-white rounded-2xl p-6 shadow-lg">
+                        <div className="bg-white rounded-xl p-6 shadow-xl mb-6">
                             {/* Week days header */}
                             <div className="grid grid-cols-7 gap-1 mb-4">
                                 {weekDays.map(day => (
@@ -204,8 +220,8 @@ const ReservarSection = () => {
                                         onClick={() => selectDate(dayObj)}
                                         disabled={dayObj.isDisabled}
                                         className={`
-                      w-10 h-10 text-sm font-medium rounded-lg transition-all duration-200
-                      ${dayObj.isCurrentMonth
+                                            w-full aspect-square text-sm font-medium rounded-lg transition-all duration-200
+                                            ${dayObj.isCurrentMonth
                                                 ? dayObj.isDisabled
                                                     ? 'text-primary-gray/30 cursor-not-allowed'
                                                     : dayObj.isSelected
@@ -213,7 +229,7 @@ const ReservarSection = () => {
                                                         : 'text-primary-dark hover:bg-primary-straw/30'
                                                 : 'text-primary-gray/20 cursor-not-allowed'
                                             }
-                    `}
+                                        `}
                                     >
                                         {dayObj.day}
                                     </button>
@@ -227,10 +243,6 @@ const ReservarSection = () => {
                                     <span className="text-primary-gray">No disponible</span>
                                 </div>
                                 <div className="flex items-center space-x-2">
-                                    <div className="w-3 h-3 bg-primary-straw rounded"></div>
-                                    <span className="text-primary-gray">Disponible</span>
-                                </div>
-                                <div className="flex items-center space-x-2">
                                     <div className="w-3 h-3 bg-primary-brown rounded"></div>
                                     <span className="text-primary-gray">Seleccionat</span>
                                 </div>
@@ -239,9 +251,9 @@ const ReservarSection = () => {
 
                         {/* Selected date info */}
                         {selectedDate && (
-                            <div className="mt-6 p-4 bg-primary-straw/20 rounded-xl">
+                            <div className="p-4 bg-primary-straw/20 rounded-xl">
                                 <p className="font-medium text-primary-dark">
-                                    Data seleccionada: {selectedDate.toLocaleDateString('ca-ES', {
+                                    📅 Data seleccionada: {selectedDate.toLocaleDateString('ca-ES', {
                                         weekday: 'long',
                                         year: 'numeric',
                                         month: 'long',
@@ -252,38 +264,71 @@ const ReservarSection = () => {
                         )}
                     </div>
 
-                    {/* Right Column - Guest Form */}
+                    {/* COLUMNA DRETA: Experiència + Guests + Form */}
                     <div
-                        className={`transition-all duration-1000 transform ${inView
-                            ? 'opacity-100 translate-x-0'
-                            : 'opacity-0 translate-x-8'
+                        className={`space-y-6 transition-all duration-1000 transform ${inView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
                             }`}
-                        style={{ transitionDelay: '300ms' }}
+                        style={{ transitionDelay: '200ms' }}
                     >
+                        {/* Selector d'experiència - HORITZONTAL */}
+                        <div>
+                            <h4 className="font-display text-lg font-semibold text-primary-dark mb-4">
+                                Tria la teva experiència
+                            </h4>
+                            <div className="grid grid-cols-2 gap-3">
+                                {experiences.map((exp) => {
+                                    const IconComponent = exp.icon;
+                                    return (
+                                        <button
+                                            key={exp.id}
+                                            onClick={() => setSelectedExperience(exp.id)}
+                                            className={`p-4 rounded-xl border-2 transition-all duration-300 text-center ${selectedExperience === exp.id
+                                                ? 'border-primary-brown bg-primary-brown/10 shadow-lg scale-105'
+                                                : 'border-primary-gray/20 bg-white hover:border-primary-brown/50 hover:shadow-md'
+                                                }`}
+                                        >
+                                            <div className="flex flex-col items-center space-y-2">
+                                                <div className={`p-3 rounded-lg bg-gradient-to-br ${exp.color}`}>
+                                                    <IconComponent size={24} className="text-white" />
+                                                </div>
+                                                <div>
+                                                    <p className="font-display font-semibold text-primary-dark text-sm leading-tight">
+                                                        {exp.title}
+                                                    </p>
+                                                    {selectedExperience === exp.id && (
+                                                        <p className="text-xs text-primary-brown mt-1">✓</p>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        </div>
                         {/* Guest Counter */}
-                        <div className="mb-8">
+                        <div>
                             <h4 className="font-display text-lg font-semibold text-primary-dark mb-4">
                                 Nombre de persones
                             </h4>
-                            <div className="bg-white rounded-2xl p-6 shadow-lg">
+                            <div className="bg-white rounded-xl p-5 shadow-lg">
                                 <div className="flex items-center justify-between">
                                     <div>
                                         <p className="font-medium text-primary-dark">Convidats</p>
-                                        <p className="text-sm text-primary-gray">Ocupació màxima: 14</p>
+                                        <p className="text-sm text-primary-gray">Màxim: 14</p>
                                     </div>
                                     <div className="flex items-center space-x-3">
                                         <button
                                             onClick={() => setGuests(Math.max(1, guests - 1))}
-                                            className="w-8 h-8 bg-primary-brown text-white rounded-full flex items-center justify-center hover:bg-primary-dark transition-colors"
+                                            className="w-10 h-10 bg-primary-brown text-white rounded-lg flex items-center justify-center hover:bg-primary-dark transition-colors font-bold"
                                         >
-                                            -
+                                            −
                                         </button>
-                                        <span className="font-display text-xl font-semibold text-primary-dark w-8 text-center">
+                                        <span className="font-display text-2xl font-semibold text-primary-dark w-10 text-center">
                                             {guests}
                                         </span>
                                         <button
                                             onClick={() => setGuests(Math.min(14, guests + 1))}
-                                            className="w-8 h-8 bg-primary-brown text-white rounded-full flex items-center justify-center hover:bg-primary-dark transition-colors"
+                                            className="w-10 h-10 bg-primary-brown text-white rounded-lg flex items-center justify-center hover:bg-primary-dark transition-colors font-bold"
                                         >
                                             +
                                         </button>
@@ -292,29 +337,29 @@ const ReservarSection = () => {
                             </div>
                         </div>
 
-                        {/* Contact Form */}
-                        <div className="bg-white rounded-2xl p-6 shadow-lg">
-                            <h4 className="font-display text-lg font-semibold text-primary-dark mb-6">
+                        {/* Formulari compacte */}
+                        <div className="bg-white rounded-xl p-6 shadow-lg">
+                            <h4 className="font-display text-lg font-semibold text-primary-dark mb-4">
                                 Informació de contacte
                             </h4>
 
-                            <div className="space-y-4">
-                                <div className="grid md:grid-cols-2 gap-4">
+                            <div className="space-y-3">
+                                <div className="grid grid-cols-2 gap-3">
                                     <div>
-                                        <label className="block text-sm font-medium text-primary-dark mb-2">
-                                            {t('reservar.form.name')} *
+                                        <label className="block text-xs font-medium text-primary-dark mb-1">
+                                            Nom *
                                         </label>
                                         <input
                                             type="text"
                                             name="name"
                                             value={formData.name}
                                             onChange={handleInputChange}
-                                            placeholder="Nom"
-                                            className="w-full px-4 py-3 border border-primary-gray/20 rounded-xl focus:ring-2 focus:ring-primary-brown focus:border-transparent transition-colors"
+                                            placeholder="El teu nom"
+                                            className="w-full px-3 py-2 text-sm border border-primary-gray/20 rounded-lg focus:ring-2 focus:ring-primary-brown focus:border-transparent transition-all"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium text-primary-dark mb-2">
+                                        <label className="block text-xs font-medium text-primary-dark mb-1">
                                             Cognoms *
                                         </label>
                                         <input
@@ -322,15 +367,15 @@ const ReservarSection = () => {
                                             name="lastname"
                                             value={formData.lastname}
                                             onChange={handleInputChange}
-                                            placeholder="Cognoms"
-                                            className="w-full px-4 py-3 border border-primary-gray/20 rounded-xl focus:ring-2 focus:ring-primary-brown focus:border-transparent transition-colors"
+                                            placeholder="Els teus cognoms"
+                                            className="w-full px-3 py-2 text-sm border border-primary-gray/20 rounded-lg focus:ring-2 focus:ring-primary-brown focus:border-transparent transition-all"
                                         />
                                     </div>
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm font-medium text-primary-dark mb-2">
-                                        {t('reservar.form.email')} *
+                                    <label className="block text-xs font-medium text-primary-dark mb-1">
+                                        Email *
                                     </label>
                                     <input
                                         type="email"
@@ -338,13 +383,13 @@ const ReservarSection = () => {
                                         value={formData.email}
                                         onChange={handleInputChange}
                                         placeholder="correu@exemple.com"
-                                        className="w-full px-4 py-3 border border-primary-gray/20 rounded-xl focus:ring-2 focus:ring-primary-brown focus:border-transparent transition-colors"
+                                        className="w-full px-3 py-2 text-sm border border-primary-gray/20 rounded-lg focus:ring-2 focus:ring-primary-brown focus:border-transparent transition-all"
                                     />
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm font-medium text-primary-dark mb-2">
-                                        {t('reservar.form.phone')} *
+                                    <label className="block text-xs font-medium text-primary-dark mb-1">
+                                        Telèfon *
                                     </label>
                                     <input
                                         type="tel"
@@ -352,46 +397,71 @@ const ReservarSection = () => {
                                         value={formData.phone}
                                         onChange={handleInputChange}
                                         placeholder="+34 XXX XXX XXX"
-                                        className="w-full px-4 py-3 border border-primary-gray/20 rounded-xl focus:ring-2 focus:ring-primary-brown focus:border-transparent transition-colors"
+                                        className="w-full px-3 py-2 text-sm border border-primary-gray/20 rounded-lg focus:ring-2 focus:ring-primary-brown focus:border-transparent transition-all"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="block text-xs font-medium text-primary-dark mb-1">
+                                        Comentaris
+                                    </label>
+                                    <textarea
+                                        name="comments"
+                                        value={formData.comments}
+                                        onChange={handleInputChange}
+                                        placeholder="Preferències alimentàries, necessitats especials..."
+                                        rows={3}
+                                        className="w-full px-3 py-2 text-sm border border-primary-gray/20 rounded-lg focus:ring-2 focus:ring-primary-brown focus:border-transparent transition-all resize-none"
                                     />
                                 </div>
 
                                 {/* Submit Button */}
                                 <button
                                     onClick={handleSubmit}
-                                    disabled={!selectedDate || !formData.name || !formData.email || !formData.phone}
-                                    className="w-full bg-primary-brown text-white py-4 rounded-xl font-medium hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed mt-6"
+                                    disabled={!selectedDate || !selectedExperience || !formData.name || !formData.email || !formData.phone}
+                                    className="w-full bg-primary-brown text-white py-3 rounded-lg font-medium hover:bg-primary-dark transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
                                 >
-                                    {t('reservar.form.submit')}
+                                    Enviar sol·licitud
                                 </button>
-                            </div>
-                        </div>
 
-                        {/* Contact Info */}
-                        <div className="mt-8 p-6 bg-primary-stone/20 rounded-2xl">
-                            <h5 className="font-display text-lg font-semibold text-primary-dark mb-4">
-                                {t('reservar.contact.title')}
-                            </h5>
-                            <div className="space-y-3">
-                                <div className="flex items-center space-x-3">
-                                    <Phone size={16} className="text-primary-brown" />
-                                    <span className="text-primary-dark font-body">+34 XXX XXX XXX</span>
-                                </div>
-                                <div className="flex items-center space-x-3">
-                                    <Mail size={16} className="text-primary-brown" />
-                                    <span className="text-primary-dark font-body">info@cancarerac.cat</span>
-                                </div>
-                                <div className="flex items-center space-x-3">
-                                    <Clock size={16} className="text-primary-brown" />
-                                    <span className="text-primary-dark font-body">{t('reservar.contact.schedule')}</span>
-                                </div>
+                                <p className="text-center text-xs text-primary-gray">
+                                    * Camps obligatoris
+                                </p>
                             </div>
-                            <p className="text-primary-gray text-sm mt-4">
-                                {t('reservar.contact.response')}
-                            </p>
                         </div>
                     </div>
                 </div>
+
+                {/* Contact Info - Baix de tot */}
+                <div
+                    className={`grid md:grid-cols-3 gap-6 mt-12 transition-all duration-1000 transform ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                        }`}
+                    style={{ transitionDelay: '400ms' }}
+                >
+                    <div className="bg-primary-stone/20 rounded-xl p-6 text-center">
+                        <Phone size={32} className="text-primary-brown mx-auto mb-3" />
+                        <h5 className="font-display font-semibold text-primary-dark mb-2">Truca'ns</h5>
+                        <p className="text-primary-gray">+34 XXX XXX XXX</p>
+                    </div>
+
+                    <div className="bg-primary-stone/20 rounded-xl p-6 text-center">
+                        <Mail size={32} className="text-primary-brown mx-auto mb-3" />
+                        <h5 className="font-display font-semibold text-primary-dark mb-2">Escriu-nos</h5>
+                        <p className="text-primary-gray">info@cancarerac.cat</p>
+                    </div>
+
+                    <div className="bg-primary-stone/20 rounded-xl p-6 text-center">
+                        <Clock size={32} className="text-primary-brown mx-auto mb-3" />
+                        <h5 className="font-display font-semibold text-primary-dark mb-2">Horari</h5>
+                        <p className="text-primary-gray">Dilluns a Diumenge</p>
+                        <p className="text-primary-gray text-sm">10:00 - 20:00</p>
+                    </div>
+                </div>
+
+                <p className="text-center text-primary-gray text-sm mt-6">
+                    Respondrem la teva sol·licitud en menys de 24 hores
+                </p>
+
             </div>
         </section>
     );

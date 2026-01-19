@@ -11,15 +11,15 @@ const LoadingScreen = () => {
                     clearInterval(interval);
                     return 100;
                 }
-                return prev + 4; // Més ràpid per sincronitzar
+                return prev + 1.5; // MÉS LENT - durarà ~6.6 segons
             });
         }, 100);
 
         return () => clearInterval(interval);
     }, []);
 
-    // Calcular opacitat basada en el progress (fade out als últims 500ms)
-    const opacity = progress > 80 ? (100 - progress) / 20 : 1;
+    // Fade out només al final (últims 10%)
+    const opacity = progress > 90 ? (100 - progress) / 10 : 1;
 
     return (
         <div
@@ -38,8 +38,10 @@ const LoadingScreen = () => {
 
                 {/* Logo principal amb fade-in suau */}
                 <div
-                    className="relative opacity-0 animate-fadeIn"
-                    style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}
+                    className="relative opacity-0"
+                    style={{
+                        animation: 'fadeIn 0.8s ease-out 0.5s forwards'
+                    }}
                 >
                     <Logo
                         variant="icon"
@@ -51,12 +53,20 @@ const LoadingScreen = () => {
 
             {/* Text amb typing animation - Playfair Display */}
             <div
-                className="mb-4 opacity-0 animate-fadeIn"
-                style={{ animationDelay: '1.2s', animationFillMode: 'forwards' }}
+                className="mb-4 opacity-0"
+                style={{
+                    animation: 'fadeIn 0.8s ease-out 1.2s forwards'
+                }}
             >
                 <h1
-                    className="font-display text-3xl lg:text-4xl font-bold text-primary-dark text-center typing-text"
-                    style={{ animationDelay: '1.5s' }}
+                    className="font-display text-3xl lg:text-4xl font-bold text-primary-dark text-center"
+                    style={{
+                        overflow: 'hidden',
+                        whiteSpace: 'nowrap',
+                        width: '0',
+                        borderRight: '3px solid #8B6F47',
+                        animation: 'typing 2.5s steps(12, end) 1.5s forwards, blink 1s step-end infinite 1.5s'
+                    }}
                 >
                     Can Carerac
                 </h1>
@@ -64,8 +74,10 @@ const LoadingScreen = () => {
 
             {/* Subtítol amb delay */}
             <p
-                className="text-primary-gray font-body text-sm mb-8 opacity-0 animate-fadeIn text-center"
-                style={{ animationDelay: '3s', animationFillMode: 'forwards' }}
+                className="text-primary-gray font-body text-sm mb-8 opacity-0"
+                style={{
+                    animation: 'fadeIn 0.8s ease-out 4.5s forwards'
+                }}
             >
                 Experiències autèntiques
             </p>
@@ -83,7 +95,7 @@ const LoadingScreen = () => {
                 {Math.round(progress)}%
             </span>
 
-            <style jsx>{`
+            <style>{`
                 @keyframes fadeIn {
                     0% {
                         opacity: 0;
@@ -103,20 +115,6 @@ const LoadingScreen = () => {
                 @keyframes blink {
                     0%, 50% { border-color: #8B6F47; }
                     51%, 100% { border-color: transparent; }
-                }
-                
-                .animate-fadeIn {
-                    animation: fadeIn 0.8s ease-out;
-                }
-                
-                .typing-text {
-                    overflow: hidden;
-                    white-space: nowrap;
-                    width: 0;
-                    border-right: 3px solid #8B6F47;
-                    animation: typing 1.5s steps(12, end) forwards, 
-                               blink 1s step-end infinite;
-                    animation-delay: inherit;
                 }
             `}</style>
         </div>
