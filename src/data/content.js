@@ -138,27 +138,63 @@ export const content = {
         },
 
         // Reservar
+        // A content.js, dins de ca:
         reservar: {
             title: "Fes la teva Reserva",
-            subtitle: "Digue’ns quantes persones sereu i quan voldríeu venir, i ens posarem en contacte amb vosaltres.",
-            form: {
-                name: "Nom i Cognoms",
-                email: "Correu Electrònic",
-                phone: "Telèfon",
-                experience: "Experiència",
-                date: "Data Preferida",
-                people: "Nombre de Persones",
-                comments: "Comentaris o Peticions Especials",
-                terms: "Accepto els termes i condicions",
-                submit: "Enviar Sol·licitud"
+            subtitle: "Digue'ns quantes persones sereu i quan voldríeu venir, i ens posarem en contacte amb vosaltres.",
+
+            // ← NOU - Selector d'experiència
+            experienceSelector: {
+                title: "Tria la teva experiència",
+                selected: "Seleccionada"
             },
+
+            // ← NOU - Guest counter
+            guests: {
+                title: "Nombre de persones",
+                label: "Convidats",
+                max: "Màxim: 14"
+            },
+
+            // ← NOU - Calendari
+            calendar: {
+                months: ['Gener', 'Febrer', 'Març', 'Abril', 'Maig', 'Juny', 'Juliol', 'Agost', 'Setembre', 'Octubre', 'Novembre', 'Desembre'],
+                weekDays: ['Dl', 'Dt', 'Dc', 'Dj', 'Dv', 'Ds', 'Dg'],
+                legend: {
+                    unavailable: "No disponible",
+                    selected: "Seleccionat"
+                },
+                selectedDate: "Data seleccionada:"
+            },
+
+            form: {
+                title: "Informació de contacte",
+                name: "Nom",
+                namePlaceholder: "El teu nom",
+                lastname: "Cognoms",
+                lastnamePlaceholder: "Els teus cognoms",
+                email: "Email",
+                emailPlaceholder: "correu@exemple.com",
+                phone: "Telèfon",
+                phonePlaceholder: "+34 XXX XXX XXX",
+                comments: "Comentaris o peticions especials",
+                commentsPlaceholder: "Deixa'ns saber si tens alguna preferència alimentària, necessitats especials o altres peticions...",
+                required: "Camps obligatoris",
+                submit: "Enviar sol·licitud de reserva"
+            },
+
             contact: {
                 title: "Informació de Contacte",
-                schedule: "Horari d'atenció: Dl-Dg 9:00-20:00",
-                response: "Resposta garantida en menys de 24 hores"
+                call: "Truca'ns",
+                email: "Escriu-nos",
+                schedule: "Horari",
+                scheduleDays: "Dilluns a Diumenge",
+                scheduleHours: "10:00 - 20:00",
+                response: "Respondrem la teva sol·licitud en menys de 24 hores per confirmar disponibilitat"
             }
         },
 
+        // Repeteix per 'es' i 'en' amb traduccions corresponents
         // Footer
         footer: {
             description: "Experiències autèntiques a la Catalunya rural",
@@ -340,21 +376,52 @@ export const content = {
         reservar: {
             title: "Haz tu Reserva",
             subtitle: "Dinos cuántas personas seréis y cuándo os gustaría venir, y nos pondremos en contacto con vosotros.",
-            form: {
-                name: "Nombre y Apellidos",
-                email: "Correo Electrónico",
-                phone: "Teléfono",
-                experience: "Experiencia",
-                date: "Fecha Preferida",
-                people: "Número de Personas",
-                comments: "Comentarios o Peticiones Especiales",
-                terms: "Acepto los términos y condiciones",
-                submit: "Enviar Solicitud"
+
+            experienceSelector: {
+                title: "Elige tu experiencia",
+                selected: "Seleccionada"
             },
+
+            guests: {
+                title: "Número de personas",
+                label: "Invitados",
+                max: "Máximo: 14"
+            },
+
+            calendar: {
+                months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                weekDays: ['L', 'M', 'X', 'J', 'V', 'S', 'D'],
+                legend: {
+                    unavailable: "No disponible",
+                    selected: "Seleccionado"
+                },
+                selectedDate: "Fecha seleccionada:"
+            },
+
+            form: {
+                title: "Información de contacto",
+                name: "Nombre",
+                namePlaceholder: "Tu nombre",
+                lastname: "Apellidos",
+                lastnamePlaceholder: "Tus apellidos",
+                email: "Email",
+                emailPlaceholder: "correo@ejemplo.com",
+                phone: "Teléfono",
+                phonePlaceholder: "+34 XXX XXX XXX",
+                comments: "Comentarios o peticiones especiales",
+                commentsPlaceholder: "Déjanos saber si tienes alguna preferencia alimentaria, necesidades especiales u otras peticiones...",
+                required: "Campos obligatorios",
+                submit: "Enviar solicitud de reserva"
+            },
+
             contact: {
                 title: "Información de Contacto",
-                schedule: "Horario de atención: L-D 9:00-20:00",
-                response: "Respuesta garantizada en menos de 24 horas"
+                call: "Llámanos",
+                email: "Escríbenos",
+                schedule: "Horario",
+                scheduleDays: "Lunes a Domingo",
+                scheduleHours: "10:00 - 20:00",
+                response: "Responderemos tu solicitud en menos de 24 horas para confirmar disponibilidad"
             }
         },
 
@@ -538,22 +605,53 @@ export const content = {
         // Reservar
         reservar: {
             title: "Make Your Booking",
-            subtitle: "Let us know how many people will be coming and when, and we’ll get in touch with you.",
-            form: {
-                name: "Full Name",
-                email: "Email Address",
-                phone: "Phone Number",
-                experience: "Experience",
-                date: "Preferred Date",
-                people: "Number of People",
-                comments: "Comments or Special Requests",
-                terms: "I accept the terms and conditions",
-                submit: "Send Request"
+            subtitle: "Let us know how many people will be coming and when, and we'll get in touch with you.",
+
+            experienceSelector: {
+                title: "Choose your experience",
+                selected: "Selected"
             },
+
+            guests: {
+                title: "Number of people",
+                label: "Guests",
+                max: "Maximum: 14"
+            },
+
+            calendar: {
+                months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                weekDays: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+                legend: {
+                    unavailable: "Unavailable",
+                    selected: "Selected"
+                },
+                selectedDate: "Selected date:"
+            },
+
+            form: {
+                title: "Contact information",
+                name: "Name",
+                namePlaceholder: "Your name",
+                lastname: "Last name",
+                lastnamePlaceholder: "Your last name",
+                email: "Email",
+                emailPlaceholder: "email@example.com",
+                phone: "Phone",
+                phonePlaceholder: "+34 XXX XXX XXX",
+                comments: "Comments or special requests",
+                commentsPlaceholder: "Let us know if you have any dietary preferences, special needs or other requests...",
+                required: "Required fields",
+                submit: "Send booking request"
+            },
+
             contact: {
                 title: "Contact Information",
-                schedule: "Service hours: Mon-Sun 9:00-20:00",
-                response: "Response guaranteed within 24 hours"
+                call: "Call us",
+                email: "Email us",
+                schedule: "Schedule",
+                scheduleDays: "Monday to Sunday",
+                scheduleHours: "10:00 AM - 8:00 PM",
+                response: "We'll respond to your request within 24 hours to confirm availability"
             }
         },
 
