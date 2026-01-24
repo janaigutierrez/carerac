@@ -138,33 +138,32 @@ export const content = {
         },
 
         // Reservar
-        // A content.js, dins de ca:
         reservar: {
             title: "Fes la teva Reserva",
             subtitle: "Digue'ns quantes persones sereu i quan voldríeu venir, i ens posarem en contacte amb vosaltres.",
 
-            // ← NOU - Selector d'experiència
             experienceSelector: {
                 title: "Tria la teva experiència",
                 selected: "Seleccionada"
             },
 
-            // ← NOU - Guest counter
             guests: {
                 title: "Nombre de persones",
                 label: "Convidats",
                 max: "Màxim: 14"
             },
 
-            // ← NOU - Calendari
             calendar: {
                 months: ['Gener', 'Febrer', 'Març', 'Abril', 'Maig', 'Juny', 'Juliol', 'Agost', 'Setembre', 'Octubre', 'Novembre', 'Desembre'],
                 weekDays: ['Dl', 'Dt', 'Dc', 'Dj', 'Dv', 'Ds', 'Dg'],
                 legend: {
                     unavailable: "No disponible",
+                    past: "Passat",
                     selected: "Seleccionat"
                 },
-                selectedDate: "Data seleccionada:"
+                selectedDate: "Data seleccionada:",
+                loading: "Carregant disponibilitat...",
+                error: "No s'ha pogut carregar el calendari. Els dies mostrats poden no estar actualitzats."
             },
 
             form: {
@@ -177,10 +176,13 @@ export const content = {
                 emailPlaceholder: "correu@exemple.com",
                 phone: "Telèfon",
                 phonePlaceholder: "+34 XXX XXX XXX",
-                comments: "Comentaris o peticions especials",
-                commentsPlaceholder: "Deixa'ns saber si tens alguna preferència alimentària, necessitats especials o altres peticions...",
-                required: "Camps obligatoris",
-                submit: "Enviar sol·licitud de reserva"
+                comments: "Comentaris",
+                commentsPlaceholder: "Preferències alimentàries, necessitats especials...",
+                required: "* Camps obligatoris",
+                sending: "Enviant...",
+                errorMessage: "No s'ha pogut enviar la sol·licitud. Si us plau, prova de contactar-nos directament per telèfon o email.",
+                requiredFields: "Si us plau, omple tots els camps obligatoris.",
+                submit: "Enviar sol·licitud"
             },
 
             contact: {
@@ -190,11 +192,23 @@ export const content = {
                 schedule: "Horari",
                 scheduleDays: "Dilluns a Diumenge",
                 scheduleHours: "10:00 - 20:00",
-                response: "Respondrem la teva sol·licitud en menys de 24 hores per confirmar disponibilitat"
+                response: "Respondrem la teva sol·licitud en menys de 24 hores"
+            },
+
+            confirmation: {
+                title: "Sol·licitud enviada correctament!",
+                emailSent: "Rebràs un email de confirmació amb les dades de la teva sol·licitud.",
+                response: "Et respondrem en les pròximes 24 hores.",
+                summary: {
+                    date: "Data sol·licitada:",
+                    guests: "Persones:",
+                    experience: "Experiència:"
+                },
+                newReservation: "Fer una altra reserva",
+                questions: "Si tens alguna pregunta, pots contactar-nos:"
             }
         },
 
-        // Repeteix per 'es' i 'en' amb traduccions corresponents
         // Footer
         footer: {
             description: "Experiències autèntiques a la Catalunya rural",
@@ -329,6 +343,7 @@ export const content = {
         // Experiències
         experiencies: {
             title: "Nuestras Experiencias",
+            subtitle: "Elige la que más se adapte a lo que buscas",
             gastronomica: {
                 title: "Experiencia Gastronómica",
                 duration: "Medio día - 4 horas",
@@ -393,9 +408,12 @@ export const content = {
                 weekDays: ['L', 'M', 'X', 'J', 'V', 'S', 'D'],
                 legend: {
                     unavailable: "No disponible",
+                    past: "Pasado",
                     selected: "Seleccionado"
                 },
-                selectedDate: "Fecha seleccionada:"
+                selectedDate: "Fecha seleccionada:",
+                loading: "Cargando disponibilidad...",
+                error: "No se ha podido cargar el calendario. Los días mostrados pueden no estar actualizados."
             },
 
             form: {
@@ -408,10 +426,13 @@ export const content = {
                 emailPlaceholder: "correo@ejemplo.com",
                 phone: "Teléfono",
                 phonePlaceholder: "+34 XXX XXX XXX",
-                comments: "Comentarios o peticiones especiales",
-                commentsPlaceholder: "Déjanos saber si tienes alguna preferencia alimentaria, necesidades especiales u otras peticiones...",
-                required: "Campos obligatorios",
-                submit: "Enviar solicitud de reserva"
+                comments: "Comentarios",
+                commentsPlaceholder: "Preferencias alimentarias, necesidades especiales...",
+                required: "* Campos obligatorios",
+                sending: "Enviando...",
+                errorMessage: "No se ha podido enviar la solicitud. Por favor, intenta contactarnos directamente por teléfono o email.",
+                requiredFields: "Por favor, rellena todos los campos obligatorios.",
+                submit: "Enviar solicitud"
             },
 
             contact: {
@@ -421,7 +442,20 @@ export const content = {
                 schedule: "Horario",
                 scheduleDays: "Lunes a Domingo",
                 scheduleHours: "10:00 - 20:00",
-                response: "Responderemos tu solicitud en menos de 24 horas para confirmar disponibilidad"
+                response: "Responderemos tu solicitud en menos de 24 horas"
+            },
+
+            confirmation: {
+                title: "¡Solicitud enviada correctamente!",
+                emailSent: "Recibirás un email de confirmación con los datos de tu solicitud.",
+                response: "Te responderemos en las próximas 24 horas.",
+                summary: {
+                    date: "Fecha solicitada:",
+                    guests: "Personas:",
+                    experience: "Experiencia:"
+                },
+                newReservation: "Hacer otra reserva",
+                questions: "Si tienes alguna pregunta, puedes contactarnos:"
             }
         },
 
@@ -450,7 +484,7 @@ export const content = {
                 },
                 contact: {
                     title: "Contacto",
-                    address: "Can Carerac\n Caldes de Montbui",
+                    address: "Can Carerac\nCaldes de Montbui",
                     phone: "+34 XXX XXX XXX",
                     email: "info@cancarerac.cat",
                     language: "Idioma"
@@ -549,7 +583,7 @@ export const content = {
                     cta: "Discover more"
                 },
                 figuera: {
-                    title: "Beneath de Fig Tree",
+                    title: "Beneath the Fig Tree",
                     description: "Our special corner by the fig tree, where we share activities, moments and peace",
                     cta: "Discover more"
                 }
@@ -559,6 +593,7 @@ export const content = {
         // Experiències
         experiencies: {
             title: "Our Experiences",
+            subtitle: "Choose the one that best suits what you're looking for",
             gastronomica: {
                 title: "Gastronomic Experience",
                 duration: "Half day - 4 hours",
@@ -623,9 +658,12 @@ export const content = {
                 weekDays: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
                 legend: {
                     unavailable: "Unavailable",
+                    past: "Past",
                     selected: "Selected"
                 },
-                selectedDate: "Selected date:"
+                selectedDate: "Selected date:",
+                loading: "Loading availability...",
+                error: "Could not load calendar. The days shown may not be up to date."
             },
 
             form: {
@@ -638,10 +676,13 @@ export const content = {
                 emailPlaceholder: "email@example.com",
                 phone: "Phone",
                 phonePlaceholder: "+34 XXX XXX XXX",
-                comments: "Comments or special requests",
-                commentsPlaceholder: "Let us know if you have any dietary preferences, special needs or other requests...",
-                required: "Required fields",
-                submit: "Send booking request"
+                comments: "Comments",
+                commentsPlaceholder: "Dietary preferences, special needs...",
+                required: "* Required fields",
+                sending: "Sending...",
+                errorMessage: "Could not send the request. Please try contacting us directly by phone or email.",
+                requiredFields: "Please fill in all required fields.",
+                submit: "Send request"
             },
 
             contact: {
@@ -651,7 +692,20 @@ export const content = {
                 schedule: "Schedule",
                 scheduleDays: "Monday to Sunday",
                 scheduleHours: "10:00 AM - 8:00 PM",
-                response: "We'll respond to your request within 24 hours to confirm availability"
+                response: "We'll respond to your request within 24 hours"
+            },
+
+            confirmation: {
+                title: "Request sent successfully!",
+                emailSent: "You will receive a confirmation email with your request details.",
+                response: "We'll respond within the next 24 hours.",
+                summary: {
+                    date: "Requested date:",
+                    guests: "People:",
+                    experience: "Experience:"
+                },
+                newReservation: "Make another booking",
+                questions: "If you have any questions, you can contact us:"
             }
         },
 

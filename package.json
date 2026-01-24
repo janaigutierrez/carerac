@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@dr.pogodin/react-helmet": "^3.0.4",
+    "@emailjs/browser": "^4.4.1",
+    "date-fns": "^4.1.0",
     "emailjs-com": "^3.2.0",
     "framer-motion": "^12.23.16",
     "lucide-react": "^0.544.0",
