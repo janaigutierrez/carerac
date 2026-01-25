@@ -3,6 +3,7 @@ export const es = {
     // Header
     nav: {
         espai: "El Espacio",
+        timeline: "Nuestra Historia",
         experiencies: "Experiencias",
         ubicacio: "Ubicación",
         reservar: "Reservar"

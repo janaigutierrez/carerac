@@ -65,6 +65,12 @@ const Header = () => {
                             {t('nav.espai')}
                         </button>
                         <button
+                            onClick={() => scrollToSection('timeline')}
+                            className="text-primary-dark hover:text-primary-brown transition-colors font-medium"
+                        >
+                            {t('nav.timeline')}
+                        </button>
+                        <button
                             onClick={() => scrollToSection('experiencies')}
                             className="text-primary-dark hover:text-primary-brown transition-colors font-medium"
                         >
