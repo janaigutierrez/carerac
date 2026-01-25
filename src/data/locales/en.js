@@ -213,7 +213,7 @@ export const en = {
     // Footer
     footer: {
         description: "Authentic experiences in rural Catalonia",
-        copyright: "Designed with ♥",
+        copyright: "© 2025 Can Carerac. All rights reserved.",
         sections: {
             experiences: {
                 title: "Experiences",

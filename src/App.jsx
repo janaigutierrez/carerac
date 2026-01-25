@@ -63,20 +63,23 @@ function App() {
   return (
     <HelmetProvider>
       <LanguageProvider>
-        <div className="min-h-screen bg-primary-white">
-          <SEO section={currentSection} />
-
-          <Header />
-          <main>
-            <Hero />
-            <EspaiSection />
-            <TimelineSection />
-            <ExperiencesSection />
-            <UbicacioSection />
-            <ReservarSection />
-          </main>
-          <Footer />
-        </div>
+        {isLoading ? (
+          <LoadingScreen />
+        ) : (
+          <div className="min-h-screen bg-primary-white">
+            <SEO section={currentSection} />
+            <Header />
+            <main>
+              <Hero />
+              <EspaiSection />
+              <TimelineSection />
+              <ExperiencesSection />
+              <UbicacioSection />
+              <ReservarSection />
+            </main>
+            <Footer />
+          </div>
+        )}
       </LanguageProvider>
     </HelmetProvider>
   );

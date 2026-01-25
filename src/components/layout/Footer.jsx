@@ -11,12 +11,6 @@ const Footer = () => {
         }
     };
 
-    const languages = [
-        { code: 'ca', label: 'Català' },
-        { code: 'es', label: 'Español' },
-        { code: 'en', label: 'English' }
-    ];
-
     return (
         <footer className="bg-primary-dark text-primary-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -53,6 +47,20 @@ const Footer = () => {
                                 aria-label="Email"
                             >
                                 <Mail size={20} />
+                            </a>
+                            <a href="https://tiktok.com/@teu_usuari" className="bg-primary-white/10 p-2 rounded-full hover:bg-primary-brown transition-colors">
+                                <svg
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                >
+                                    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+                                </svg>
                             </a>
                         </div>
                     </div>
@@ -119,11 +127,6 @@ const Footer = () => {
                                     {t('footer.sections.information.links.blog')}
                                 </a>
                             </li>
-                            <li>
-                                <a href="#" className="text-primary-white/80 hover:text-primary-straw transition-colors font-body">
-                                    {t('footer.sections.information.links.contact')}
-                                </a>
-                            </li>
                         </ul>
                     </div>
 
@@ -152,27 +155,6 @@ const Footer = () => {
                                 </a>
                             </div>
                         </div>
-
-                        {/* Language Selector */}
-                        <div className="mt-6">
-                            <h5 className="font-medium mb-2 text-sm">
-                                {t('footer.sections.contact.language')}
-                            </h5>
-                            <div className="flex space-x-2">
-                                {languages.map((lang) => (
-                                    <button
-                                        key={lang.code}
-                                        onClick={() => changeLanguage(lang.code)}
-                                        className={`px-3 py-1 text-xs rounded-full transition-colors ${currentLanguage === lang.code
-                                            ? 'bg-primary-brown text-primary-white'
-                                            : 'bg-primary-white/10 text-primary-white/80 hover:bg-primary-white/20'
-                                            }`}
-                                    >
-                                        {lang.label}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -183,9 +165,6 @@ const Footer = () => {
                         {/* Copyright */}
                         <div className="text-center md:text-left">
                             <p className="text-primary-white/60 font-body text-sm">
-                                © 2025 Can Carerac. Tots els drets reservats.
-                            </p>
-                            <p className="text-primary-white/40 font-body text-xs mt-1">
                                 {t('footer.copyright')}
                             </p>
                         </div>
