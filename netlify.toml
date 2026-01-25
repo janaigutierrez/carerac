@@ -1,3 +1,10 @@
 [build]
   command = "npm run build"
   publish = "dist"
+
+[build.environment]
+VITE_GOOGLE_API_KEY="AIzaSyBncsjBRpRm0Va95hLQpxBR6td9o7SrZvI"
+VITE_GOOGLE_CALENDAR_ID="9d007b5204e9839f483533e9c2a181125f4ff4d30adbf79488589269878a9473@group.calendar.google.com"
+VITE_EMAILJS_SERVICE_ID="service_3v6sapj"
+VITE_EMAILJS_TEMPLATE_ID="template_50vsoch"
+VITE_EMAILJS_PUBLIC_KEY="q4Av1ZDegSMZqfhSp"
