@@ -1,5 +1,5 @@
 import { useState, useEffect, createContext, useContext } from 'react';
-import { content } from '../data/content.js';
+import { content } from '../data/locales/index.js';
 
 // Context per compartir idioma globalment
 const LanguageContext = createContext();

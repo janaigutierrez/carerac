@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { useLanguage } from '../hooks/useLanguage.jsx';
-import Logo from './Logo.jsx';
+import { useLanguage } from '../../hooks/useLanguage.jsx';
+import Logo from '../Logo.jsx';
 
 
 const Header = () => {

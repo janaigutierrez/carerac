@@ -1,4 +1,4 @@
-import { useLanguage } from '../hooks/useLanguage';
+import { useLanguage } from '../../hooks/useLanguage';
 import { useInView } from 'react-intersection-observer';
 import { Clock, Users } from 'lucide-react';
 

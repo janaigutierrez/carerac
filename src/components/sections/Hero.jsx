@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { useLanguage } from '../hooks/useLanguage';
+import { useLanguage } from '../../hooks/useLanguage';
 
 const Hero = () => {
     const [isVisible, setIsVisible] = useState(false);

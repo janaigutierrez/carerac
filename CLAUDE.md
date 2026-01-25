@@ -29,36 +29,57 @@ This document provides comprehensive guidance for AI assistants working on the C
 ```
 /home/user/carerac/
 ├── src/
-│   ├── components/          # React UI components
-│   │   ├── Header.jsx       # Sticky navigation with language switcher
-│   │   ├── Hero.jsx         # Full-screen hero section
-│   │   ├── EspaiSection.jsx # Facility spaces carousel (4 spaces)
-│   │   ├── Timeline.jsx     # Historical timeline with scroll animation
-│   │   ├── ExperiencesSection.jsx # Experience cards (gastronomic/cultural)
-│   │   ├── UbicacioSection.jsx    # Location with Google Maps
-│   │   ├── ReservarSection.jsx    # Booking form with calendar
-│   │   ├── Footer.jsx       # Multi-column footer
-│   │   ├── SEO.jsx          # Dynamic SEO metadata
-│   │   ├── LoadingScreen.jsx # 6-second intro animation
-│   │   ├── Logo.jsx         # Logo component variants
-│   │   ├── AnimatedLogo.jsx # Animated logo version
+│   ├── components/
+│   │   ├── booking/              # Booking form sub-components
+│   │   │   ├── BookingCalendar.jsx
+│   │   │   ├── BookingConfirmation.jsx
+│   │   │   ├── BookingForm.jsx
+│   │   │   ├── ContactCards.jsx
+│   │   │   ├── ExperienceSelector.jsx
+│   │   │   ├── GuestCounter.jsx
+│   │   │   └── index.js
+│   │   ├── common/               # Reusable UI components
+│   │   │   ├── SectionHeader.jsx
+│   │   │   └── index.js
+│   │   ├── layout/               # Page layout components
+│   │   │   ├── Header.jsx
+│   │   │   ├── Footer.jsx
+│   │   │   └── index.js
+│   │   ├── sections/             # Main page sections
+│   │   │   ├── Hero.jsx
+│   │   │   ├── EspaiSection.jsx
+│   │   │   ├── Timeline.jsx
+│   │   │   ├── ExperiencesSection.jsx
+│   │   │   ├── UbicacioSection.jsx
+│   │   │   ├── ReservarSection.jsx
+│   │   │   └── index.js
+│   │   ├── SEO.jsx               # Dynamic SEO metadata
+│   │   ├── LoadingScreen.jsx     # 6-second intro animation
+│   │   ├── Logo.jsx              # Logo component variants
+│   │   ├── AnimatedLogo.jsx      # Animated logo version
 │   │   └── ArcadesTransition.jsx # Prologue transition section
 │   ├── data/
-│   │   └── content.js       # All translations (CA/ES/EN) ~750 lines
+│   │   └── locales/              # Translations split by language
+│   │       ├── ca.js             # Catalan (~250 lines)
+│   │       ├── es.js             # Spanish (~250 lines)
+│   │       ├── en.js             # English (~250 lines)
+│   │       └── index.js          # Aggregates all languages
 │   ├── hooks/
-│   │   ├── useLanguage.jsx  # i18n context and translation hook
-│   │   └── useScrollAnimation.js # Scroll-based animation utilities
+│   │   ├── useLanguage.jsx       # i18n context and translation hook
+│   │   ├── useScrollAnimation.js # Scroll-based animation utilities
+│   │   └── useCalendarAvailability.js # Google Calendar API hook
 │   ├── utils/
-│   │   ├── formValidation.js # Form validation helpers
-│   │   └── animations.js    # Animation utilities
-│   ├── App.jsx              # Main app with section observer
-│   ├── main.jsx             # React entry point
-│   └── index.css            # Global styles and Tailwind imports
+│   │   ├── formValidation.js     # Form validation helpers
+│   │   └── animations.js         # Animation utilities
+│   ├── App.jsx                   # Main app with section observer
+│   ├── main.jsx                  # React entry point
+│   └── index.css                 # Global styles and Tailwind imports
 ├── public/
 │   └── images/
-│       ├── gallery/         # WebP images for experiences/spaces
-│       └── logo/            # Logo variants (PNG, SVG)
-├── index.html               # HTML entry with Google Fonts
+│       ├── gallery/              # WebP images for experiences/spaces
+│       └── logo/                 # Logo variants (PNG, SVG)
+├── .env.example                  # Environment variables template
+├── index.html                    # HTML entry with Google Fonts
 ├── package.json
 ├── vite.config.js
 ├── tailwind.config.js
@@ -74,18 +95,36 @@ This document provides comprehensive guidance for AI assistants working on the C
 - Uses IntersectionObserver for active section detection (SEO)
 - Renders sections in order: Hero → Espai → Timeline → Experiences → Ubicacio → Reservar
 
+### Component Organization
+
+| Directory | Purpose | Contents |
+|-----------|---------|----------|
+| `components/layout/` | Page structure | Header, Footer |
+| `components/sections/` | Main page sections | Hero, Espai, Timeline, Experiences, Ubicacio, Reservar |
+| `components/booking/` | Booking form parts | Calendar, Form, Confirmation, etc. |
+| `components/common/` | Reusable UI | SectionHeader, etc. |
+
 ### Section Components
 
 | Component | Purpose | Key Features |
 |-----------|---------|--------------|
-| `Header.jsx` | Navigation | Fixed position, mobile menu, language switcher |
 | `Hero.jsx` | Landing section | Full-screen, gradient background, CTA button |
 | `EspaiSection.jsx` | Facilities | 4-space carousel (pool, garden, kitchen, fig tree) |
 | `Timeline.jsx` | History | 6 events, scroll-progress animation |
 | `ExperiencesSection.jsx` | Offerings | 2 cards (gastronomic 4h, cultural 8h) |
 | `UbicacioSection.jsx` | Location | Google Maps embed, transport methods |
-| `ReservarSection.jsx` | Booking | Form, calendar integration, EmailJS |
-| `Footer.jsx` | Footer | Social links, navigation, legal |
+| `ReservarSection.jsx` | Booking | Orchestrates booking sub-components |
+
+### Booking Sub-Components
+
+| Component | Purpose |
+|-----------|---------|
+| `BookingCalendar.jsx` | Calendar with month navigation and availability |
+| `ExperienceSelector.jsx` | Experience type selection cards |
+| `GuestCounter.jsx` | Guest count +/- selector |
+| `BookingForm.jsx` | Contact information form |
+| `BookingConfirmation.jsx` | Success message after booking |
+| `ContactCards.jsx` | Phone, email, schedule cards |
 
 ## Styling Conventions
 
@@ -131,7 +170,7 @@ Language system uses React Context via `useLanguage` hook.
 
 ```jsx
 // Usage in components
-import { useLanguage } from '../hooks/useLanguage.jsx';
+import { useLanguage } from '../../hooks/useLanguage';
 
 function MyComponent() {
   const { t, currentLanguage, changeLanguage } = useLanguage();
@@ -143,19 +182,19 @@ function MyComponent() {
 ```
 
 ### Translation Structure
-All translations are in `src/data/content.js`:
-```javascript
-export const content = {
-  ca: { /* Catalan translations */ },
-  es: { /* Spanish translations */ },
-  en: { /* English translations */ }
-}
+Translations are split into separate files in `src/data/locales/`:
+```
+src/data/locales/
+├── ca.js      # Catalan translations
+├── es.js      # Spanish translations
+├── en.js      # English translations
+└── index.js   # Aggregates: export const content = { ca, es, en }
 ```
 
-Key sections: `nav`, `hero`, `arcades`, `timeline`, `espai`, `experiencies`, `ubicacio`, `reservar`, `footer`, `seo`
+Key sections: `nav`, `hero`, `arcades`, `timeline`, `espai`, `experiencies`, `ubicacio`, `reservar`, `footer`
 
 ### Adding New Translations
-1. Add the key to all three language objects in `content.js`
+1. Add the key to all three language files (`ca.js`, `es.js`, `en.js`)
 2. Use `t('section.key')` syntax in components
 3. Test all three languages after changes
 
@@ -175,12 +214,17 @@ emailjs.send(
 ```
 
 ### Google Calendar API (Availability)
+Uses the `useCalendarAvailability` hook:
 ```javascript
-// Fetch events to check availability
-const response = await fetch(
-  `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events?key=${API_KEY}&...`
-);
+import { useCalendarAvailability } from '../../hooks/useCalendarAvailability';
+
+const { isLoading, error, isDateOccupied, refetch } = useCalendarAvailability(getErrorMessage);
 ```
+
+Requirements:
+- Calendar must be set to PUBLIC
+- API key must have Calendar API enabled
+- See `.env.example` for setup instructions
 
 ### Google Maps (Location)
 Embedded via iframe in `UbicacioSection.jsx`:
@@ -189,7 +233,7 @@ Embedded via iframe in `UbicacioSection.jsx`:
 
 ## Environment Variables
 
-Required environment variables (create `.env` file):
+Required environment variables (see `.env.example` for details):
 ```env
 # Google Calendar API
 VITE_GOOGLE_API_KEY=your_google_api_key
@@ -230,15 +274,33 @@ npm run lint     # Run ESLint
 - Components: PascalCase (`Header.jsx`, `EspaiSection.jsx`)
 - Hooks: camelCase with `use` prefix (`useLanguage.jsx`)
 - Utils: camelCase (`formValidation.js`)
-- Data: camelCase (`content.js`)
+- Data: camelCase (`ca.js`, `es.js`, `en.js`)
+
+### Import Patterns
+```jsx
+// Layout components
+import { Header, Footer } from './components/layout';
+
+// Section components
+import { Hero, EspaiSection, ReservarSection } from './components/sections';
+
+// Booking components
+import { BookingCalendar, BookingForm } from './components/booking';
+
+// Common components
+import { SectionHeader } from './components/common';
+
+// Hooks (adjust path based on file location)
+import { useLanguage } from '../../hooks/useLanguage';
+```
 
 ### Component Structure
 ```jsx
 import { useState, useEffect } from 'react';
-import { useLanguage } from '../hooks/useLanguage.jsx';
+import { useLanguage } from '../../hooks/useLanguage';
 // Other imports...
 
-function ComponentName() {
+const ComponentName = () => {
   const { t } = useLanguage();
   const [state, setState] = useState(initialValue);
 
@@ -251,7 +313,7 @@ function ComponentName() {
       {/* Content */}
     </section>
   );
-}
+};
 
 export default ComponentName;
 ```
@@ -282,7 +344,7 @@ Used extensively for:
 ### Form Handling
 The booking form in `ReservarSection.jsx`:
 1. Validates inputs locally
-2. Checks calendar availability
+2. Checks calendar availability via `useCalendarAvailability` hook
 3. Sends email via EmailJS
 4. Shows success/error states
 
@@ -297,15 +359,16 @@ The booking form in `ReservarSection.jsx`:
 ## Common Tasks
 
 ### Adding a New Section
-1. Create component in `src/components/`
-2. Add translations to `src/data/content.js` for all languages
-3. Import and add to `App.jsx` in correct order
-4. Add section ID for navigation
-5. Update `Header.jsx` navigation if needed
+1. Create component in `src/components/sections/`
+2. Add translations to all three files in `src/data/locales/`
+3. Export from `src/components/sections/index.js`
+4. Import and add to `App.jsx` in correct order
+5. Add section ID for navigation
+6. Update `Header.jsx` navigation if needed
 
 ### Modifying Translations
-1. Edit `src/data/content.js`
-2. Find the key in all three language objects
+1. Edit the appropriate file(s) in `src/data/locales/`
+2. Find the key in all three language files (`ca.js`, `es.js`, `en.js`)
 3. Update text while maintaining key structure
 4. Test all three languages
 
@@ -339,9 +402,12 @@ Recent commit message style:
 ## Troubleshooting
 
 ### Common Issues
-- **Translations not showing**: Check key exists in all languages in `content.js`
+- **Translations not showing**: Check key exists in all languages in `src/data/locales/`
 - **Styles not applying**: Ensure Tailwind classes are in safelist if dynamically generated
-- **Calendar not loading**: Verify environment variables are set correctly
+- **Calendar not loading**:
+  - Check environment variables are set correctly
+  - Verify calendar is set to PUBLIC
+  - Check browser console for specific API errors (403 = invalid key, 404 = calendar not found)
 - **Email not sending**: Check EmailJS credentials and template configuration
 
 ### Development Tips
