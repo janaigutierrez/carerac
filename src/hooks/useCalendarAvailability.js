@@ -19,7 +19,13 @@ export const useCalendarAvailability = (getErrorMessage) => {
         try {
             setIsLoading(true);
             setError(null);
-
+            // --- AFEGEIX AIXÒ AQUÍ PER REVISAR QUÈ PASSA ---
+            console.log("DEBUG NETLIFY VARIABLES:", {
+                API_KEY_FOUND: !!import.meta.env.VITE_GOOGLE_API_KEY,
+                CALENDAR_ID_FOUND: !!import.meta.env.VITE_GOOGLE_CALENDAR_ID,
+                MODE: import.meta.env.MODE
+            });
+            // ----------------------------------------------
             const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
             const calendarId = import.meta.env.VITE_GOOGLE_CALENDAR_ID;
 
