@@ -5,14 +5,15 @@ import { LanguageProvider } from './hooks/useLanguage.jsx';
 // Components
 import SEO from './components/SEO';
 import LoadingScreen from './components/LoadingScreen';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import EspaiSection from './components/EspaiSection';
-import ExperiencesSection from './components/ExperiencesSection';
-import UbicacioSection from './components/UbicacioSection';
-import ReservarSection from './components/ReservarSection';
-import Footer from './components/Footer';
-import TimelineSection from './components/Timeline.jsx';
+import { Header, Footer } from './components/layout';
+import {
+  Hero,
+  EspaiSection,
+  TimelineSection,
+  ExperiencesSection,
+  UbicacioSection,
+  ReservarSection
+} from './components/sections';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);

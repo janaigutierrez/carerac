@@ -1,7 +1,7 @@
 // src/components/EspaiSection.jsx
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useLanguage } from '../hooks/useLanguage';
+import { useLanguage } from '../../hooks/useLanguage';
 import { useInView } from 'react-intersection-observer';
 
 const EspaiSection = () => {

@@ -1,4 +1,4 @@
-import { useLanguage } from '../hooks/useLanguage';
+import { useLanguage } from '../../hooks/useLanguage';
 import { useInView } from 'react-intersection-observer';
 import { Car, Bus, MapPin, Clock, Navigation } from 'lucide-react';
 
