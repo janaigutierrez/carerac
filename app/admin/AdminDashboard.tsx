@@ -43,11 +43,12 @@ function fmtFull(iso: string) {
 }
 
 function mailtoLink(b: Booking) {
+  const to = encodeURIComponent(b.email)
   const subject = encodeURIComponent(`Can Carerac · Reserva ${fmtFull(b.date)}`)
   const body = encodeURIComponent(
     `Hola ${b.name},\n\nGràcies per la teva reserva a Can Carerac.\n\nData: ${fmtFull(b.date)}\nPersones: ${b.guests}\nExperiència: ${EXPERIENCE_LABEL[b.experience] || b.experience}\n\n— Can Carerac`
   )
-  return `mailto:${b.email}?subject=${subject}&body=${body}`
+  return `https://mail.google.com/mail/?view=cm&fs=1&to=${to}&su=${subject}&body=${body}`
 }
 
 function whatsappLink(b: Booking) {
@@ -348,6 +349,8 @@ export default function AdminDashboard() {
                     )}
                     <a
                       href={mailtoLink(b)}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       title={`Email: ${b.email}`}
                       className="flex items-center justify-center bg-primary-brown text-white w-9 h-9 rounded text-sm hover:bg-primary-dark"
                     >
