@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState, useCallback, useMemo } from 'react'
-import { Check, X, Trash2, Plus, Mail, Phone, ChevronLeft, ChevronRight, RefreshCw, Clock } from 'lucide-react'
+import { Check, X, Trash2, Plus, Mail, Phone, ChevronLeft, ChevronRight, RefreshCw, Clock, MessageCircle } from 'lucide-react'
 import { formatDistanceToNow, format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, addMonths, subMonths, isBefore, startOfDay } from 'date-fns'
 import { ca } from 'date-fns/locale'
 import emailjs from '@emailjs/browser'
@@ -48,6 +48,15 @@ function mailtoLink(b: Booking) {
     `Hola ${b.name},\n\nGràcies per la teva reserva a Can Carerac.\n\nData: ${fmtFull(b.date)}\nPersones: ${b.guests}\nExperiència: ${EXPERIENCE_LABEL[b.experience] || b.experience}\n\n— Can Carerac`
   )
   return `mailto:${b.email}?subject=${subject}&body=${body}`
+}
+
+function whatsappLink(b: Booking) {
+  let digits = b.phone.replace(/\D/g, '')
+  if (digits.length === 9) digits = '34' + digits
+  const text = encodeURIComponent(
+    `Hola ${b.name}, sóc de Can Carerac. Sobre la teva reserva del ${fmtFull(b.date)} per ${b.guests} persones...`
+  )
+  return `https://wa.me/${digits}?text=${text}`
 }
 
 export default function AdminDashboard() {
@@ -339,9 +348,19 @@ export default function AdminDashboard() {
                     )}
                     <a
                       href={mailtoLink(b)}
-                      className="flex items-center gap-1 bg-primary-brown text-white px-3 py-1.5 rounded text-sm hover:bg-primary-dark"
+                      title={`Email: ${b.email}`}
+                      className="flex items-center justify-center bg-primary-brown text-white w-9 h-9 rounded text-sm hover:bg-primary-dark"
                     >
-                      <Mail size={14} /> Contactar
+                      <Mail size={16} />
+                    </a>
+                    <a
+                      href={whatsappLink(b)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={`WhatsApp: ${b.phone}`}
+                      className="flex items-center justify-center bg-[#25D366] text-white w-9 h-9 rounded text-sm hover:bg-[#1DA851]"
+                    >
+                      <MessageCircle size={16} />
                     </a>
                     <button
                       onClick={() => deleteBooking(b._id)}
