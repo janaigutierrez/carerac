@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
-export default function AdminLoginPage() {
+export default function AdminLoginForm() {
   const router = useRouter()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -29,7 +29,6 @@ export default function AdminLoginPage() {
         return
       }
 
-      router.push('/admin')
       router.refresh()
     } catch {
       setError('Error de connexió')

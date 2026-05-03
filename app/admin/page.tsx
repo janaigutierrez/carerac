@@ -1,16 +1,18 @@
-import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { getSession } from '@/lib/session'
+import AdminLoginForm from './AdminLoginForm'
+import AdminDashboard from './AdminDashboard'
 import LogoutButton from './LogoutButton'
 
 export const metadata = {
   title: 'Admin - Can Carerac',
 }
 
-export default async function ProtectedAdminLayout({ children }: { children: React.ReactNode }) {
+export default async function AdminPage() {
   const session = await getSession()
+
   if (!session.isAdmin) {
-    redirect('/admin/login')
+    return <AdminLoginForm />
   }
 
   return (
@@ -23,7 +25,9 @@ export default async function ProtectedAdminLayout({ children }: { children: Rea
           <LogoutButton />
         </div>
       </header>
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">{children}</main>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <AdminDashboard />
+      </main>
     </div>
   )
 }
