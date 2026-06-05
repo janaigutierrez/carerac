@@ -16,7 +16,9 @@ if (!global.mongooseCache) {
 }
 
 export async function connectMongo() {
-  if (cached.conn) return cached.conn
+  if (cached.conn && cached.conn.connection.readyState === 1) {
+    return cached.conn
+  }
 
   const uri = process.env.MONGODB_URI
   if (!uri) {
@@ -24,9 +26,19 @@ export async function connectMongo() {
   }
 
   if (!cached.promise) {
-    cached.promise = mongoose.connect(uri, { bufferCommands: false })
+    cached.promise = mongoose.connect(uri, {
+      bufferCommands: false,
+      serverSelectionTimeoutMS: 30000,
+      socketTimeoutMS: 45000,
+    })
   }
 
-  cached.conn = await cached.promise
-  return cached.conn
+  try {
+    cached.conn = await cached.promise
+    return cached.conn
+  } catch (err) {
+    cached.promise = null
+    cached.conn = null
+    throw err
+  }
 }
