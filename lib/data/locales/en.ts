@@ -19,6 +19,33 @@ export const en: Locale = {
     title: 'Prologue',
     subtitle: 'Discover a historic farmhouse where the heritage of time and the peace of the surroundings take center stage in a unique experience.',
   },
+  history: {
+    label: "History",
+    subtitle: "A journey through time, from the origins to today.",
+    passat: {
+      tag: "Past",
+      title: "Origins and tradition",
+      paragraph: "Built in the 16th century following traditional Catalan architecture, the Carerac farmhouse was for generations the heart of a farming estate. Grains, livestock and family life unfolded within its walls for decades. By the late 20th century the farmhouse stood empty, yet its sturdy structure survived the passing of time, waiting for a new beginning.",
+      image: "/images/gallery/timeline-fundacio.webp",
+    },
+    present: {
+      tag: "Present",
+      title: "Rebirth and experiences",
+      paragraph: "In 2009 a respectful restoration began, preserving the historic essence while introducing the modern comforts needed for hospitality. Today Carerac opens its doors to anyone who wants to discover its history, enjoy its calm and share its traditions through unique gastronomic and cultural experiences.",
+      image: "/images/gallery/timeline-actualitat.webp",
+    },
+    moreCta: "Read our full story",
+  },
+  experienceDetails: {
+    close: "Close",
+    bookNow: "Book this experience",
+    gastronomica: {
+      description: "A full immersion into Catalan gastronomic tradition. We will start the day discovering the ancient process of bread-making, from grain milling to baking in the century-old wood-fired oven. We will work the sourdough and knead it with our own hands, while gathering fresh produce from our organic garden. We will end by tasting bread with tomato, selected local products and much more, in a unique setting.",
+    },
+    cultural: {
+      description: "The complete Carerac experience. We will combine the gastronomic day with a personalized cultural workshop tailored to your preferences: ceramics, painting, yoga, writing... You will enjoy a full meal made with local produce and time to relax by the pool surrounded by Mediterranean vegetation. A day to stop time and return with the feeling of having lived something truly authentic.",
+    },
+  },
   loading: {
     subtitle: "Authentic experiences",
   },

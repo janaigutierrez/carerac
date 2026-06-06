@@ -29,6 +29,19 @@ export interface Locale {
     reservar: string
     galeria: string
   }
+  history: {
+    label: string
+    subtitle: string
+    passat: { tag: string; title: string; paragraph: string; image: string }
+    present: { tag: string; title: string; paragraph: string; image: string }
+    moreCta: string
+  }
+  experienceDetails: {
+    close: string
+    bookNow: string
+    gastronomica: { description: string }
+    cultural: { description: string }
+  }
   hero: {
     title: string
     subtitle: string

@@ -19,6 +19,33 @@ export const es: Locale = {
     title: 'Prologo',
     subtitle: 'Descubre una masia historica donde la herencia del tiempo y la paz del entorno son los protagonistas de una experiencia unica.',
   },
+  history: {
+    label: "Historia",
+    subtitle: "Un viaje a traves del tiempo, desde los origenes hasta la actualidad.",
+    passat: {
+      tag: "Pasado",
+      title: "Origenes y tradicion",
+      paragraph: "Construida en el siglo XVI siguiendo la arquitectura tradicional catalana, la masia Carerac fue durante generaciones el centro de una explotacion agricola. Cereales, ganaderia y vida familiar se sucedieron entre sus paredes durante decadas. A finales del siglo XX la masia quedo deshabitada, pero su estructura sobrevivio al paso del tiempo esperando un nuevo comienzo.",
+      image: "/images/gallery/timeline-fundacio.webp",
+    },
+    present: {
+      tag: "Presente",
+      title: "Renacimiento y experiencias",
+      paragraph: "En 2009 comenzo la restauracion respetuosa, conservando la esencia historica e incorporando las comodidades modernas necesarias. Hoy Carerac abre sus puertas a quien quiera descubrir su historia, disfrutar de su calma y compartir sus tradiciones a traves de experiencias gastronomicas y culturales unicas.",
+      image: "/images/gallery/timeline-actualitat.webp",
+    },
+    moreCta: "Lee nuestra historia completa",
+  },
+  experienceDetails: {
+    close: "Cerrar",
+    bookNow: "Reservar esta experiencia",
+    gastronomica: {
+      description: "Una inmersion total en la tradicion gastronomica catalana. Comenzaremos el dia descubriendo el proceso ancestral del pan, desde la molienda del grano hasta el horneado en el horno de lena centenario. Trabajaremos la masa madre y la amasaremos con nuestras manos, mientras recogemos productos frescos de nuestro huerto ecologico. Terminaremos degustando pan con tomate, productos locales seleccionados y mucho mas, en un entorno unico.",
+    },
+    cultural: {
+      description: "La experiencia completa de Carerac. Combinaremos la jornada gastronomica con un taller cultural personalizado segun vuestras preferencias: ceramica, pintura, yoga, escritura... Disfrutaremos de una comida completa preparada con productos de la tierra y tendremos tiempo de relajacion en la piscina rodeada de vegetacion mediterranea. Una jornada para detener el tiempo y volver con la sensacion de haber vivido algo autentico.",
+    },
+  },
   loading: {
     subtitle: "Experiencias autenticas",
   },

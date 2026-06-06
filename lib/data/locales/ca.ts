@@ -19,6 +19,33 @@ export const ca: Locale = {
     title: 'Proleg',
     subtitle: "Descobreix una masia historica on la herencia del temps i la pau de l'entorn son els protagonistes d'una experiencia unica.",
   },
+  history: {
+    label: "Historia",
+    subtitle: "Un viatge a traves del temps, des dels origens fins a l'actualitat.",
+    passat: {
+      tag: "Passat",
+      title: "Origens i tradicio",
+      paragraph: "Construida al segle XVI seguint l'arquitectura tradicional catalana, la masia Carerac va ser durant generacions el centre d'una explotacio agricola. Cereals, ramaderia i vida familiar es van succeir entre les seves parets durant decades. A finals del segle XX la masia va quedar deshabitada, pero la seva estructura va sobreviure al pas del temps esperant un nou comencament.",
+      image: "/images/gallery/timeline-fundacio.webp",
+    },
+    present: {
+      tag: "Present",
+      title: "Renaixement i experiencies",
+      paragraph: "El 2009 va comencar la restauracio respectuosa, conservant l'essencia historica i incorporant les comoditats modernes necessaries. Avui Carerac obre les portes a qui vulgui descobrir-ne la historia, gaudir-ne la calma i compartir-ne les tradicions a traves d'experiencies gastronomiques i culturals unicas.",
+      image: "/images/gallery/timeline-actualitat.webp",
+    },
+    moreCta: "Llegeix la nostra historia completa",
+  },
+  experienceDetails: {
+    close: "Tancar",
+    bookNow: "Reservar aquesta experiencia",
+    gastronomica: {
+      description: "Una immersio total en la tradicio gastronomica catalana. Començarem el dia descobrint el procés ancestral del pa, des de la mòlta del gra fins al forneig al forn de llenya centenari. Treballarem la massa mare i la massarem amb les nostres mans, alhora que recollirem productes frescos del nostre hort ecologic. Acabarem degustant pa amb tomaquet, productes locals seleccionats i molt mes, en un entorn unic.",
+    },
+    cultural: {
+      description: "L'experiencia completa de Carerac. Combinarem la jornada gastronomica amb un taller cultural personalitzat segons les vostres preferencies: ceramica, pintura, ioga, escriptura... Gaudirem d'un apat complet preparat amb productes de la terra i tindrem temps de relaxacio a la piscina envoltada de vegetacio mediterrania. Una jornada per aturar el temps i tornar amb la sensacio d'haver viscut quelcom autentic.",
+    },
+  },
   loading: {
     subtitle: "Experiencies autentiques",
   },
