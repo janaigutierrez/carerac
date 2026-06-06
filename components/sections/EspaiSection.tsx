@@ -52,7 +52,7 @@ export default function EspaiSection() {
       }}
     >
       {/* Arcades Transition */}
-      <div id="arcades" className="relative h-[60vh] min-h-[400px] overflow-hidden">
+      <div id="arcades" className="relative h-screen overflow-hidden">
         <div
           className="absolute inset-0 w-full h-[120%]"
           style={{
@@ -79,8 +79,8 @@ export default function EspaiSection() {
         </div>
 
         {/* Text overlay */}
-        <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
-          <div className="text-center text-primary-dark px-4">
+        <div className="absolute inset-0 z-20 flex items-start justify-center pt-[14vh] lg:pt-[18vh] pointer-events-none">
+          <div className="text-center text-primary-dark px-4 max-w-3xl">
             <p className="text-sm font-body tracking-wider uppercase mb-4 text-primary-brown">
               {t('arcades.title')}
             </p>

@@ -77,17 +77,34 @@ export default function Header() {
             <Logo variant="full" size="lg" />
           </button>
 
-          <nav className="hidden lg:flex justify-start items-center gap-7">
-            {rightItems.map(item => (
-              <button
-                key={item.id}
-                onClick={() => handleNavClick(item)}
-                className="text-primary-dark hover:text-primary-brown transition-colors font-medium text-sm tracking-wide"
-              >
-                {item.label}
-              </button>
-            ))}
-          </nav>
+          <div className="hidden lg:flex justify-start items-center gap-7">
+            <nav className="flex items-center gap-7">
+              {rightItems.map(item => (
+                <button
+                  key={item.id}
+                  onClick={() => handleNavClick(item)}
+                  className="text-primary-dark hover:text-primary-brown transition-colors font-medium text-sm tracking-wide"
+                >
+                  {item.label}
+                </button>
+              ))}
+            </nav>
+            <div className="ml-auto flex gap-1">
+              {languages.map(lang => (
+                <button
+                  key={lang.code}
+                  onClick={() => changeLanguage(lang.code)}
+                  className={`px-1.5 py-0.5 text-[10px] font-medium rounded transition-colors ${
+                    currentLanguage === lang.code
+                      ? 'bg-primary-brown text-primary-white'
+                      : 'text-primary-gray hover:text-primary-dark'
+                  }`}
+                >
+                  {lang.label}
+                </button>
+              ))}
+            </div>
+          </div>
 
           <div className="lg:hidden col-start-3 flex justify-end items-center gap-3">
             <div className="hidden sm:flex gap-1">
@@ -113,22 +130,6 @@ export default function Header() {
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
-        </div>
-
-        <div className="hidden lg:flex justify-end gap-1 pb-1 -mt-1">
-          {languages.map(lang => (
-            <button
-              key={lang.code}
-              onClick={() => changeLanguage(lang.code)}
-              className={`px-2 py-0.5 text-[10px] font-medium rounded transition-colors ${
-                currentLanguage === lang.code
-                  ? 'bg-primary-brown text-primary-white'
-                  : 'text-primary-gray hover:text-primary-dark'
-              }`}
-            >
-              {lang.label}
-            </button>
-          ))}
         </div>
 
         {isMobileMenuOpen && (
