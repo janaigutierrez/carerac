@@ -11,18 +11,28 @@ import ExperiencesSection from '@/components/sections/ExperiencesSection'
 import UbicacioSection from '@/components/sections/UbicacioSection'
 import ReservarSection from '@/components/sections/ReservarSection'
 
+const LOADED_FLAG = 'carerac-loaded'
+
 export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    setMounted(true)
+    if (sessionStorage.getItem(LOADED_FLAG)) {
       setIsLoading(false)
-    }, 6000)
-    return () => clearTimeout(timer)
+    }
   }, [])
 
+  const handleLoadingComplete = () => {
+    sessionStorage.setItem(LOADED_FLAG, '1')
+    setIsLoading(false)
+  }
+
+  if (!mounted) return null
+
   if (isLoading) {
-    return <LoadingScreen />
+    return <LoadingScreen onComplete={handleLoadingComplete} />
   }
 
   return (

@@ -12,12 +12,14 @@ const config: Config = {
         primary: {
           stone: '#E6D7C3',
           brown: '#8B6F47',
-          straw: '#F4E4A6',
-          forest: '#4A5D23',
+          straw: '#D8C9A8',
+          sand: '#D8C9A8',
+          beige: '#C9B796',
+          forest: '#6B7548',
           white: '#FAFAF7',
           gray: '#A69B8C',
           dark: '#5D4E37',
-          terracotta: '#B85450',
+          terracotta: '#A67054',
         },
       },
       fontFamily: {

@@ -18,10 +18,10 @@ const logoSources: Record<string, string> = {
 }
 
 const altTexts: Record<string, string> = {
-  full: 'Can Carerac - Logo complet',
-  'full-white': 'Can Carerac - Logo complet amb fons blanc',
-  text: 'Can Carerac - Nomes nom',
-  icon: 'Can Carerac - Dibuix de la masia',
+  full: 'Carerac - Logo complet',
+  'full-white': 'Carerac - Logo complet amb fons blanc',
+  text: 'Carerac - Nomes nom',
+  icon: 'Carerac - Dibuix de la masia',
 }
 
 const sizePixels: Record<string, { width: number; height: number }> = {

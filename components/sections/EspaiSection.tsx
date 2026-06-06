@@ -52,7 +52,7 @@ export default function EspaiSection() {
       }}
     >
       {/* Arcades Transition */}
-      <div id="arcades" className="relative h-screen overflow-hidden">
+      <div id="arcades" className="relative h-[60vh] min-h-[400px] overflow-hidden">
         <div
           className="absolute inset-0 w-full h-[120%]"
           style={{
@@ -102,7 +102,7 @@ export default function EspaiSection() {
 
           {/* Carousel */}
           <div className="relative">
-            <div className="flex items-center justify-center min-h-[500px] relative px-8">
+            <div className="flex items-center justify-center min-h-[560px] relative px-2 sm:px-8">
               {getVisibleCards().map((space, idx) => {
                 const isCenter = space.position === 0
                 let transform = 'translateX(0px) scale(1)'
@@ -110,9 +110,9 @@ export default function EspaiSection() {
                 let zIndex = 10
 
                 if (space.position === -1) {
-                  transform = 'translateX(-300px) scale(0.75)'; opacity = 0.3; zIndex = 5
+                  transform = 'translateX(-420px) scale(0.78)'; opacity = 0.35; zIndex = 5
                 } else if (space.position === 1) {
-                  transform = 'translateX(300px) scale(0.75)'; opacity = 0.3; zIndex = 5
+                  transform = 'translateX(420px) scale(0.78)'; opacity = 0.35; zIndex = 5
                 } else {
                   zIndex = 20
                 }
@@ -120,22 +120,22 @@ export default function EspaiSection() {
                 return (
                   <div
                     key={`${space.id}-${idx}`}
-                    className={`absolute w-full max-w-lg transition-all duration-500 ease-out ${!isCenter ? 'pointer-events-none' : 'cursor-pointer'}`}
+                    className={`absolute w-full max-w-2xl transition-all duration-500 ease-out ${!isCenter ? 'pointer-events-none' : 'cursor-pointer'}`}
                     style={{ transform, opacity, zIndex }}
                   >
-                    <div className="bg-white rounded-lg shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-                      <div className="relative h-64 overflow-hidden">
+                    <div className="bg-white shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+                      <div className="relative h-80 overflow-hidden">
                         <Image
                           src={space.image}
                           alt={space.title}
                           fill
                           className={`object-cover transition-all duration-500 ${isCenter ? 'scale-100' : 'scale-110 blur-sm'}`}
-                          sizes="(max-width: 768px) 100vw, 512px"
+                          sizes="(max-width: 768px) 100vw, 700px"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/20 via-transparent to-transparent" />
                       </div>
-                      <div className="p-6">
-                        <h3 className="font-display text-xl font-semibold text-primary-dark mb-3">{space.title}</h3>
+                      <div className="p-8">
+                        <h3 className="font-display text-2xl font-semibold text-primary-dark mb-3">{space.title}</h3>
                         <p className={`text-primary-gray font-body text-sm leading-relaxed transition-opacity duration-300 ${isCenter ? 'opacity-100' : 'opacity-60'}`}>
                           {space.description}
                         </p>
@@ -147,11 +147,19 @@ export default function EspaiSection() {
             </div>
 
             {/* Navigation */}
-            <button onClick={prevSlide} className="absolute left-4 top-1/2 -translate-y-1/2 bg-primary-white/80 backdrop-blur-sm text-primary-dark p-3 rounded-full shadow-lg hover:bg-primary-white hover:scale-105 transition-all duration-300 z-30">
-              <ChevronLeft size={20} />
+            <button
+              onClick={prevSlide}
+              aria-label="Previous"
+              className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 text-primary-dark/70 hover:text-primary-brown transition-colors z-30 p-2"
+            >
+              <ChevronLeft size={36} strokeWidth={1.5} />
             </button>
-            <button onClick={nextSlide} className="absolute right-4 top-1/2 -translate-y-1/2 bg-primary-white/80 backdrop-blur-sm text-primary-dark p-3 rounded-full shadow-lg hover:bg-primary-white hover:scale-105 transition-all duration-300 z-30">
-              <ChevronRight size={20} />
+            <button
+              onClick={nextSlide}
+              aria-label="Next"
+              className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 text-primary-dark/70 hover:text-primary-brown transition-colors z-30 p-2"
+            >
+              <ChevronRight size={36} strokeWidth={1.5} />
             </button>
           </div>
 

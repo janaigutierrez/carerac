@@ -69,7 +69,7 @@ export default function UbicacioSection() {
 
         {/* Extra info */}
         <div className="grid lg:grid-cols-3 gap-6 mt-6">
-          <div className={`bg-gradient-to-br from-primary-straw/20 to-primary-straw/10 rounded-xl p-6 text-center transition-all duration-1000 transform ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: '700ms' }}>
+          <div className={`bg-gradient-to-br from-primary-stone/20 to-primary-stone/10 rounded-xl p-6 text-center transition-all duration-1000 transform ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: '700ms' }}>
             <Clock size={32} className="text-primary-brown mx-auto mb-3" />
             <p className="font-display text-2xl font-semibold text-primary-dark">45 min</p>
             <p className="text-primary-gray text-sm">{t('ubicacio.fromBarcelona')}</p>
@@ -77,7 +77,7 @@ export default function UbicacioSection() {
 
           <div className={`bg-gradient-to-br from-primary-forest/20 to-primary-forest/10 rounded-xl p-6 text-center transition-all duration-1000 transform ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: '800ms' }}>
             <Navigation size={32} className="text-primary-forest mx-auto mb-3" />
-            <p className="font-display text-2xl font-semibold text-primary-dark">15 min</p>
+            <p className="font-display text-2xl font-semibold text-primary-dark">5 min</p>
             <p className="text-primary-gray text-sm">{t('ubicacio.fromTown')}</p>
           </div>
 
@@ -86,7 +86,7 @@ export default function UbicacioSection() {
             <div className="space-y-2 text-primary-gray font-body text-sm">
               <p>📍 Torre de Carerac</p>
               <p>📞 +34 XXX XXX XXX</p>
-              <p>✉️ info@cancarerac.cat</p>
+              <p>✉️ carerac.life@gmail.com</p>
             </div>
           </div>
         </div>

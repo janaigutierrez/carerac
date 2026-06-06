@@ -1,37 +1,45 @@
 import type { Metadata } from 'next'
-import { Playfair_Display, Inter } from 'next/font/google'
+import localFont from 'next/font/local'
 import { LanguageProvider } from '@/hooks/useLanguage'
 import './globals.css'
 
-const playfair = Playfair_Display({
-  subsets: ['latin'],
+const playfair = localFont({
   variable: '--font-playfair',
   display: 'swap',
+  src: [
+    { path: '../public/fonts/PlayfairDisplay-Regular.ttf', weight: '400', style: 'normal' },
+    { path: '../public/fonts/PlayfairDisplay-Medium.ttf', weight: '500', style: 'normal' },
+    { path: '../public/fonts/PlayfairDisplay-Bold.ttf', weight: '700', style: 'normal' },
+  ],
 })
 
-const inter = Inter({
-  subsets: ['latin'],
+const monument = localFont({
   variable: '--font-inter',
   display: 'swap',
+  src: [
+    { path: '../public/fonts/ABCMonumentGrotesk-Regular.woff2', weight: '400', style: 'normal' },
+    { path: '../public/fonts/ABCMonumentGrotesk-Medium.woff', weight: '500', style: 'normal' },
+    { path: '../public/fonts/ABCMonumentGrotesk-Bold.woff', weight: '700', style: 'normal' },
+  ],
 })
 
 export const metadata: Metadata = {
-  title: 'Can Carerac - Experiencies Autentiques a Catalunya Rural',
-  description: 'Descobreix Can Carerac, una masia historica catalana on viure experiencies gastronomiques i culturals uniques. Forn de llenya, hort ecologic i tradicions autentiques.',
+  title: 'Carerac - Experiencies Autentiques a Catalunya Rural',
+  description: 'Descobreix Carerac, una masia historica catalana on viure experiencies gastronomiques i culturals uniques. Forn de llenya, hort ecologic i tradicions autentiques.',
   keywords: 'masia catalunya, experiencies gastronomiques, turisme rural catalunya, forn llenya, hort ecologic',
-  authors: [{ name: 'Can Carerac' }],
+  authors: [{ name: 'Carerac' }],
   openGraph: {
-    title: 'Can Carerac - Experiencies Autentiques a Catalunya Rural',
-    description: 'Descobreix Can Carerac, una masia historica catalana on viure experiencies gastronomiques i culturals uniques.',
-    url: 'https://cancarerac.cat',
-    siteName: 'Can Carerac',
+    title: 'Carerac - Experiencies Autentiques a Catalunya Rural',
+    description: 'Descobreix Carerac, una masia historica catalana on viure experiencies gastronomiques i culturals uniques.',
+    url: 'https://carerac.life',
+    siteName: 'Carerac',
     locale: 'ca_ES',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Can Carerac - Experiencies Autentiques a Catalunya Rural',
-    description: 'Descobreix Can Carerac, una masia historica catalana on viure experiencies gastronomiques i culturals uniques.',
+    title: 'Carerac - Experiencies Autentiques a Catalunya Rural',
+    description: 'Descobreix Carerac, una masia historica catalana on viure experiencies gastronomiques i culturals uniques.',
   },
   other: {
     'theme-color': '#8B6F47',
@@ -44,7 +52,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ca" className={`${playfair.variable} ${inter.variable}`}>
+    <html lang="ca" className={`${playfair.variable} ${monument.variable}`}>
       <head>
         <script
           type="application/ld+json"
@@ -52,9 +60,9 @@ export default function RootLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'TouristAttraction',
-              name: 'Can Carerac',
+              name: 'Carerac',
               description: 'Masia historica catalana amb experiencies gastronomiques i culturals uniques.',
-              url: 'https://cancarerac.cat',
+              url: 'https://carerac.life',
               address: {
                 '@type': 'PostalAddress',
                 addressLocality: 'Caldes de Montbui',
@@ -63,8 +71,8 @@ export default function RootLayout({
               },
               provider: {
                 '@type': 'Organization',
-                name: 'Can Carerac',
-                url: 'https://cancarerac.cat',
+                name: 'Carerac',
+                url: 'https://carerac.life',
               },
             }),
           }}

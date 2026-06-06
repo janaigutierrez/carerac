@@ -9,7 +9,7 @@ interface GuestCounterProps {
   max?: number
 }
 
-export default function GuestCounter({ guests, onGuestsChange, min = 1, max = 14 }: GuestCounterProps) {
+export default function GuestCounter({ guests, onGuestsChange, min = 1, max = 10 }: GuestCounterProps) {
   const { t } = useLanguage()
 
   return (

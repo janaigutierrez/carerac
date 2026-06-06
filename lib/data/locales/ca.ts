@@ -3,13 +3,14 @@ import type { Locale } from './types'
 export const ca: Locale = {
   nav: {
     espai: "L'Espai",
-    timeline: "La Nostra Historia",
+    timeline: "Historia",
     experiencies: "Experiencies",
     ubicacio: "Ubicacio",
     reservar: "Reservar",
+    galeria: "Galeria",
   },
   hero: {
-    title: "Can Carerac",
+    title: "Carerac",
     subtitle: "Experiencies autentiques a la Catalunya rural",
     cta: "Descobreix les experiencies",
     scroll: "Descobreix mes",
@@ -92,7 +93,7 @@ export const ca: Locale = {
     title: "Fes la teva Reserva",
     subtitle: "Digue'ns quantes persones sereu i quan voldrieu venir, i ens posarem en contacte amb vosaltres.",
     experienceSelector: { title: "Tria la teva experiencia", selected: "Seleccionada" },
-    guests: { title: "Nombre de persones", label: "Convidats", max: "Maxim: 14" },
+    guests: { title: "Nombre de persones", label: "Convidats", max: "Maxim: 10" },
     calendar: {
       months: ['Gener', 'Febrer', 'Marc', 'Abril', 'Maig', 'Juny', 'Juliol', 'Agost', 'Setembre', 'Octubre', 'Novembre', 'Desembre'],
       weekDays: ['Dl', 'Dt', 'Dc', 'Dj', 'Dv', 'Ds', 'Dg'],
@@ -147,7 +148,7 @@ export const ca: Locale = {
         title: "Contacte",
         address: "Can Carerac\nCaldes de Montbui",
         phone: "+34 XXX XXX XXX",
-        email: "info@cancarerac.cat",
+        email: "carerac.life@gmail.com",
       },
       legal: { privacy: "Privacitat", terms: "Termes", cookies: "Cookies", legal: "Avis Legal" },
     },

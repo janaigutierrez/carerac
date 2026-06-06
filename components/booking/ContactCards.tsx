@@ -14,7 +14,7 @@ export default function ContactCards({ className = '', style }: ContactCardsProp
 
   const cards: { icon: LucideIcon; title: string; content: string; subContent?: string }[] = [
     { icon: Phone, title: t('reservar.contact.call'), content: '+34 XXX XXX XXX' },
-    { icon: Mail, title: t('reservar.contact.email'), content: 'info@cancarerac.cat' },
+    { icon: Mail, title: t('reservar.contact.email'), content: 'carerac.life@gmail.com' },
     { icon: Clock, title: t('reservar.contact.schedule'), content: t('reservar.contact.scheduleDays'), subContent: t('reservar.contact.scheduleHours') },
   ]
 

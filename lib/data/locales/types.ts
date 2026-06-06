@@ -27,6 +27,7 @@ export interface Locale {
     experiencies: string
     ubicacio: string
     reservar: string
+    galeria: string
   }
   hero: {
     title: string
