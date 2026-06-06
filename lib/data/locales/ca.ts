@@ -46,6 +46,38 @@ export const ca: Locale = {
       description: "L'experiencia completa de Carerac. Combinarem la jornada gastronomica amb un taller cultural personalitzat segons les vostres preferencies: ceramica, pintura, ioga, escriptura... Gaudirem d'un apat complet preparat amb productes de la terra i tindrem temps de relaxacio a la piscina envoltada de vegetacio mediterrania. Una jornada per aturar el temps i tornar amb la sensacio d'haver viscut quelcom autentic.",
     },
   },
+  cookies: {
+    message: "Aquesta web usa cookies tecniques i una cookie de preferencia d'idioma per al seu funcionament. Sense finalitat publicitaria ni de tracking.",
+    linkLabel: "Mes informacio",
+    accept: "Entesos",
+  },
+  cookiesPage: {
+    title: "Politica de cookies",
+    updated: "Ultima actualitzacio: juny 2026",
+    back: "Tornar a l'inici",
+    sections: [
+      {
+        title: "Que son les cookies?",
+        body: "Les cookies son petits fitxers de text que un lloc web emmagatzema al teu dispositiu quan el visites. Permeten recordar informacio sobre la teva visita, com la teva preferencia d'idioma, perque la propera vegada sigui mes comoda.",
+      },
+      {
+        title: "Quines cookies utilitzem?",
+        body: "Carerac.life nomes utilitza cookies estrictament necessaries i funcionals:\n\n• Cookies tecniques: gestionen la sessio de l'administrador del panell intern. No s'utilitzen per a la navegacio publica.\n• Preferencia d'idioma: emmagatzemem la teva eleccio d'idioma al navegador per oferir-te els continguts en la llengua escollida.\n• Marca de carrega: una petita marca tecnica al navegador per evitar mostrar-te la pantalla de benvinguda repetidament durant la teva sessio.\n\nNo utilitzem cookies de tercers, de publicitat ni de tracking de cap tipus.",
+      },
+      {
+        title: "Com gestionar-les?",
+        body: "Pots desactivar o esborrar les cookies en qualsevol moment des de la configuracio del teu navegador. Tingues en compte que algunes funcionalitats podrien deixar de funcionar correctament.",
+      },
+      {
+        title: "Contacte",
+        body: "Si tens qualsevol dubte sobre aquesta politica, pots contactar amb nosaltres a carerac.life@gmail.com.",
+      },
+    ],
+  },
+  sobreNosaltres: {
+    title: "Sobre nosaltres",
+    placeholder: "La historia de Carerac s'estara explicant aviat aqui...",
+  },
   loading: {
     subtitle: "Experiencies autentiques",
   },

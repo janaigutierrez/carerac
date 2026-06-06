@@ -46,6 +46,38 @@ export const en: Locale = {
       description: "The complete Carerac experience. We will combine the gastronomic day with a personalized cultural workshop tailored to your preferences: ceramics, painting, yoga, writing... You will enjoy a full meal made with local produce and time to relax by the pool surrounded by Mediterranean vegetation. A day to stop time and return with the feeling of having lived something truly authentic.",
     },
   },
+  cookies: {
+    message: "This website uses technical cookies and a language-preference cookie to function. No advertising or tracking purpose.",
+    linkLabel: "More information",
+    accept: "Got it",
+  },
+  cookiesPage: {
+    title: "Cookies policy",
+    updated: "Last updated: June 2026",
+    back: "Back to home",
+    sections: [
+      {
+        title: "What are cookies?",
+        body: "Cookies are small text files that a website stores on your device when you visit it. They allow remembering information about your visit, such as your language preference, so that the next visit is more comfortable.",
+      },
+      {
+        title: "Which cookies do we use?",
+        body: "Carerac.life only uses strictly necessary and functional cookies:\n\n• Technical cookies: they manage the session of the internal panel administrator. They are not used for public browsing.\n• Language preference: we store your language choice in the browser to offer you content in your chosen language.\n• Loading flag: a small technical flag in the browser to avoid showing you the welcome screen repeatedly during your session.\n\nWe do not use third-party, advertising or tracking cookies of any kind.",
+      },
+      {
+        title: "How to manage them?",
+        body: "You can disable or delete cookies at any time from your browser settings. Note that some features may stop working correctly.",
+      },
+      {
+        title: "Contact",
+        body: "If you have any questions about this policy, you can contact us at carerac.life@gmail.com.",
+      },
+    ],
+  },
+  sobreNosaltres: {
+    title: "About us",
+    placeholder: "The history of Carerac will be told here soon...",
+  },
   loading: {
     subtitle: "Authentic experiences",
   },

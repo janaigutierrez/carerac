@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import { LanguageProvider } from '@/hooks/useLanguage'
+import CookieBanner from '@/components/CookieBanner'
 import './globals.css'
 
 const playfair = localFont({
@@ -81,6 +82,7 @@ export default function RootLayout({
       <body className="font-body">
         <LanguageProvider>
           {children}
+          <CookieBanner />
         </LanguageProvider>
       </body>
     </html>

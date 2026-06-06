@@ -12,6 +12,7 @@
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "bcryptjs": "^3.0.3",
+    "cloudinary": "^2.10.0",
     "date-fns": "^4.1.0",
     "iron-session": "^8.0.4",
     "lucide-react": "^0.544.0",

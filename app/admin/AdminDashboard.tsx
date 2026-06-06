@@ -1,7 +1,9 @@
 'use client'
 
 import { useEffect, useState, useCallback, useMemo } from 'react'
-import { Check, X, Trash2, Plus, Mail, Phone, ChevronLeft, ChevronRight, RefreshCw, Clock, MessageCircle } from 'lucide-react'
+import { Check, X, Trash2, Plus, Mail, Phone, ChevronLeft, ChevronRight, RefreshCw, Clock, MessageCircle, FileText, Image as ImageIcon } from 'lucide-react'
+import ContentManager from './ContentManager'
+import GalleryManager from './GalleryManager'
 import { formatDistanceToNow, format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, addMonths, subMonths, isBefore, startOfDay } from 'date-fns'
 import { ca } from 'date-fns/locale'
 import emailjs from '@emailjs/browser'
@@ -25,7 +27,7 @@ interface BlockedDate {
   reason: string
 }
 
-type Tab = 'pending' | 'approved' | 'rejected' | 'blocked'
+type Tab = 'pending' | 'approved' | 'rejected' | 'blocked' | 'content' | 'gallery'
 
 const EXPERIENCE_LABEL: Record<string, string> = {
   gastronomica: 'Gastronòmica',
@@ -106,7 +108,7 @@ export default function AdminDashboard() {
   }, [allBookings, blocked])
 
   const tabBookings = useMemo(() => {
-    if (tab === 'blocked') return []
+    if (tab === 'blocked' || tab === 'content' || tab === 'gallery') return []
     const today = startOfDay(new Date())
     return allBookings
       .filter(b => b.status === tab)
@@ -259,9 +261,21 @@ export default function AdminDashboard() {
 
       <div className="flex items-center justify-between">
         <div className="flex gap-1 flex-wrap border-b border-primary-gray/20 flex-1">
-          {(['pending', 'approved', 'rejected', 'blocked'] as Tab[]).map(t => {
-            const count = t === 'pending' ? counts.pending : t === 'approved' ? counts.approved : t === 'rejected' ? counts.rejected : counts.blocked
-            const label = t === 'pending' ? 'Pendents' : t === 'approved' ? 'Aprovades' : t === 'rejected' ? 'Rebutjades' : 'Bloquejades'
+          {(['pending', 'approved', 'rejected', 'blocked', 'content', 'gallery'] as Tab[]).map(t => {
+            const count =
+              t === 'pending' ? counts.pending
+              : t === 'approved' ? counts.approved
+              : t === 'rejected' ? counts.rejected
+              : t === 'blocked' ? counts.blocked
+              : 0
+            const label =
+              t === 'pending' ? 'Pendents'
+              : t === 'approved' ? 'Aprovades'
+              : t === 'rejected' ? 'Rebutjades'
+              : t === 'blocked' ? 'Bloquejades'
+              : t === 'content' ? 'Contingut'
+              : 'Galeria'
+            const isContent = t === 'content' || t === 'gallery'
             return (
               <button
                 key={t}
@@ -272,8 +286,10 @@ export default function AdminDashboard() {
                     : 'text-primary-gray hover:text-primary-dark'
                 }`}
               >
+                {t === 'content' && <FileText size={14} />}
+                {t === 'gallery' && <ImageIcon size={14} />}
                 {label}
-                {count > 0 && (
+                {!isContent && count > 0 && (
                   <span className={`text-xs px-2 py-0.5 rounded-full ${tab === t ? 'bg-primary-brown text-white' : 'bg-primary-gray/20 text-primary-dark'}`}>
                     {count}
                   </span>
@@ -289,7 +305,10 @@ export default function AdminDashboard() {
 
       {loading && <p className="text-primary-gray">Carregant...</p>}
 
-      {!loading && tab !== 'blocked' && (
+      {tab === 'content' && <ContentManager />}
+      {tab === 'gallery' && <GalleryManager />}
+
+      {!loading && tab !== 'blocked' && tab !== 'content' && tab !== 'gallery' && (
         <div className="space-y-3">
           {tabBookings.length === 0 && (
             <p className="text-primary-gray italic">No hi ha reserves en aquest estat.</p>

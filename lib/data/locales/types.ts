@@ -42,6 +42,21 @@ export interface Locale {
     gastronomica: { description: string }
     cultural: { description: string }
   }
+  cookies: {
+    message: string
+    linkLabel: string
+    accept: string
+  }
+  cookiesPage: {
+    title: string
+    updated: string
+    back: string
+    sections: { title: string; body: string }[]
+  }
+  sobreNosaltres: {
+    title: string
+    placeholder: string
+  }
   hero: {
     title: string
     subtitle: string
