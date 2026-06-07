@@ -2,6 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'ABCMonument';
+  src: url('/fonts/ABCMonumentGrotesk-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'ABCMonument';
+  src: url('/fonts/ABCMonumentGrotesk-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'ABCMonument';
+  src: url('/fonts/ABCMonumentGrotesk-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PlayfairDisplay';
+  src: url('/fonts/PlayfairDisplay-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PlayfairDisplay';
+  src: url('/fonts/PlayfairDisplay-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PlayfairDisplay';
+  src: url('/fonts/PlayfairDisplay-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --primary-stone: #E6D7C3;
   --warm-brown: #8B6F47;
@@ -21,21 +64,18 @@
 
 html {
   scroll-behavior: smooth;
-}
-
-html {
-  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  font-family: 'ABCMonument', system-ui, -apple-system, sans-serif;
 }
 
 body {
   background-color: var(--off-white);
   color: var(--dark-brown);
   line-height: 1.6;
-  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  font-family: 'ABCMonument', system-ui, -apple-system, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-playfair), Georgia, serif;
+  font-family: 'PlayfairDisplay', Georgia, serif;
 }
 
 /* Custom animation delays */

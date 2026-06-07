@@ -23,8 +23,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        display: ['var(--font-playfair)', 'serif'],
-        body: ['var(--font-inter)', 'sans-serif'],
+        display: ['PlayfairDisplay', 'Georgia', 'serif'],
+        body: ['ABCMonument', 'system-ui', 'sans-serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.8s ease-out',

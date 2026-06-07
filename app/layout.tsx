@@ -1,28 +1,7 @@
 import type { Metadata } from 'next'
-import localFont from 'next/font/local'
 import { LanguageProvider } from '@/hooks/useLanguage'
 import CookieBanner from '@/components/CookieBanner'
 import './globals.css'
-
-const playfair = localFont({
-  variable: '--font-playfair',
-  display: 'swap',
-  src: [
-    { path: '../public/fonts/PlayfairDisplay-Regular.ttf', weight: '400', style: 'normal' },
-    { path: '../public/fonts/PlayfairDisplay-Medium.ttf', weight: '500', style: 'normal' },
-    { path: '../public/fonts/PlayfairDisplay-Bold.ttf', weight: '700', style: 'normal' },
-  ],
-})
-
-const monument = localFont({
-  variable: '--font-inter',
-  display: 'swap',
-  src: [
-    { path: '../public/fonts/ABCMonumentGrotesk-Regular.woff2', weight: '400', style: 'normal' },
-    { path: '../public/fonts/ABCMonumentGrotesk-Medium.woff', weight: '500', style: 'normal' },
-    { path: '../public/fonts/ABCMonumentGrotesk-Bold.woff', weight: '700', style: 'normal' },
-  ],
-})
 
 export const metadata: Metadata = {
   title: 'Carerac - Experiencies Autentiques a Catalunya Rural',
@@ -53,8 +32,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ca" className={`${playfair.variable} ${monument.variable}`}>
+    <html lang="ca">
       <head>
+        <link rel="preload" href="/fonts/ABCMonumentGrotesk-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/PlayfairDisplay-Regular.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
