@@ -42,14 +42,39 @@ export default function GalleryManager() {
     setError(null)
 
     try {
+      const signRes = await fetch('/api/admin/gallery/sign', { method: 'POST' })
+      if (!signRes.ok) throw new Error('No s\'ha pogut obtenir la signatura')
+      const { timestamp, folder, signature, apiKey, cloudName } = await signRes.json()
+
       for (const file of Array.from(files)) {
         const form = new FormData()
         form.append('file', file)
-        const res = await fetch('/api/admin/gallery', { method: 'POST', body: form })
-        if (!res.ok) {
-          const data = await res.json().catch(() => ({}))
-          throw new Error(data.error || 'Upload failed')
+        form.append('api_key', apiKey)
+        form.append('timestamp', String(timestamp))
+        form.append('signature', signature)
+        form.append('folder', folder)
+
+        const upRes = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+          method: 'POST',
+          body: form,
+        })
+        if (!upRes.ok) {
+          const txt = await upRes.text().catch(() => '')
+          throw new Error(`Cloudinary: ${upRes.status} ${txt.slice(0, 120)}`)
         }
+        const result = await upRes.json()
+
+        const registerRes = await fetch('/api/admin/gallery', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            publicId: result.public_id,
+            url: result.secure_url,
+            width: result.width,
+            height: result.height,
+          }),
+        })
+        if (!registerRes.ok) throw new Error('No s\'ha pogut registrar la imatge')
       }
       await load()
     } catch (err) {
