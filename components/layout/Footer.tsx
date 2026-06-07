@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useLanguage } from '@/hooks/useLanguage'
 import { Facebook, Instagram, Mail, Phone, MapPin } from 'lucide-react'
 
@@ -22,14 +23,14 @@ export default function Footer() {
               {t('footer.description')}
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="bg-primary-white/10 p-2 rounded-full hover:bg-primary-brown transition-colors" aria-label="Facebook">
-                <Facebook size={20} />
-              </a>
               <a href="https://instagram.com/carerac.life" target="_blank" rel="noopener noreferrer" className="bg-primary-white/10 p-2 rounded-full hover:bg-primary-brown transition-colors" aria-label="Instagram">
                 <Instagram size={20} />
               </a>
               <a href="mailto:carerac.life@gmail.com" className="bg-primary-white/10 p-2 rounded-full hover:bg-primary-brown transition-colors" aria-label="Email">
                 <Mail size={20} />
+              </a>
+              <a href="#" className="bg-primary-white/10 p-2 rounded-full hover:bg-primary-brown transition-colors opacity-50 cursor-not-allowed" aria-label="Facebook" onClick={e => e.preventDefault()}>
+                <Facebook size={20} />
               </a>
             </div>
           </div>
@@ -59,13 +60,21 @@ export default function Footer() {
               {t('footer.sections.information.title')}
             </h4>
             <ul className="space-y-2">
-              {(['about', 'faq', 'blog'] as const).map(link => (
-                <li key={link}>
-                  <a href="#" className="text-primary-white/80 hover:text-primary-stone transition-colors font-body">
-                    {t(`footer.sections.information.links.${link}`)}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <Link href="/sobre-nosaltres" className="text-primary-white/80 hover:text-primary-stone transition-colors font-body">
+                  {t('footer.sections.information.links.about')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/galeria" className="text-primary-white/80 hover:text-primary-stone transition-colors font-body">
+                  {t('nav.galeria')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/cookies" className="text-primary-white/80 hover:text-primary-stone transition-colors font-body">
+                  {t('footer.sections.legal.cookies')}
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -82,12 +91,6 @@ export default function Footer() {
                 </span>
               </div>
               <div className="flex items-center space-x-3">
-                <Phone size={16} className="text-primary-stone flex-shrink-0" />
-                <a href="tel:+34XXXXXXXXX" className="text-primary-white/80 hover:text-primary-stone transition-colors font-body text-sm">
-                  {t('footer.sections.contact.phone')}
-                </a>
-              </div>
-              <div className="flex items-center space-x-3">
                 <Mail size={16} className="text-primary-stone flex-shrink-0" />
                 <a href="mailto:carerac.life@gmail.com" className="text-primary-white/80 hover:text-primary-stone transition-colors font-body text-sm">
                   {t('footer.sections.contact.email')}
@@ -98,19 +101,10 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-primary-white/10 py-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-primary-white/60 font-body text-sm">
-              {t('footer.copyright')}
-            </p>
-            <div className="flex space-x-6">
-              {(['legal', 'privacy', 'cookies', 'terms'] as const).map(link => (
-                <a key={link} href="#" className="text-primary-white/60 hover:text-primary-stone transition-colors font-body text-sm">
-                  {t(`footer.sections.legal.${link}`)}
-                </a>
-              ))}
-            </div>
-          </div>
+        <div className="border-t border-primary-white/10 py-6">
+          <p className="text-primary-white/60 font-body text-sm text-center">
+            {t('footer.copyright')}
+          </p>
         </div>
       </div>
     </footer>

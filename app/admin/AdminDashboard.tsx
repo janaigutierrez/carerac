@@ -126,14 +126,25 @@ export default function AdminDashboard() {
     const start = startOfMonth(calendarMonth)
     const end = endOfMonth(calendarMonth)
     const days = eachDayOfInterval({ start, end })
-    const approvedDates = allBookings.filter(b => b.status === 'approved').map(b => new Date(b.date))
-    const blockedDates = blocked.map(b => new Date(b.date))
+    const approvedBookings = allBookings.filter(b => b.status === 'approved')
     return days.map(day => ({
       day,
-      approved: approvedDates.some(d => isSameDay(d, day)),
-      blocked: blockedDates.some(d => isSameDay(d, day)),
+      approvedBooking: approvedBookings.find(b => isSameDay(new Date(b.date), day)) || null,
+      blockedInfo: blocked.find(b => isSameDay(new Date(b.date), day)) || null,
     }))
   }, [calendarMonth, allBookings, blocked])
+
+  const [openCalDay, setOpenCalDay] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (!openCalDay) return
+    const onClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      if (!target.closest('[data-cal-cell]')) setOpenCalDay(null)
+    }
+    document.addEventListener('click', onClick)
+    return () => document.removeEventListener('click', onClick)
+  }, [openCalDay])
 
   async function sendConfirmationEmail(b: Booking) {
     const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
@@ -236,19 +247,48 @@ export default function AdminDashboard() {
         </div>
         <div className="grid grid-cols-7 gap-1">
           {Array.from({ length: firstDayOfWeek }).map((_, i) => <div key={`e${i}`} />)}
-          {calendarDays.map(({ day, approved, blocked }) => {
-            const bg = approved
+          {calendarDays.map(({ day, approvedBooking, blockedInfo }) => {
+            const hasInfo = !!(approvedBooking || blockedInfo)
+            const bg = approvedBooking
               ? 'bg-green-500 text-white'
-              : blocked
+              : blockedInfo
               ? 'bg-primary-gray text-white'
               : 'bg-primary-stone/30 text-primary-dark'
+            const dayKey = day.toISOString()
+            const isOpen = openCalDay === dayKey
             return (
-              <div
-                key={day.toISOString()}
-                className={`aspect-square flex items-center justify-center rounded text-sm ${bg}`}
-                title={approved ? 'Reserva aprovada' : blocked ? 'Bloquejada' : ''}
-              >
-                {day.getDate()}
+              <div key={dayKey} className="relative group" data-cal-cell>
+                <button
+                  type="button"
+                  onClick={() => hasInfo && setOpenCalDay(isOpen ? null : dayKey)}
+                  className={`w-full aspect-square flex items-center justify-center rounded text-sm transition ${bg} ${hasInfo ? 'cursor-pointer hover:ring-2 hover:ring-primary-brown' : 'cursor-default'}`}
+                >
+                  {day.getDate()}
+                </button>
+                {hasInfo && (
+                  <div
+                    className={`absolute left-1/2 top-full mt-2 -translate-x-1/2 w-60 bg-white text-primary-dark shadow-2xl rounded-lg p-3 z-30 text-left text-xs border border-primary-stone ${isOpen ? 'block' : 'hidden md:group-hover:block'}`}
+                  >
+                    {approvedBooking ? (
+                      <>
+                        <p className="font-semibold text-sm mb-1 text-primary-dark">{approvedBooking.name}</p>
+                        <p className="text-primary-gray mb-2">{format(day, "EEEE d 'de' MMMM", { locale: ca })}</p>
+                        <div className="space-y-1">
+                          <p><span className="text-primary-gray">Persones:</span> <span className="font-medium">{approvedBooking.guests}</span></p>
+                          <p><span className="text-primary-gray">Experiència:</span> <span className="font-medium">{EXPERIENCE_LABEL[approvedBooking.experience] || approvedBooking.experience}</span></p>
+                          <p className="truncate"><span className="text-primary-gray">Email:</span> <span className="font-medium">{approvedBooking.email}</span></p>
+                          <p><span className="text-primary-gray">Telèfon:</span> <span className="font-medium">{approvedBooking.phone}</span></p>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <p className="font-semibold text-sm mb-1">Data bloquejada</p>
+                        <p className="text-primary-gray mb-1">{format(day, "EEEE d 'de' MMMM", { locale: ca })}</p>
+                        {blockedInfo?.reason && <p className="mt-2 text-primary-dark italic">{blockedInfo.reason}</p>}
+                      </>
+                    )}
+                  </div>
+                )}
               </div>
             )
           })}
