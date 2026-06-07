@@ -22,14 +22,16 @@ Passos durant la reunio:
 7. Verificar enviant una reserva de prova.
 8. Despres del swap, revocar/esborrar els templates antics del compte del Janai.
 
-### Cloudinary — afegir variables
-Quan tingui el compte de Cloudinary creat, afegir a Netlify les 4 vars i fer Clear cache and deploy:
-- `CLOUDINARY_CLOUD_NAME`
-- `CLOUDINARY_API_KEY`
-- `CLOUDINARY_API_SECRET`
-- `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` (mateix valor que el primer)
+### Cloudinary — swap al compte de la clienta
+Provisional: les 4 vars de Cloudinary apunten al compte del Janai per fer test rapid. S'ha de fer el swap al compte de la clienta en algun moment.
 
-Despres ja pot pujar imatges des de `/admin` pestanya Galeria.
+Quan toqui:
+1. Crear-li compte a https://cloudinary.com (free tier: 25GB + 25GB bandwidth/mes).
+2. Al dashboard de Cloudinary copiar `cloud_name`, `api_key`, `api_secret`.
+3. A Netlify substituir les 4 vars (`CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`, `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` — aquesta ultima amb el mateix valor que la primera).
+4. Clear cache and deploy.
+5. Re-pujar les imatges des de `/admin` Galeria (les antigues quedaran al compte del Janai, no es migren automaticament).
+6. Eliminar les imatges del compte del Janai un cop confirmat el swap.
 
 ### Sobre nosaltres — escriure el text llarg
 La pagina `/sobre-nosaltres` ja existeix pero amb contingut buit. La Laia ha d'escriure la historia llarga des de `/admin` pestanya Contingut, en CA / ES / EN.
