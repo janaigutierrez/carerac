@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { Upload, Trash2, AlertCircle } from 'lucide-react'
+import { compressImage } from '@/lib/imageCompress'
 
 interface GalleryImage {
   _id: string
@@ -46,7 +47,8 @@ export default function GalleryManager() {
       if (!signRes.ok) throw new Error('No s\'ha pogut obtenir la signatura')
       const { timestamp, folder, signature, apiKey, cloudName } = await signRes.json()
 
-      for (const file of Array.from(files)) {
+      for (const original of Array.from(files)) {
+        const file = await compressImage(original)
         const form = new FormData()
         form.append('file', file)
         form.append('api_key', apiKey)
