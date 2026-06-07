@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { getCloudinary } from '@/lib/cloudinary'
+import { v2 as cloudinary } from 'cloudinary'
 import { requireAdmin } from '@/lib/session'
 
 export const dynamic = 'force-dynamic'
@@ -8,26 +8,35 @@ export async function POST() {
   const session = await requireAdmin()
   if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
+  const apiKey = process.env.CLOUDINARY_API_KEY
+  const apiSecret = process.env.CLOUDINARY_API_SECRET
+  const cloudName = process.env.CLOUDINARY_CLOUD_NAME
+
+  if (!apiKey || !apiSecret || !cloudName) {
+    console.error('Cloudinary env vars missing on function runtime:', {
+      hasKey: !!apiKey,
+      hasSecret: !!apiSecret,
+      hasCloud: !!cloudName,
+    })
+    return NextResponse.json(
+      { error: 'Cloudinary credentials not configured on server' },
+      { status: 500 }
+    )
+  }
+
   try {
-    const cloud = getCloudinary()
     const timestamp = Math.round(Date.now() / 1000)
     const folder = 'carerac/gallery'
 
-    const signature = cloud.utils.api_sign_request(
+    const signature = cloudinary.utils.api_sign_request(
       { timestamp, folder },
-      process.env.CLOUDINARY_API_SECRET as string
+      apiSecret
     )
 
-    return NextResponse.json({
-      timestamp,
-      folder,
-      signature,
-      apiKey: process.env.CLOUDINARY_API_KEY,
-      cloudName: process.env.CLOUDINARY_CLOUD_NAME,
-    })
+    return NextResponse.json({ timestamp, folder, signature, apiKey, cloudName })
   } catch (error) {
-    console.error('Gallery sign error:', error)
-    const message = error instanceof Error ? error.message : 'Internal server error'
+    console.error('Sign generation failed:', error)
+    const message = error instanceof Error ? error.message : 'Sign error'
     return NextResponse.json({ error: message }, { status: 500 })
   }
 }
