@@ -64,18 +64,21 @@
 
 html {
   scroll-behavior: smooth;
-  font-family: 'ABCMonument', system-ui, -apple-system, sans-serif;
+  font-family: 'ABCMonument', system-ui, -apple-system, sans-serif !important;
+}
+
+body, p, a, span, button, input, textarea, label, li, td, th, div, section, article, main, header, footer, nav, blockquote, code {
+  font-family: 'ABCMonument', system-ui, -apple-system, sans-serif !important;
 }
 
 body {
   background-color: var(--off-white);
   color: var(--dark-brown);
   line-height: 1.6;
-  font-family: 'ABCMonument', system-ui, -apple-system, sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'PlayfairDisplay', Georgia, serif;
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: 'PlayfairDisplay', Georgia, serif !important;
 }
 
 /* Custom animation delays */
