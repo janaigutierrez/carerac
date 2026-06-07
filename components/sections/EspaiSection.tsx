@@ -63,31 +63,41 @@ export default function EspaiSection() {
           }}
         />
 
-        {/* Arcades SVG mask */}
-        <div className="absolute inset-0 z-10 pointer-events-none">
-          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+        {/* White top fill above the arches */}
+        <div
+          className="absolute inset-x-0 top-0 bg-primary-white z-10 pointer-events-none"
+          style={{ height: 'calc(100% - clamp(140px, 22vw, 360px))' }}
+        />
+
+        {/* Arches confined to a width-based aspect ratio block at the bottom */}
+        <div
+          className="absolute inset-x-0 bottom-0 z-10 pointer-events-none"
+          style={{ height: 'clamp(140px, 22vw, 360px)' }}
+        >
+          <svg className="w-full h-full block" viewBox="0 0 300 100" preserveAspectRatio="none">
             <defs>
               <mask id="arcades-mask">
-                <rect x="0" y="0" width="100" height="100" fill="white" />
-                <ellipse cx="16.66" cy="100" rx="14" ry="25" fill="black" />
-                <ellipse cx="50" cy="100" rx="14" ry="25" fill="black" />
-                <ellipse cx="83.33" cy="100" rx="14" ry="25" fill="black" />
+                <rect x="0" y="0" width="300" height="100" fill="white" />
+                <ellipse cx="50" cy="100" rx="42" ry="78" fill="black" />
+                <ellipse cx="150" cy="100" rx="42" ry="78" fill="black" />
+                <ellipse cx="250" cy="100" rx="42" ry="78" fill="black" />
               </mask>
             </defs>
-            <rect x="0" y="0" width="100" height="100" fill="#FAFAF7" mask="url(#arcades-mask)" />
+            <rect x="0" y="0" width="300" height="100" fill="#FAFAF7" mask="url(#arcades-mask)" />
           </svg>
         </div>
 
         {/* Text overlay */}
-        <div className="absolute inset-0 z-20 flex items-start justify-center pt-[14vh] lg:pt-[18vh] pointer-events-none">
-          <div className="text-center text-primary-dark px-4 max-w-3xl">
-            <p className="text-sm font-body tracking-wider uppercase mb-4 text-primary-brown">
-              {t('arcades.title')}
-            </p>
-            <h2 className="font-display text-3xl lg:text-5xl font-light leading-tight">
-              {t('arcades.subtitle')}
-            </h2>
-          </div>
+        <div className="absolute inset-0 z-20 flex flex-col items-center justify-start pt-[12vh] sm:pt-[14vh] lg:pt-[16vh] px-4 pointer-events-none">
+          <p className="text-xs sm:text-sm font-body tracking-[0.25em] uppercase mb-4 sm:mb-5 text-primary-brown">
+            {t('arcades.title')}
+          </p>
+          <h2 className="font-display text-2xl sm:text-3xl lg:text-5xl font-light leading-tight text-primary-dark text-center whitespace-pre-line max-w-3xl">
+            {t('arcades.subtitle')}
+          </h2>
+          <p className="mt-6 sm:mt-8 text-sm sm:text-base lg:text-lg font-body text-primary-dark/80 text-center max-w-2xl leading-relaxed">
+            {t('arcades.body')}
+          </p>
         </div>
       </div>
 

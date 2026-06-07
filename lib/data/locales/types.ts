@@ -66,6 +66,7 @@ export interface Locale {
   arcades: {
     title: string
     subtitle: string
+    body: string
   }
   loading: {
     subtitle: string

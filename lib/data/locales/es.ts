@@ -17,7 +17,8 @@ export const es: Locale = {
   },
   arcades: {
     title: 'Prologo',
-    subtitle: "Una casa con historia. Una mesa compartida. Un dia para aprender y ser creativos. En Carerac abrimos las puertas de nuestra casa para compartir una manera de vivir: cocinar con lo que nos da el huerto, comer sin prisa, banarse bajo el sol, crear con las manos y disfrutar de la naturaleza con calma.",
+    subtitle: "Una casa con historia.\nUna mesa compartida.\nUn dia para aprender y ser creativos.",
+    body: "En Carerac abrimos las puertas de nuestra casa para compartir una manera de vivir: cocinar con lo que nos da el huerto, comer sin prisa, banarse bajo el sol, crear con las manos y disfrutar de la naturaleza con calma.",
   },
   history: {
     label: "Historia",

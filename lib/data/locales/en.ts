@@ -17,7 +17,8 @@ export const en: Locale = {
   },
   arcades: {
     title: 'Prologue',
-    subtitle: "A house with history. A shared table. A day to learn and be creative. At Carerac we open the doors of our home to share a way of living: cooking with what the garden gives, eating without rush, bathing under the sun, creating with our hands and enjoying nature calmly.",
+    subtitle: "A house with history.\nA shared table.\nA day to learn and be creative.",
+    body: "At Carerac we open the doors of our home to share a way of living: cooking with what the garden gives, eating without rush, bathing under the sun, creating with our hands and enjoying nature calmly.",
   },
   history: {
     label: "History",

@@ -1,16 +1,16 @@
 export const DEFAULT_CONTENT: Record<string, { ca: string; es: string; en: string }> = {
   'sobre-nosaltres': {
-    ca: `Darrere de Carerac hi ha la familia Muntal Mas. I al capdavant d'aquest projecte hi soc jo, la Laia. Vaig creixer en aquesta casa, corrent amb la bicicleta pels camps i veient la llum dels capvespres al jardi. Recordo els estius llargs, les postes de sol darrere els Saulons, les olors de l'hort, el pa acabat de fer i el silenci interromput per les cigales. Sempre he tingut un peu en l'art i l'altre a la terra. Em fascina la bellesa: la que te anima i et connecta.
+    ca: `Darrere de Carerac hi ha la família Muntal Mas. I al capdavant d'aquest projecte hi soc jo, la Laia. Vaig créixer en aquesta casa, corrent amb la bicicleta pels camps i veient la llum dels capvespres al jardí. Recordo els estius llargs, les postes de sol darrere els Saulons, les olors de l'hort, el pa acabat de fer i el silenci interromput per les cigales. Sempre he tingut un peu en l'art i l'altre a la terra. Em fascina la bellesa: la que té ànima i et connecta.
 
-Amb els anys, m'he adonat que aquest lloc era un privilegi. Saber d'on surten els aliments, respirar aire pur, veure com una tomaquera aguanta la calor de l'agost o com l'aigua es recull quan cau del cel. Petites coses que t'ensenyen a mirar la vida amb una mica mes de respecte i menys pressa.
+Amb els anys, m'he adonat que aquest lloc era un privilegi. Saber d'on surten els aliments, respirar aire pur, veure com una tomaquera aguanta la calor de l'agost o com l'aigua es recull quan cau del cel. Petites coses que t'ensenyen a mirar la vida amb una mica més de respecte i menys pressa.
 
-El meu avi Salvador havia estat pages. Era un home d'abans: treballador, de molt bon cor i de poques paraules. Estimava la terra, la familia i la seva identitat, sabia quan sembrar, quan collir, com cuidar el bestiar i com viure pendent dels ritmes del camp.
+El meu avi Salvador havia estat pagès. Era un home d'abans: treballador, de molt bon cor i de poques paraules. Estimava la terra, la família i la seva identitat, sabia quan sembrar, quan collir, com cuidar el bestiar i com viure pendent dels ritmes del camp.
 
-El meu pare no va seguir la vida de pages, pero sempre va portar a dins el desig de tornar a les arrels familiars. Quan els meus pares van poder comprar aquesta masia antiga i gairebe en ruines, van decidir recuperar-la. Pedra a pedra. Amb esforc, respecte i amor.
+El meu pare no va seguir la vida de pagès, però sempre va portar a dins el desig de tornar a les arrels familiars. Quan els meus pares van poder comprar aquesta masia antiga i gairebé en ruïnes, van decidir recuperar-la. Pedra a pedra. Amb esforç, respecte i amor.
 
-Ara sento que em toca a mi obrir una nova etapa. Carerac es aixo: recuperar una mica d'aquella manera de fer. Cuinar amb el que tenim a prop. Escoltar el camp. Compartir taula. Crear bellesa sense pressa. Obrir la casa a persones que vulguin aturar-se una estona i endur-se un trosset de pau.
+Ara sento que em toca a mi obrir una nova etapa. Carerac és això: recuperar una mica d'aquella manera de fer. Cuinar amb el que tenim a prop. Escoltar el camp. Compartir taula. Crear bellesa sense pressa. Obrir la casa a persones que vulguin aturar-se una estona i endur-se un trosset de pau.
 
-Ens hem posat a replantar, a cuinar, a obrir la casa. I si tot va be, farem del bon viure un ofici.`,
+Ens hem posat a replantar, a cuinar, a obrir la casa. I si tot va bé, farem del bon viure un ofici.`,
     es: `Detras de Carerac esta la familia Muntal Mas. Y al frente de este proyecto estoy yo, Laia. Creci en esta casa, corriendo con la bicicleta por los campos y viendo la luz de los atardeceres en el jardin. Recuerdo los veranos largos, las puestas de sol tras los Saulons, los olores del huerto, el pan recien hecho y el silencio interrumpido por las cigarras. Siempre he tenido un pie en el arte y el otro en la tierra. Me fascina la belleza: la que tiene alma y te conecta.
 
 Con los anos, me he dado cuenta de que este lugar era un privilegio. Saber de donde salen los alimentos, respirar aire puro, ver como una tomatera aguanta el calor de agosto o como el agua se recoge cuando cae del cielo. Pequenas cosas que te ensenan a mirar la vida con un poco mas de respeto y menos prisa.
