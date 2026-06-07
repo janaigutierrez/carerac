@@ -11,16 +11,16 @@ export const ca: Locale = {
   },
   hero: {
     title: "Carerac",
-    subtitle: "Experiencies autentiques a la Catalunya rural",
-    cta: "Descobreix les experiencies",
-    scroll: "Descobreix mes",
+    subtitle: "Una masia familiar on viure experiències gastronòmiques i creatives connectades amb la natura.",
+    cta: "Descobreix les experiències",
+    scroll: "Reserva la teva",
   },
   arcades: {
-    title: 'Proleg',
-    subtitle: "Descobreix una masia historica on la herencia del temps i la pau de l'entorn son els protagonistes d'una experiencia unica.",
+    title: 'Pròleg',
+    subtitle: "Una casa amb història. Una taula compartida. Un dia per aprendre i ser creatius. A Carerac obrim les portes de casa nostra per compartir una manera de viure: cuinar amb el que dona l’hort, menjar sense pressa, banyar-se sota el sol, crear amb les mans i gaudir de la natura amb calma.",
   },
   history: {
-    label: "Historia",
+    label: "Història",
     subtitle: "Un viatge a traves del temps, des dels origens fins a l'actualitat.",
     passat: {
       tag: "Passat",
@@ -38,9 +38,9 @@ export const ca: Locale = {
   },
   experienceDetails: {
     close: "Tancar",
-    bookNow: "Reservar aquesta experiencia",
+    bookNow: "Reservar aquesta experiència",
     gastronomica: {
-      description: "Una immersio total en la tradicio gastronomica catalana. Començarem el dia descobrint el procés ancestral del pa, des de la mòlta del gra fins al forneig al forn de llenya centenari. Treballarem la massa mare i la massarem amb les nostres mans, alhora que recollirem productes frescos del nostre hort ecologic. Acabarem degustant pa amb tomaquet, productes locals seleccionats i molt mes, en un entorn unic.",
+      description: "Una immersió total en la tradició gastronòmica catalana. Començarem el dia descobrint el procés ancestral del pa, des de la mòlta del gra fins al forneig al forn de llenya centenari. Treballarem la massa mare i la massarem amb les nostres mans, alhora que recollirem productes frescos del nostre hort ecologic. Acabarem degustant pa amb tomaquet, productes locals seleccionats i molt mes, en un entorn unic.",
     },
     cultural: {
       description: "L'experiencia completa de Carerac. Combinarem la jornada gastronomica amb un taller cultural personalitzat segons les vostres preferencies: ceramica, pintura, ioga, escriptura... Gaudirem d'un apat complet preparat amb productes de la terra i tindrem temps de relaxacio a la piscina envoltada de vegetacio mediterrania. Una jornada per aturar el temps i tornar amb la sensacio d'haver viscut quelcom autentic.",
@@ -98,11 +98,11 @@ export const ca: Locale = {
   },
   espai: {
     title: "L'Espai",
-    subtitle: "Cada raco de Can Carerac ha estat restaurat amb amor i respecte per la tradicio catalana, creant espais unics per a experiencies inoblidables.",
+    subtitle: "Carerac es una masia autosuficient i sostenible, envoltada de bosc i natura, on conviuen l'energia solar, la biomassa i un hort viu, en un espai que combina tradicio i modernitat amb harmonia. Una masia restaurada amb respecte i amor, reconstruida pedra a pedra.",
     spaces: {
       piscina: { title: "Piscina", description: "Aigues cristal·lines envoltades de vegetacio mediterrania autoctona" },
       hort: { title: "Hort Ecologic", description: "Ingredients frescos cultivats amb amor per a les nostres experiencies" },
-      cuina: { title: "Cuina Tradicional", description: "Forn de llenya centenari i estris tradicionals per a l'elaboracio artesanal" },
+      cuina: { title: "Cuina / Menjador Interior", description: "Forn de llenya centenari i estris tradicionals per a l'elaboracio artesanal" },
       figuera: { title: "Sota la Figuera", description: "El nostre raco especial sota la figuera, on compartim activitats, moments i calma" },
     },
   },
@@ -115,25 +115,24 @@ export const ca: Locale = {
     experience: "Experiencia",
     personalized: "Personalitzada",
     gastronomica: {
-      title: "Experiencia Gastronomica",
-      duration: "Mig dia - 4 hores",
+      title: "Experiència Gastronòmica",
+      duration: "16:00 - 22:00 - 6 hores",
       activities: [
-        "Moldre gra tradicional per obtenir farina",
-        "Elaboracio de massa mare ancestral",
-        "Forneig artesanal en forn de llenya",
-        "Pa amb tomaquet de l'hort propi",
-        "Degustacio de productes locals seleccionats",
+        "Recol·lecció d’aliments de l’hort i l’ouera",
+        "Taller de cuina tradicional catalana (pa de massa mare, per fer un bon pa amb tomàquet i truita de patates)",
+        "Piscina i temps de descans",
+        "Sopar casolà amb els productes que hem cuinat",
       ],
     },
     cultural: {
-      title: "Experiencia Cultural-Gastronomica",
-      duration: "Dia complet - 8 hores",
+      title: "Experiència Cultural / Gastronòmica",
+      duration: "10:00 - 18:30 - Dia complet",
       activities: [
-        "Tot l'anterior mes:",
-        "Taller cultural personalitzat (ceramica, ioga, pintura...)",
-        "Apat complet amb productes de la terra",
-        "Temps de relaxacio a la piscina",
-        "Experiencia adaptada segons el grup",
+        "Recol·lecció d’aliments de l’hort i l’ouera",
+        "Taller de cuina tradicional catalana (pa de massa mare, per fer un bon pa amb tomàquet i truita de patates)",
+        "Piscina i temps de descans",
+        "Dinar casolà amb els productes que hem cuinat",
+        "Taller de tarda a escollir: pintura a l’aire lliure, sessió de mindfulness o sessió de ioga",
       ],
     },
   },

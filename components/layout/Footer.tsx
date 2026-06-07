@@ -25,7 +25,7 @@ export default function Footer() {
               <a href="#" className="bg-primary-white/10 p-2 rounded-full hover:bg-primary-brown transition-colors" aria-label="Facebook">
                 <Facebook size={20} />
               </a>
-              <a href="#" className="bg-primary-white/10 p-2 rounded-full hover:bg-primary-brown transition-colors" aria-label="Instagram">
+              <a href="https://instagram.com/carerac.life" target="_blank" rel="noopener noreferrer" className="bg-primary-white/10 p-2 rounded-full hover:bg-primary-brown transition-colors" aria-label="Instagram">
                 <Instagram size={20} />
               </a>
               <a href="mailto:carerac.life@gmail.com" className="bg-primary-white/10 p-2 rounded-full hover:bg-primary-brown transition-colors" aria-label="Email">

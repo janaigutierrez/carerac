@@ -23,10 +23,19 @@ html {
   scroll-behavior: smooth;
 }
 
+html {
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+}
+
 body {
   background-color: var(--off-white);
   color: var(--dark-brown);
   line-height: 1.6;
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-playfair), Georgia, serif;
 }
 
 /* Custom animation delays */
