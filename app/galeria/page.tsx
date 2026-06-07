@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft, X } from 'lucide-react'
+import { useLanguage } from '@/hooks/useLanguage'
 
 interface GalleryImage {
   _id: string
@@ -15,6 +16,7 @@ interface GalleryImage {
 }
 
 export default function GaleriaPage() {
+  const { t } = useLanguage()
   const [images, setImages] = useState<GalleryImage[]>([])
   const [loading, setLoading] = useState(true)
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
@@ -50,17 +52,17 @@ export default function GaleriaPage() {
       <div className="max-w-6xl mx-auto">
         <Link href="/" className="inline-flex items-center gap-2 text-primary-brown hover:text-primary-dark transition-colors text-sm mb-8">
           <ArrowLeft size={16} />
-          Tornar a l&apos;inici
+          {t('common.backToHome')}
         </Link>
 
         <h1 className="font-display text-4xl lg:text-5xl font-bold text-primary-dark mb-10">
-          Galeria
+          {t('galeria.title')}
         </h1>
 
         {loading ? (
-          <p className="text-primary-gray italic">Carregant...</p>
+          <p className="text-primary-gray italic">{t('common.loading')}</p>
         ) : images.length === 0 ? (
-          <p className="text-primary-gray italic">Aviat aqui podras veure les imatges de Carerac.</p>
+          <p className="text-primary-gray italic">{t('galeria.empty')}</p>
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
             {images.map((img, i) => (
@@ -91,7 +93,7 @@ export default function GaleriaPage() {
         >
           <button
             onClick={() => setActiveIndex(null)}
-            aria-label="Tancar"
+            aria-label={t('galeria.close')}
             className="absolute top-6 right-6 text-primary-white/90 hover:text-primary-white"
           >
             <X size={32} />

@@ -28,7 +28,7 @@ export default function SobreNosaltresPage() {
       <div className="max-w-3xl mx-auto">
         <Link href="/" className="inline-flex items-center gap-2 text-primary-brown hover:text-primary-dark transition-colors text-sm mb-8">
           <ArrowLeft size={16} />
-          Tornar a l&apos;inici
+          {t('common.backToHome')}
         </Link>
 
         <h1 className="font-display text-4xl lg:text-5xl font-bold text-primary-dark mb-10">
@@ -36,7 +36,7 @@ export default function SobreNosaltresPage() {
         </h1>
 
         {loading ? (
-          <p className="text-primary-gray italic">Carregant...</p>
+          <p className="text-primary-gray italic">{t('common.loading')}</p>
         ) : paragraphs.length === 0 ? (
           <p className="text-primary-gray italic">{t('sobreNosaltres.placeholder')}</p>
         ) : (

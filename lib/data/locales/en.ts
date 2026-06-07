@@ -79,6 +79,15 @@ export const en: Locale = {
     title: "About us",
     placeholder: "The history of Carerac will be told here soon...",
   },
+  galeria: {
+    title: "Gallery",
+    empty: "You will soon be able to see Carerac's images here.",
+    close: "Close",
+  },
+  common: {
+    backToHome: "Back to home",
+    loading: "Loading...",
+  },
   loading: {
     subtitle: "Authentic experiences",
   },

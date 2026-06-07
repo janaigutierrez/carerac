@@ -79,6 +79,15 @@ export const es: Locale = {
     title: "Sobre nosotros",
     placeholder: "La historia de Carerac se contara aqui muy pronto...",
   },
+  galeria: {
+    title: "Galeria",
+    empty: "Pronto podras ver aqui las imagenes de Carerac.",
+    close: "Cerrar",
+  },
+  common: {
+    backToHome: "Volver al inicio",
+    loading: "Cargando...",
+  },
   loading: {
     subtitle: "Experiencias autenticas",
   },

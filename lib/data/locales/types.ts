@@ -57,6 +57,15 @@ export interface Locale {
     title: string
     placeholder: string
   }
+  galeria: {
+    title: string
+    empty: string
+    close: string
+  }
+  common: {
+    backToHome: string
+    loading: string
+  }
   hero: {
     title: string
     subtitle: string

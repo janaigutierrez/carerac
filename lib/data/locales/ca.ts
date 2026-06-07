@@ -79,6 +79,15 @@ export const ca: Locale = {
     title: "Sobre nosaltres",
     placeholder: "La història de Carerac s'estarà explicant aviat aquí...",
   },
+  galeria: {
+    title: "Galeria",
+    empty: "Aviat aquí podràs veure les imatges de Carerac.",
+    close: "Tancar",
+  },
+  common: {
+    backToHome: "Tornar a l'inici",
+    loading: "Carregant...",
+  },
   loading: {
     subtitle: "Experiències autèntiques",
   },
