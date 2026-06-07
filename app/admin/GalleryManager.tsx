@@ -77,7 +77,7 @@ export default function GalleryManager() {
         <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
           <div>
             <h3 className="font-display text-lg font-semibold text-primary-dark">Galeria</h3>
-            <p className="text-xs text-primary-gray">Pagina publica: /galeria. Les imatges s'optimitzen automaticament al Cloudinary.</p>
+            <p className="text-xs text-primary-gray">Pagina publica: /galeria. Les imatges s&apos;optimitzen automaticament al Cloudinary.</p>
           </div>
           <label className="flex items-center gap-2 bg-primary-brown text-white px-4 py-2 rounded text-sm font-medium hover:bg-primary-dark cursor-pointer">
             <Upload size={14} />
