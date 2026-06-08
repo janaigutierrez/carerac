@@ -42,7 +42,7 @@ export default function Hero() {
         >
           <span className="sr-only">{t('hero.title')}</span>
           <Image
-            src="/images/logo/logo-name-blank.png"
+            src="/images/logo/logo-hero.png"
             alt={t('hero.title')}
             width={900}
             height={220}
