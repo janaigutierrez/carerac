@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useInView } from 'react-intersection-observer'
@@ -15,6 +16,7 @@ interface Chapter {
 
 function ChapterBlock({ chapter, reverse, delay }: { chapter: Chapter; reverse: boolean; delay: number }) {
   const [ref, inView] = useInView({ threshold: 0.15, triggerOnce: true })
+  const isExternal = chapter.image.startsWith('http')
 
   return (
     <div
@@ -31,6 +33,7 @@ function ChapterBlock({ chapter, reverse, delay }: { chapter: Chapter; reverse: 
           fill
           className="object-cover"
           sizes="(max-width: 1024px) 100vw, 50vw"
+          unoptimized={isExternal}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/30 via-transparent to-transparent" />
       </div>
@@ -57,6 +60,17 @@ export default function TimelineSection() {
   const { t } = useLanguage()
   const passat = t<Chapter>('history.passat')
   const present = t<Chapter>('history.present')
+  const [mediaOverrides, setMediaOverrides] = useState<Record<string, string>>({})
+
+  useEffect(() => {
+    fetch('/api/site-media?keys=history-passat,history-present')
+      .then(r => r.json())
+      .then(data => setMediaOverrides(data.media || {}))
+      .catch(() => {})
+  }, [])
+
+  const passatChapter: Chapter = { ...passat, image: mediaOverrides['history-passat'] || passat.image }
+  const presentChapter: Chapter = { ...present, image: mediaOverrides['history-present'] || present.image }
 
   return (
     <section id="timeline" className="relative py-24 lg:py-32 bg-primary-white">
@@ -71,8 +85,8 @@ export default function TimelineSection() {
         </div>
 
         <div className="space-y-24 lg:space-y-32">
-          <ChapterBlock chapter={passat} reverse={false} delay={0} />
-          <ChapterBlock chapter={present} reverse={true} delay={100} />
+          <ChapterBlock chapter={passatChapter} reverse={false} delay={0} />
+          <ChapterBlock chapter={presentChapter} reverse={true} delay={100} />
         </div>
 
         <div className="text-center mt-20">

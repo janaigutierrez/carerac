@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback, useMemo } from 'react'
 import { Check, X, Trash2, Plus, Mail, Phone, ChevronLeft, ChevronRight, RefreshCw, Clock, MessageCircle, FileText, Image as ImageIcon } from 'lucide-react'
 import ContentManager from './ContentManager'
 import GalleryManager from './GalleryManager'
+import HistoryMediaManager from './HistoryMediaManager'
 import { formatDistanceToNow, format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, addMonths, subMonths, isBefore, startOfDay } from 'date-fns'
 import { ca } from 'date-fns/locale'
 import emailjs from '@emailjs/browser'
@@ -345,7 +346,12 @@ export default function AdminDashboard() {
 
       {loading && <p className="text-primary-gray">Carregant...</p>}
 
-      {tab === 'content' && <ContentManager />}
+      {tab === 'content' && (
+        <div className="space-y-5">
+          <ContentManager />
+          <HistoryMediaManager />
+        </div>
+      )}
       {tab === 'gallery' && <GalleryManager />}
 
       {!loading && tab !== 'blocked' && tab !== 'content' && tab !== 'gallery' && (

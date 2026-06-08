@@ -1,10 +1,12 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { v2 as cloudinary } from 'cloudinary'
 import { requireAdmin } from '@/lib/session'
 
 export const dynamic = 'force-dynamic'
 
-export async function POST() {
+const ALLOWED_FOLDERS = new Set(['carerac/gallery', 'carerac/site-media'])
+
+export async function POST(request: NextRequest) {
   const session = await requireAdmin()
   if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
@@ -25,8 +27,9 @@ export async function POST() {
   }
 
   try {
+    const requested = request.nextUrl.searchParams.get('folder')
+    const folder = requested && ALLOWED_FOLDERS.has(requested) ? requested : 'carerac/gallery'
     const timestamp = Math.round(Date.now() / 1000)
-    const folder = 'carerac/gallery'
 
     const signature = cloudinary.utils.api_sign_request(
       { timestamp, folder },
