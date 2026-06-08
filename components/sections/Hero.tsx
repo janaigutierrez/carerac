@@ -36,11 +36,20 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
         <h1
-          className={`font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-primary-white mb-6 transition-all duration-1000 transform ${
+          className={`mb-6 flex justify-center transition-all duration-1000 transform ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          {t('hero.title')}
+          <span className="sr-only">{t('hero.title')}</span>
+          <Image
+            src="/images/logo/logo-name-blank.png"
+            alt={t('hero.title')}
+            width={900}
+            height={220}
+            priority
+            className="w-[280px] sm:w-[400px] lg:w-[560px] h-auto"
+            style={{ filter: 'brightness(0) invert(1) drop-shadow(0 4px 16px rgba(0,0,0,0.35))' }}
+          />
         </h1>
 
         <p
