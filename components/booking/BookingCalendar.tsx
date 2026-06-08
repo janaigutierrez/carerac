@@ -35,7 +35,7 @@ export default function BookingCalendar({ selectedDate, onSelectDate, isDateOccu
   }, [])
 
   if (!mounted) {
-    return <div className="bg-white rounded-xl p-6 shadow-xl min-h-[400px]" />
+    return <div className="bg-white rounded-xl p-6 shadow-xl min-h-[400px] h-full" />
   }
 
   const months = t<string[]>('reservar.calendar.months')
@@ -96,7 +96,7 @@ export default function BookingCalendar({ selectedDate, onSelectDate, isDateOccu
   const locale = currentLanguage === 'ca' ? 'ca-ES' : currentLanguage === 'es' ? 'es-ES' : 'en-US'
 
   return (
-    <div>
+    <div className="h-full flex flex-col">
       <div className="flex items-center justify-between mb-6">
         <button onClick={() => navigateMonth('prev')} className="p-2 hover:bg-primary-stone/30 rounded-lg transition-colors">
           <ChevronLeft size={20} className="text-primary-dark" />
@@ -107,7 +107,7 @@ export default function BookingCalendar({ selectedDate, onSelectDate, isDateOccu
         </button>
       </div>
 
-      <div className="bg-white rounded-xl p-6 shadow-xl mb-6 relative">
+      <div className="bg-white rounded-xl p-6 shadow-xl mb-6 relative flex-grow flex flex-col">
         {isLoading && (
           <div className="absolute inset-0 bg-white/80 rounded-xl flex items-center justify-center z-10">
             <div className="text-center">
@@ -141,6 +141,8 @@ export default function BookingCalendar({ selectedDate, onSelectDate, isDateOccu
             </button>
           ))}
         </div>
+
+        <div className="flex-grow" />
 
         <div className="flex items-center justify-center space-x-6 mt-6 text-xs">
           <div className="flex items-center space-x-2"><div className="w-3 h-3 bg-primary-gray/30 rounded" /><span className="text-primary-gray">{t('reservar.calendar.legend.past')}</span></div>

@@ -147,7 +147,7 @@ export const ca: Locale = {
     },
   },
   ubicacio: {
-    title: "Com Arribar",
+    title: "Com arribar-hi",
     additionalInfo: "Informació addicional",
     fromBarcelona: "des de Barcelona",
     fromTown: "des del poble",
@@ -206,7 +206,7 @@ export const ca: Locale = {
     sections: {
       experiences: {
         title: "Experiències",
-        links: { gastronomic: "Experiència Gastronòmica", cultural: "Experiència Cultural", space: "L'Espai", location: "Com Arribar" },
+        links: { gastronomic: "Experiència Gastronòmica", cultural: "Experiència Cultural", space: "L'Espai", location: "Com arribar-hi" },
       },
       information: {
         title: "Informació",
