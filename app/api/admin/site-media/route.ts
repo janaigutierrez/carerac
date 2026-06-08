@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { connectMongo } from '@/lib/mongo'
 import { SiteMedia } from '@/lib/models/SiteMedia'
-import { getCloudinary } from '@/lib/cloudinary'
 import { requireAdmin } from '@/lib/session'
-import { isAllowedMediaKey } from '@/lib/data/siteMediaDefaults'
+import { isAllowedSlot, ALLOWED_MEDIA_SLOTS } from '@/lib/data/siteMediaDefaults'
 
 export const dynamic = 'force-dynamic'
 
@@ -13,70 +12,38 @@ export async function GET() {
 
   try {
     await connectMongo()
-    const docs = await SiteMedia.find().lean()
-    return NextResponse.json({ media: docs })
+    const docs = await SiteMedia.find({ slot: { $in: ALLOWED_MEDIA_SLOTS } }).sort({ slot: 1, order: 1, createdAt: 1 }).lean()
+    const bySlot: Record<string, { _id: string; publicId: string; url: string; order: number }[]> = {}
+    for (const s of ALLOWED_MEDIA_SLOTS) bySlot[s] = []
+    for (const d of docs) {
+      bySlot[d.slot].push({ _id: String(d._id), publicId: d.publicId, url: d.url, order: d.order })
+    }
+    return NextResponse.json({ media: bySlot })
   } catch (error) {
     console.error('Site media list error:', error)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }
 
-export async function PUT(request: NextRequest) {
+export async function POST(request: NextRequest) {
   const session = await requireAdmin()
   if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   try {
-    const { key, publicId, url } = await request.json()
-    if (!isAllowedMediaKey(key)) return NextResponse.json({ error: 'Invalid key' }, { status: 400 })
+    const { slot, publicId, url } = await request.json()
+    if (!isAllowedSlot(slot)) return NextResponse.json({ error: 'Invalid slot' }, { status: 400 })
     if (!publicId || !url) return NextResponse.json({ error: 'Missing publicId or url' }, { status: 400 })
 
     await connectMongo()
+    const last = await SiteMedia.findOne({ slot }).sort({ order: -1 }).lean()
+    const order = (last?.order ?? -1) + 1
 
-    const existing = await SiteMedia.findOne({ key })
-    if (existing && existing.publicId !== publicId) {
-      try {
-        const cloud = getCloudinary()
-        await cloud.uploader.destroy(existing.publicId)
-      } catch (err) {
-        console.error('Old cloudinary asset cleanup failed:', err)
-      }
-    }
-
-    const doc = await SiteMedia.findOneAndUpdate(
-      { key },
-      { key, publicId, url },
-      { upsert: true, new: true }
-    ).lean()
-
-    return NextResponse.json({ media: doc })
+    const doc = await SiteMedia.create({ slot, publicId, url, order })
+    return NextResponse.json({
+      image: { _id: String(doc._id), publicId: doc.publicId, url: doc.url, order: doc.order },
+    })
   } catch (error) {
-    console.error('Site media save error:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
-  }
-}
-
-export async function DELETE(request: NextRequest) {
-  const session = await requireAdmin()
-  if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-
-  const key = request.nextUrl.searchParams.get('key')
-  if (!isAllowedMediaKey(key)) return NextResponse.json({ error: 'Invalid key' }, { status: 400 })
-
-  try {
-    await connectMongo()
-    const doc = await SiteMedia.findOne({ key })
-    if (doc) {
-      try {
-        const cloud = getCloudinary()
-        await cloud.uploader.destroy(doc.publicId)
-      } catch (err) {
-        console.error('Cloudinary delete failed:', err)
-      }
-      await doc.deleteOne()
-    }
-    return NextResponse.json({ success: true })
-  } catch (error) {
-    console.error('Site media delete error:', error)
+    console.error('Site media add error:', error)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }

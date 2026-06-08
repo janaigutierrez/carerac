@@ -2,20 +2,22 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
-import { Upload, AlertCircle, RotateCcw } from 'lucide-react'
+import { Upload, AlertCircle, Trash2 } from 'lucide-react'
 import { compressImage } from '@/lib/imageCompress'
 
-type MediaKey = 'history-passat' | 'history-present'
+type Slot = 'history-passat' | 'history-present'
 
-const SLOTS: { key: MediaKey; label: string; defaultUrl: string }[] = [
-  { key: 'history-passat', label: 'Passat', defaultUrl: '/images/gallery/timeline-fundacio.webp' },
-  { key: 'history-present', label: 'Present', defaultUrl: '/images/gallery/timeline-actualitat.webp' },
+const SLOTS: { slot: Slot; label: string; defaultUrl: string }[] = [
+  { slot: 'history-passat', label: 'Passat', defaultUrl: '/images/gallery/timeline-fundacio.webp' },
+  { slot: 'history-present', label: 'Present', defaultUrl: '/images/gallery/timeline-actualitat.webp' },
 ]
 
+interface MediaImage { _id: string; publicId: string; url: string; order: number }
+
 export default function HistoryMediaManager() {
-  const [media, setMedia] = useState<Record<string, string>>({})
+  const [media, setMedia] = useState<Record<string, MediaImage[]>>({})
   const [loading, setLoading] = useState(true)
-  const [uploadingKey, setUploadingKey] = useState<MediaKey | null>(null)
+  const [uploadingSlot, setUploadingSlot] = useState<Slot | null>(null)
   const [error, setError] = useState<string | null>(null)
   const inputRefs = useRef<Record<string, HTMLInputElement | null>>({})
 
@@ -24,9 +26,7 @@ export default function HistoryMediaManager() {
     try {
       const res = await fetch('/api/admin/site-media')
       const data = await res.json()
-      const m: Record<string, string> = {}
-      for (const d of data.media || []) m[d.key] = d.url
-      setMedia(m)
+      setMedia(data.media || {})
     } finally {
       setLoading(false)
     }
@@ -34,10 +34,10 @@ export default function HistoryMediaManager() {
 
   useEffect(() => { load() }, [])
 
-  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>, key: MediaKey) => {
-    const file = e.target.files?.[0]
-    if (!file) return
-    setUploadingKey(key)
+  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>, slot: Slot) => {
+    const files = e.target.files
+    if (!files || files.length === 0) return
+    setUploadingSlot(slot)
     setError(null)
 
     try {
@@ -45,53 +45,54 @@ export default function HistoryMediaManager() {
       if (!signRes.ok) throw new Error('No s\'ha pogut obtenir la signatura')
       const { timestamp, folder, signature, apiKey, cloudName } = await signRes.json()
 
-      const compressed = await compressImage(file)
-      const form = new FormData()
-      form.append('file', compressed)
-      form.append('api_key', apiKey)
-      form.append('timestamp', String(timestamp))
-      form.append('signature', signature)
-      form.append('folder', folder)
+      for (const original of Array.from(files)) {
+        const file = await compressImage(original)
+        const form = new FormData()
+        form.append('file', file)
+        form.append('api_key', apiKey)
+        form.append('timestamp', String(timestamp))
+        form.append('signature', signature)
+        form.append('folder', folder)
 
-      const upRes = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
-        method: 'POST',
-        body: form,
-      })
-      if (!upRes.ok) {
-        const txt = await upRes.text().catch(() => '')
-        throw new Error(`Cloudinary: ${upRes.status} ${txt.slice(0, 120)}`)
+        const upRes = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+          method: 'POST',
+          body: form,
+        })
+        if (!upRes.ok) {
+          const txt = await upRes.text().catch(() => '')
+          throw new Error(`Cloudinary: ${upRes.status} ${txt.slice(0, 120)}`)
+        }
+        const result = await upRes.json()
+
+        const saveRes = await fetch('/api/admin/site-media', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ slot, publicId: result.public_id, url: result.secure_url }),
+        })
+        if (!saveRes.ok) throw new Error('No s\'ha pogut guardar la imatge')
       }
-      const result = await upRes.json()
-
-      const saveRes = await fetch('/api/admin/site-media', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ key, publicId: result.public_id, url: result.secure_url }),
-      })
-      if (!saveRes.ok) throw new Error('No s\'ha pogut guardar la imatge')
-
-      setMedia(prev => ({ ...prev, [key]: result.secure_url }))
+      await load()
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error pujant la imatge')
     } finally {
-      setUploadingKey(null)
-      const input = inputRefs.current[key]
+      setUploadingSlot(null)
+      const input = inputRefs.current[slot]
       if (input) input.value = ''
     }
   }
 
-  const restoreDefault = async (key: MediaKey) => {
-    if (!confirm('Tornar a la imatge per defecte?')) return
+  const deleteImage = async (id: string) => {
+    if (!confirm('Eliminar aquesta imatge?')) return
     try {
-      const res = await fetch(`/api/admin/site-media?key=${key}`, { method: 'DELETE' })
+      const res = await fetch(`/api/admin/site-media/${id}`, { method: 'DELETE' })
       if (!res.ok) throw new Error('delete failed')
       setMedia(prev => {
-        const next = { ...prev }
-        delete next[key]
+        const next: Record<string, MediaImage[]> = {}
+        for (const k of Object.keys(prev)) next[k] = prev[k].filter(i => i._id !== id)
         return next
       })
     } catch {
-      setError('No s\'ha pogut restablir la imatge')
+      setError('No s\'ha pogut eliminar la imatge')
     }
   }
 
@@ -99,7 +100,7 @@ export default function HistoryMediaManager() {
     <div className="bg-white rounded-lg shadow p-5">
       <div className="mb-4">
         <h3 className="font-display text-lg font-semibold text-primary-dark">Imatges de la secció Història</h3>
-        <p className="text-xs text-primary-gray">Aquestes imatges apareixen a la landing, a la secció Història (Passat i Present).</p>
+        <p className="text-xs text-primary-gray">Pots pujar diverses imatges per al Passat i el Present. A la landing apareixen com a carrusel.</p>
       </div>
 
       {error && (
@@ -112,46 +113,66 @@ export default function HistoryMediaManager() {
       {loading ? (
         <p className="text-primary-gray">Carregant...</p>
       ) : (
-        <div className="grid sm:grid-cols-2 gap-5">
-          {SLOTS.map(({ key, label, defaultUrl }) => {
-            const url = media[key] || defaultUrl
-            const isCustom = !!media[key]
+        <div className="space-y-6">
+          {SLOTS.map(({ slot, label, defaultUrl }) => {
+            const images = media[slot] || []
+            const hasCustom = images.length > 0
             return (
-              <div key={key} className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-primary-dark">{label}</span>
-                  {isCustom && (
-                    <button
-                      onClick={() => restoreDefault(key)}
-                      className="flex items-center gap-1 text-xs text-primary-gray hover:text-primary-dark"
-                      title="Restablir imatge per defecte"
-                    >
-                      <RotateCcw size={12} /> Per defecte
-                    </button>
+              <div key={slot} className="border border-primary-stone rounded-lg p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="font-medium text-primary-dark">{label}</span>
+                  <span className="text-xs text-primary-gray">
+                    {hasCustom ? `${images.length} ${images.length === 1 ? 'imatge' : 'imatges'}` : 'Imatge per defecte'}
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                  {!hasCustom && (
+                    <div className="relative aspect-square overflow-hidden rounded border border-primary-stone opacity-70">
+                      <Image
+                        src={defaultUrl}
+                        alt={`${label} (per defecte)`}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 50vw, 25vw"
+                      />
+                      <span className="absolute bottom-1 left-1 text-[10px] bg-primary-white/90 text-primary-dark px-1.5 py-0.5 rounded">Per defecte</span>
+                    </div>
                   )}
+                  {images.map(img => (
+                    <div key={img._id} className="relative group aspect-square overflow-hidden rounded">
+                      <Image
+                        src={img.url}
+                        alt={label}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 50vw, 25vw"
+                        unoptimized
+                      />
+                      <button
+                        onClick={() => deleteImage(img._id)}
+                        className="absolute top-2 right-2 bg-red-600 text-white w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                        aria-label="Eliminar"
+                      >
+                        <Trash2 size={14} />
+                      </button>
+                    </div>
+                  ))}
+
+                  <label className="flex flex-col items-center justify-center gap-1 aspect-square border-2 border-dashed border-primary-stone rounded text-primary-gray hover:border-primary-brown hover:text-primary-brown cursor-pointer transition-colors">
+                    <Upload size={20} />
+                    <span className="text-xs">{uploadingSlot === slot ? 'Pujant...' : 'Afegir'}</span>
+                    <input
+                      ref={el => { inputRefs.current[slot] = el }}
+                      type="file"
+                      accept="image/*"
+                      multiple
+                      onChange={e => handleUpload(e, slot)}
+                      disabled={uploadingSlot !== null}
+                      className="hidden"
+                    />
+                  </label>
                 </div>
-                <div className="relative aspect-[4/3] overflow-hidden rounded border border-primary-stone">
-                  <Image
-                    src={url}
-                    alt={label}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 100vw, 50vw"
-                    unoptimized={isCustom}
-                  />
-                </div>
-                <label className="flex items-center justify-center gap-2 bg-primary-brown text-white px-4 py-2 rounded text-sm font-medium hover:bg-primary-dark cursor-pointer">
-                  <Upload size={14} />
-                  {uploadingKey === key ? 'Pujant...' : 'Canviar imatge'}
-                  <input
-                    ref={el => { inputRefs.current[key] = el }}
-                    type="file"
-                    accept="image/*"
-                    onChange={e => handleUpload(e, key)}
-                    disabled={uploadingKey !== null}
-                    className="hidden"
-                  />
-                </label>
               </div>
             )
           })}

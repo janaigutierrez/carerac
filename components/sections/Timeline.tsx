@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useInView } from 'react-intersection-observer'
 import { useLanguage } from '@/hooks/useLanguage'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 
 interface Chapter {
   tag: string
@@ -14,9 +14,64 @@ interface Chapter {
   image: string
 }
 
-function ChapterBlock({ chapter, reverse, delay }: { chapter: Chapter; reverse: boolean; delay: number }) {
+function ChapterCarousel({ images, alt }: { images: string[]; alt: string }) {
+  const [index, setIndex] = useState(0)
+  const count = images.length
+  const prev = () => setIndex(i => (i - 1 + count) % count)
+  const next = () => setIndex(i => (i + 1) % count)
+  const current = images[index]
+  const isExternal = current.startsWith('http')
+
+  return (
+    <div className="relative aspect-[4/3] overflow-hidden shadow-xl group">
+      {images.map((img, i) => (
+        <Image
+          key={img + i}
+          src={img}
+          alt={alt}
+          fill
+          className={`object-cover transition-opacity duration-500 ${i === index ? 'opacity-100' : 'opacity-0'}`}
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          unoptimized={isExternal}
+          priority={i === 0}
+        />
+      ))}
+      <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/30 via-transparent to-transparent pointer-events-none" />
+
+      {count > 1 && (
+        <>
+          <button
+            onClick={prev}
+            aria-label="Imatge anterior"
+            className="absolute left-2 top-1/2 -translate-y-1/2 bg-primary-white/80 hover:bg-primary-white text-primary-dark w-9 h-9 rounded-full flex items-center justify-center shadow opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity"
+          >
+            <ChevronLeft size={20} />
+          </button>
+          <button
+            onClick={next}
+            aria-label="Imatge següent"
+            className="absolute right-2 top-1/2 -translate-y-1/2 bg-primary-white/80 hover:bg-primary-white text-primary-dark w-9 h-9 rounded-full flex items-center justify-center shadow opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity"
+          >
+            <ChevronRight size={20} />
+          </button>
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+            {images.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setIndex(i)}
+                aria-label={`Imatge ${i + 1}`}
+                className={`transition-all ${i === index ? 'w-6 h-1.5 bg-primary-white' : 'w-1.5 h-1.5 bg-primary-white/60 hover:bg-primary-white/80'} rounded-full`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  )
+}
+
+function ChapterBlock({ chapter, images, reverse, delay }: { chapter: Chapter; images: string[]; reverse: boolean; delay: number }) {
   const [ref, inView] = useInView({ threshold: 0.15, triggerOnce: true })
-  const isExternal = chapter.image.startsWith('http')
 
   return (
     <div
@@ -24,18 +79,10 @@ function ChapterBlock({ chapter, reverse, delay }: { chapter: Chapter; reverse: 
       className={`grid lg:grid-cols-2 gap-10 items-center ${reverse ? 'lg:[&>*:first-child]:order-2' : ''}`}
     >
       <div
-        className={`relative aspect-[4/3] overflow-hidden shadow-xl transition-all duration-1000 transform ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        className={`transition-all duration-1000 transform ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
         style={{ transitionDelay: `${delay}ms` }}
       >
-        <Image
-          src={chapter.image}
-          alt={chapter.title}
-          fill
-          className="object-cover"
-          sizes="(max-width: 1024px) 100vw, 50vw"
-          unoptimized={isExternal}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/30 via-transparent to-transparent" />
+        <ChapterCarousel images={images} alt={chapter.title} />
       </div>
 
       <div
@@ -60,17 +107,17 @@ export default function TimelineSection() {
   const { t } = useLanguage()
   const passat = t<Chapter>('history.passat')
   const present = t<Chapter>('history.present')
-  const [mediaOverrides, setMediaOverrides] = useState<Record<string, string>>({})
+  const [mediaOverrides, setMediaOverrides] = useState<Record<string, string[]>>({})
 
   useEffect(() => {
-    fetch('/api/site-media?keys=history-passat,history-present')
+    fetch('/api/site-media?slots=history-passat,history-present')
       .then(r => r.json())
       .then(data => setMediaOverrides(data.media || {}))
       .catch(() => {})
   }, [])
 
-  const passatChapter: Chapter = { ...passat, image: mediaOverrides['history-passat'] || passat.image }
-  const presentChapter: Chapter = { ...present, image: mediaOverrides['history-present'] || present.image }
+  const passatImages = mediaOverrides['history-passat']?.length ? mediaOverrides['history-passat'] : [passat.image]
+  const presentImages = mediaOverrides['history-present']?.length ? mediaOverrides['history-present'] : [present.image]
 
   return (
     <section id="timeline" className="relative py-24 lg:py-32 bg-primary-white">
@@ -85,8 +132,8 @@ export default function TimelineSection() {
         </div>
 
         <div className="space-y-24 lg:space-y-32">
-          <ChapterBlock chapter={passatChapter} reverse={false} delay={0} />
-          <ChapterBlock chapter={presentChapter} reverse={true} delay={100} />
+          <ChapterBlock chapter={passat} images={passatImages} reverse={false} delay={0} />
+          <ChapterBlock chapter={present} images={presentImages} reverse={true} delay={100} />
         </div>
 
         <div className="text-center mt-20">
