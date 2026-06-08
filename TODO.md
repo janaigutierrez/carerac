@@ -47,3 +47,15 @@ La pagina `/sobre-nosaltres` ja existeix pero amb contingut buit. La Laia ha d'e
 - **Integracio IA**: chatbot FAQ amb informacio de la masia + experiencies (cost ~5-15€/mes API). Implementacio estimada: 4-6h.
 - **SEO + AI Overviews**: schema.org marcatge, sitemap, contingut estructurat perque IAs (Google AI Overviews, Perplexity) llegeixin be el contingut. Implementacio estimada: 2-3h.
 - **Domini + hosting** (tasca de la clienta): comprar `carerac.life` (o similar) i decidir si paguem tier de Mongo Atlas amb cluster sempre actiu (~9€/mes M2) per evitar el cold start del free tier.
+
+- **Redisseny del Dashboard d'admin** (post-MVP). Ara mateix l'admin es una sola pagina amb pestanyes apilades. La idea es transformar-lo en un panell mes visual amb sidebar de seccions:
+  - Resum (stats actuals + gràfiques: reserves per mes, taxa d'aprovació, ocupació del calendari)
+  - Calendari (vista millor, drag-and-drop?)
+  - Reserves (taula filtrable amb cerca per nom/email)
+  - Disponibilitat (gestió de bloquejos)
+  - Personalitzacio (contingut de Sobre nosaltres, imatges Història)
+  - Galeria (upload + ordenacio)
+  - Configuracio (preus, horaris, mail destinatari)
+  - Estimacio: 10-15h. Idealment fer-ho quan la Laia ja porti uns mesos i tinguem feedback real d'us.
+
+- **Backups Mongo automatics**: si no es passa a Atlas M2 (que ja te backup continu), afegir una funcio Netlify scheduled que faci `mongodump` o export setmanal a un bucket S3/Cloudinary. Per evitar perdues catastrofiques.
