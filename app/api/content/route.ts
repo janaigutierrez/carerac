@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { connectMongo } from '@/lib/mongo'
 import { SiteContent } from '@/lib/models/SiteContent'
 import { DEFAULT_CONTENT } from '@/lib/data/siteContentDefaults'
-import { textToParagraphBlocks, type ContentBlock } from '@/lib/data/contentBlocks'
+import { textsToParagraphBlocks, type ContentBlock } from '@/lib/data/contentBlocks'
 
 export const dynamic = 'force-dynamic'
 
@@ -24,13 +24,12 @@ export async function GET(request: NextRequest) {
     const en = doc?.en || fallback.en
     let blocks: ContentBlock[] = (doc?.blocks as unknown as ContentBlock[]) ?? []
     if (blocks.length === 0) {
-      const text = ca || es || en || ''
-      if (text.trim()) blocks = textToParagraphBlocks(text)
+      blocks = textsToParagraphBlocks({ ca, es, en })
     }
     return NextResponse.json({ content: { key, ca, es, en, blocks } })
   } catch (error) {
     console.error('Public content fetch error:', error)
-    const blocks = textToParagraphBlocks(fallback.ca)
+    const blocks = textsToParagraphBlocks(fallback)
     return NextResponse.json({ content: { key, ...fallback, blocks } }, { status: 200 })
   }
 }

@@ -35,6 +35,21 @@ export function textToParagraphBlocks(text: string): ContentBlock[] {
     .map(p => ({ id: newBlockId(), type: 'paragraph' as const, ca: p, es: p, en: p }))
 }
 
+export function textsToParagraphBlocks(texts: { ca?: string; es?: string; en?: string }): ContentBlock[] {
+  const split = (t: string | undefined) => (t || '').split(/\n\s*\n/).map(s => s.trim()).filter(Boolean)
+  const ca = split(texts.ca)
+  const es = split(texts.es)
+  const en = split(texts.en)
+  const maxLen = Math.max(ca.length, es.length, en.length, 0)
+  return Array.from({ length: maxLen }, (_, i) => ({
+    id: newBlockId(),
+    type: 'paragraph' as const,
+    ca: ca[i] || '',
+    es: es[i] || '',
+    en: en[i] || '',
+  }))
+}
+
 export function isValidBlock(b: unknown): b is ContentBlock {
   if (!b || typeof b !== 'object') return false
   const obj = b as Record<string, unknown>

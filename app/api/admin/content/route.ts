@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { connectMongo } from '@/lib/mongo'
 import { SiteContent } from '@/lib/models/SiteContent'
 import { requireAdmin } from '@/lib/session'
-import { isValidBlock, textToParagraphBlocks, type ContentBlock } from '@/lib/data/contentBlocks'
+import { isValidBlock, textsToParagraphBlocks, type ContentBlock } from '@/lib/data/contentBlocks'
+import { DEFAULT_CONTENT } from '@/lib/data/siteContentDefaults'
 
 export const dynamic = 'force-dynamic'
 
@@ -24,9 +25,14 @@ export async function GET(request: NextRequest) {
     await connectMongo()
     const doc = await SiteContent.findOne({ key }).lean()
     let blocks: ContentBlock[] = (doc?.blocks as unknown as ContentBlock[]) ?? []
-    if (blocks.length === 0 && doc) {
-      const text = doc.ca || doc.es || doc.en || ''
-      if (text.trim()) blocks = textToParagraphBlocks(text)
+    if (blocks.length === 0) {
+      const hasDocText = doc && (doc.ca || doc.es || doc.en)
+      if (hasDocText) {
+        blocks = textsToParagraphBlocks({ ca: doc.ca, es: doc.es, en: doc.en })
+      } else {
+        const fallback = DEFAULT_CONTENT[key]
+        if (fallback) blocks = textsToParagraphBlocks(fallback)
+      }
     }
     return NextResponse.json({
       content: {

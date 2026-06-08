@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import {
   Save, Check, Plus, Trash2, ArrowUp, ArrowDown,
-  Type, Heading2, Image as ImageIcon, Youtube, AlertCircle, Upload,
+  Type, Heading2, Image as ImageIcon, Youtube, AlertCircle, Upload, RotateCcw,
 } from 'lucide-react'
 import { type ContentBlock, type BlockLang, newBlockId, parseYouTubeId } from '@/lib/data/contentBlocks'
 import { compressImage } from '@/lib/imageCompress'
@@ -130,6 +130,30 @@ export default function ContentBlocksEditor() {
     }
   }
 
+  const restoreDefaults = async () => {
+    if (!confirm('Vols substituir tots els blocs actuals pels textos per defecte? Aquesta acció no es pot desfer.')) return
+    setSaving(true)
+    setError(null)
+    try {
+      const saveRes = await fetch('/api/admin/content', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ key: 'sobre-nosaltres', ca: '', es: '', en: '', blocks: [] }),
+      })
+      if (!saveRes.ok) throw new Error('reset failed')
+      const reloadRes = await fetch('/api/admin/content?key=sobre-nosaltres')
+      const data = await reloadRes.json()
+      const list = data?.content?.blocks
+      if (Array.isArray(list)) setBlocks(list)
+      setSavedAt(Date.now())
+      setTimeout(() => setSavedAt(null), 2500)
+    } catch {
+      setError('No s\'ha pogut restablir')
+    } finally {
+      setSaving(false)
+    }
+  }
+
   if (loading) return <p className="text-primary-gray">Carregant editor...</p>
 
   return (
@@ -159,6 +183,14 @@ export default function ContentBlocksEditor() {
               <Check size={14} /> Guardat
             </span>
           )}
+          <button
+            onClick={restoreDefaults}
+            disabled={saving}
+            title="Substituir tots els blocs pels textos per defecte"
+            className="flex items-center gap-2 text-primary-gray hover:text-primary-dark text-sm disabled:opacity-50"
+          >
+            <RotateCcw size={14} /> Restablir
+          </button>
           <button
             onClick={save}
             disabled={saving}
