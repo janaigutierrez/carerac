@@ -36,7 +36,7 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
         <h1
-          className={`mb-6 flex justify-center transition-all duration-1000 transform ${
+          className={`-mt-6 sm:-mt-10 lg:-mt-14 -mb-4 sm:-mb-6 lg:-mb-10 flex justify-center transition-all duration-1000 transform ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
@@ -47,13 +47,13 @@ export default function Hero() {
             width={900}
             height={220}
             priority
-            className="w-[280px] sm:w-[400px] lg:w-[560px] h-auto"
+            className="w-[260px] sm:w-[360px] lg:w-[480px] h-auto"
             style={{ filter: 'brightness(0) invert(1) drop-shadow(0 4px 16px rgba(0,0,0,0.35))' }}
           />
         </h1>
 
         <p
-          className={`font-body text-lg sm:text-xl text-primary-white/90 mb-8 max-w-2xl mx-auto transition-all duration-1000 transform delay-300 ${
+          className={`font-body text-base sm:text-lg lg:text-xl text-primary-white/90 mb-6 sm:mb-8 max-w-2xl mx-auto transition-all duration-1000 transform delay-300 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
