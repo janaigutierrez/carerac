@@ -4,7 +4,7 @@ import { requireAdmin } from '@/lib/session'
 
 export const dynamic = 'force-dynamic'
 
-const ALLOWED_FOLDERS = new Set(['carerac/gallery', 'carerac/site-media'])
+const ALLOWED_FOLDERS = new Set(['carerac/gallery', 'carerac/site-media', 'carerac/content'])
 
 export async function POST(request: NextRequest) {
   const session = await requireAdmin()

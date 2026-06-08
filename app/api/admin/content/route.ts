@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { connectMongo } from '@/lib/mongo'
 import { SiteContent } from '@/lib/models/SiteContent'
 import { requireAdmin } from '@/lib/session'
+import { isValidBlock, textToParagraphBlocks, type ContentBlock } from '@/lib/data/contentBlocks'
 
 export const dynamic = 'force-dynamic'
 
@@ -22,7 +23,20 @@ export async function GET(request: NextRequest) {
   try {
     await connectMongo()
     const doc = await SiteContent.findOne({ key }).lean()
-    return NextResponse.json({ content: doc ?? { key, ca: '', es: '', en: '' } })
+    let blocks: ContentBlock[] = (doc?.blocks as unknown as ContentBlock[]) ?? []
+    if (blocks.length === 0 && doc) {
+      const text = doc.ca || doc.es || doc.en || ''
+      if (text.trim()) blocks = textToParagraphBlocks(text)
+    }
+    return NextResponse.json({
+      content: {
+        key,
+        ca: doc?.ca || '',
+        es: doc?.es || '',
+        en: doc?.en || '',
+        blocks,
+      },
+    })
   } catch (error) {
     console.error('Content fetch error:', error)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
@@ -34,13 +48,19 @@ export async function PUT(request: NextRequest) {
   if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   try {
-    const { key, ca, es, en } = await request.json()
+    const body = await request.json()
+    const { key, ca, es, en, blocks } = body
     if (!isAllowedKey(key)) return NextResponse.json({ error: 'Invalid key' }, { status: 400 })
+
+    let safeBlocks: ContentBlock[] = []
+    if (Array.isArray(blocks)) {
+      safeBlocks = blocks.filter(isValidBlock)
+    }
 
     await connectMongo()
     const doc = await SiteContent.findOneAndUpdate(
       { key },
-      { key, ca: ca || '', es: es || '', en: en || '' },
+      { key, ca: ca || '', es: es || '', en: en || '', blocks: safeBlocks },
       { upsert: true, new: true }
     ).lean()
 

@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback, useMemo } from 'react'
 import { Check, X, Trash2, Plus, Mail, Phone, ChevronLeft, ChevronRight, RefreshCw, Clock, MessageCircle, FileText, Image as ImageIcon } from 'lucide-react'
-import ContentManager from './ContentManager'
+import ContentBlocksEditor from './ContentBlocksEditor'
 import GalleryManager from './GalleryManager'
 import HistoryMediaManager from './HistoryMediaManager'
 import { formatDistanceToNow, format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, addMonths, subMonths, isBefore, startOfDay } from 'date-fns'
@@ -348,7 +348,7 @@ export default function AdminDashboard() {
 
       {tab === 'content' && (
         <div className="space-y-5">
-          <ContentManager />
+          <ContentBlocksEditor />
           <HistoryMediaManager />
         </div>
       )}
