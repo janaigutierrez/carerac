@@ -6,12 +6,34 @@ import { isAllowedSlot, ALLOWED_MEDIA_SLOTS } from '@/lib/data/siteMediaDefaults
 
 export const dynamic = 'force-dynamic'
 
+let legacyCleanupDone = false
+async function cleanupLegacyIndexes() {
+  if (legacyCleanupDone) return
+  try {
+    const indexes = await SiteMedia.collection.indexes()
+    for (const idx of indexes) {
+      if (idx.name === 'key_1') {
+        await SiteMedia.collection.dropIndex('key_1')
+        console.log('Dropped legacy key_1 unique index from SiteMedia')
+      }
+    }
+    const legacyResult = await SiteMedia.collection.deleteMany({ slot: { $exists: false } })
+    if (legacyResult.deletedCount) {
+      console.log(`Removed ${legacyResult.deletedCount} legacy SiteMedia docs without slot field`)
+    }
+  } catch (err) {
+    console.error('Legacy cleanup failed (continuing):', err)
+  }
+  legacyCleanupDone = true
+}
+
 export async function GET() {
   const session = await requireAdmin()
   if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   try {
     await connectMongo()
+    await cleanupLegacyIndexes()
     const docs = await SiteMedia.find({ slot: { $in: ALLOWED_MEDIA_SLOTS } }).sort({ slot: 1, order: 1, createdAt: 1 }).lean()
     const bySlot: Record<string, { _id: string; publicId: string; url: string; order: number }[]> = {}
     for (const s of ALLOWED_MEDIA_SLOTS) bySlot[s] = []
@@ -35,6 +57,7 @@ export async function POST(request: NextRequest) {
     if (!publicId || !url) return NextResponse.json({ error: 'Missing publicId or url' }, { status: 400 })
 
     await connectMongo()
+    await cleanupLegacyIndexes()
     const last = await SiteMedia.findOne({ slot }).sort({ order: -1 }).lean()
     const order = (last?.order ?? -1) + 1
 
