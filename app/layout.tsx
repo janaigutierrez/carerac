@@ -3,23 +3,38 @@ import { LanguageProvider } from '@/hooks/useLanguage'
 import CookieBanner from '@/components/CookieBanner'
 import './globals.css'
 
+const SITE_URL = 'https://cancarerac.netlify.app'
+const OG_TITLE = 'Carerac · Experiències autèntiques a la Catalunya rural'
+const OG_DESCRIPTION = 'Una masia familiar on viure experiències gastronòmiques i creatives connectades amb la natura.'
+const OG_IMAGE = `${SITE_URL}/images/gallery/hero.webp`
+
 export const metadata: Metadata = {
-  title: 'Carerac - Experiencies Autentiques a Catalunya Rural',
-  description: 'Descobreix Carerac, una masia historica catalana on viure experiencies gastronomiques i culturals uniques. Forn de llenya, hort ecologic i tradicions autentiques.',
-  keywords: 'masia catalunya, experiencies gastronomiques, turisme rural catalunya, forn llenya, hort ecologic',
+  metadataBase: new URL(SITE_URL),
+  title: OG_TITLE,
+  description: OG_DESCRIPTION,
+  keywords: 'masia catalunya, experiencies gastronomiques, turisme rural catalunya, forn llenya, hort ecologic, caldes de montbui',
   authors: [{ name: 'Carerac' }],
   openGraph: {
-    title: 'Carerac - Experiencies Autentiques a Catalunya Rural',
-    description: 'Descobreix Carerac, una masia historica catalana on viure experiencies gastronomiques i culturals uniques.',
-    url: 'https://carerac.life',
+    title: OG_TITLE,
+    description: OG_DESCRIPTION,
+    url: SITE_URL,
     siteName: 'Carerac',
     locale: 'ca_ES',
     type: 'website',
+    images: [
+      {
+        url: OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: 'Carerac · masia historica a Caldes de Montbui',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Carerac - Experiencies Autentiques a Catalunya Rural',
-    description: 'Descobreix Carerac, una masia historica catalana on viure experiencies gastronomiques i culturals uniques.',
+    title: OG_TITLE,
+    description: OG_DESCRIPTION,
+    images: [OG_IMAGE],
   },
   other: {
     'theme-color': '#8B6F47',
